@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Government of India - Internship Program</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f3f4f6;
+      color: #1f2937;
+    }
+    body.dark-mode {
+      background-color: #111827;
+      color: #e5e7eb;
+    }
+    .header-bg { background-color: #002e6d; color: white; }
+    .blue-button {
+      background-color: white;
+      color: #002e6d;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .blue-button:hover { background-color: #d1d5db; }
+    /* Login Modal */
+    #login-modal { display: none; }
+    #login-modal.active { display: flex; }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <!-- Header -->
+  <header class="header-bg py-2 px-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <span class="text-white font-semibold">भारत सरकार / Government of India</span>
+      </div>
+      <div class="flex items-center space-x-2">
+        <!-- Sign-in/Register -->
+        <button id="open-login" class="blue-button">Sign-in/Register</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero bg-black text-center text-white py-16">
+    <h1 class="text-4xl font-bold">Shape India's Future</h1>
+    <p class="mt-4">Join prestigious internships across various ministries. Gain real-world experience while contributing to nation-building.</p>
+    <a href="#programs" class="mt-6 inline-block bg-orange-500 text-white px-6 py-3 rounded-full">Explore Programs</a>
+  </section>
+
+  <!-- Features -->
+  <section class="features py-12">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold">Why Choose Our Internship Program?</h2>
+      <p class="text-gray-600 mt-2">Get hands-on projects, mentorship, networking, and professional development.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white text-center py-6 mt-10">
+    <p>&copy; 2025 PM Internship Scheme</p>
+  </footer>
+
+  <!-- 🔹 Login Modal -->
+  <div id="login-modal" class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 relative">
+      <!-- Close -->
+      <button id="close-login" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800">✖</button>
+      <!-- Header -->
+      <div class="text-center mb-6">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Emblem" class="w-16 mx-auto mb-3">
+        <h2 class="text-2xl font-bold">Internship Portal</h2>
+        <p class="text-gray-500">Government of India</p>
+      </div>
+      <!-- Form -->
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label for="email" class="block text-sm font-medium">Email Address</label>
+          <input type="email" id="email" required class="w-full px-4 py-2 border rounded-lg" placeholder="you@example.gov.in">
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium">Password</label>
+          <input type="password" id="password" required class="w-full px-4 py-2 border rounded-lg" placeholder="••••••••">
+        </div>
+        <div>
+          <label for="sector-select" class="block text-sm font-medium">Select Sector</label>
+          <select id="sector-select" class="w-full px-4 py-2 border rounded-lg">
+            <option value="technology">Technology & Software</option>
+            <option value="design">Design & Creative</option>
+            <option value="business">Business & Marketing</option>
+            <option value="research">Research & Analytics</option>
+            <option value="content">Content & Writing</option>
+            <option value="healthcare">Healthcare & Life Sciences</option>
+          </select>
+        </div>
+        <button type="submit" id="submit-button"
+          class="w-full bg-orange-500 text-white font-bold py-2 rounded-lg hover:bg-orange-600">
+          Sign in & Explore
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const loginModal = document.getElementById('login-modal');
+    const openBtn = document.getElementById('open-login');
+    const closeBtn = document.getElementById('close-login');
+    const loginForm = document.getElementById('login-form');
+    const submitButton = document.getElementById('submit-button');
+
+    openBtn.addEventListener('click', () => loginModal.classList.add('active'));
+    closeBtn.addEventListener('click', () => loginModal.classList.remove('active'));
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const sector = document.getElementById('sector-select').value;
+
+      if (!email || !password) {
+        alert("Please enter both email and password.");
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Signing in...";
+
+      try {
+        const response = await fetch('http://localhost:3000/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.message || "Login failed");
+
+        alert(result.message + " Redirecting...");
+        setTimeout(() => {
+          window.location.href = sector + ".html";
+        }, 1500);
+
+      } catch (error) {
+        alert(error.message);
+        submitButton.disabled = false;
+        submitButton.textContent = "Sign in & Explore";
+      }
+    });
+  </script>
+</body>
+</html>

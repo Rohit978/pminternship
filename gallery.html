@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sectors Carousel</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #e6f2ff, #ffffff);
+    }
+
+    h2 {
+      text-align: center;
+      padding: 30px 0 10px;
+      font-size: 32px;
+      color: #333;
+    }
+
+    .carousel-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 1s ease-in-out;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      display: flex;
+      justify-content: space-around;
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .block {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 30%;
+      aspect-ratio: 1 / 1;
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .block:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.2);
+    }
+
+    .block img {
+      width: 100%;
+      height: 70%;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      transition: transform 0.5s ease;
+    }
+
+    .block:hover img {
+      transform: scale(1.1);
+    }
+
+    .block p {
+      padding: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+
+    .btn-show-more {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 30px;
+      font-size: 18px;
+      background-color: #1310e3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .btn-show-more:hover {
+      background-color: #e65700;
+    }
+
+    /* Expanded view styles */
+    .expanded .carousel-track {
+      flex-direction: column;
+      transform: none !important;
+    }
+
+    .expanded .carousel-item {
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+    .expanded .block {
+      width: 22%;
+      aspect-ratio: 1 / 1;
+      margin: 15px 0;
+    }
+
+    @media (max-width: 1024px) {
+      .expanded .block {
+        width: 30%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .block {
+        width: 45%;
+      }
+      .expanded .block {
+        width: 40%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .block {
+        width: 90%;
+      }
+      .expanded .block {
+        width: 90%;
+      }
+      .carousel-item {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Lightbox overlay */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .lightbox-close:hover {
+      color: #e65700;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 50px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px;
+    }
+
+    .lightbox-prev { left: 30px; }
+    .lightbox-next { right: 30px; }
+  </style>
+</head>
+<body>
+
+
+  <script>
+    const track = document.getElementById('carousel-track');
+    const container = document.getElementById('carouselContainer');
+    const button = document.getElementById('toggleButton');
+    const totalSlides = document.querySelectorAll('.carousel-item').length;
+
+    let index = 0;
+    let intervalId;
+    let isExpanded = false;
+
+    function updateSlidePosition() {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function startAutoSlide() {
+      intervalId = setInterval(() => {
+        if (!isExpanded) {
+          index = (index + 1) % totalSlides;
+          updateSlidePosition();
+        }
+      }, 4000);
+    }
+
+    function stopAutoSlide() {
+      clearInterval(intervalId);
+    }
+
+    button.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+
+      if (isExpanded) {
+        container.classList.add('expanded');
+        button.textContent = 'Show Less';
+        stopAutoSlide();
+        track.style.transform = 'none';
+      } else {
+        container.classList.remove('expanded');
+        button.textContent = 'Show More';
+        updateSlidePosition();
+        startAutoSlide();
+      }
+    });
+
+    // Lightbox functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const images = Array.from(document.querySelectorAll('.block img'));
+
+    let currentImgIndex = 0;
+
+    images.forEach((img, i) => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        currentImgIndex = i;
+      });
+    });
+
+    function showImage(i) {
+      currentImgIndex = (i + images.length) % images.length;
+      lightboxImg.src = images[currentImgIndex].src;
+    }
+
+    lightboxPrev.addEventListener('click', () => showImage(currentImgIndex - 1));
+    lightboxNext.addEventListener('click', () => showImage(currentImgIndex + 1));
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+      }
+    });
+
+    // Start auto-slide
+    startAutoSlide();
+  </script>
+
+</body>
+</html>

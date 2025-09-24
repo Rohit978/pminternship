@@ -1,0 +1,464 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - Government of India Internship Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <!-- jsPDF library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tricolor-border-top {
+            border-top: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+            border-image-source: linear-gradient(to right, #ff9933, #ffffff, #138808);
+        }
+        .progress-bar-fill {
+            transition: width 0.5s ease-in-out;
+        }
+        /* Styles for the resume preview container */
+        #resume-preview-container {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            background-color: white;
+        }
+        .ai-button {
+            background-color: #6366f1;
+            color: white;
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s;
+        }
+        .ai-button:hover {
+            background-color: #4f46e5;
+        }
+        .ai-button:disabled {
+            background-color: #a5b4fc;
+            cursor: not-allowed;
+        }
+        .ai-button .fa-spinner {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.absolute{position:absolute}.relative{position:relative}.right-2{right:0.5rem}.top-2{top:0.5rem}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mb-8{margin-bottom:2rem}.mr-1{margin-right:0.25rem}.mr-2{margin-right:0.5rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-2\.5{height:0.625rem}.h-auto{height:auto}.min-h-screen{min-height:100vh}.w-16{width:4rem}.w-full{width:100%}.max-w-4xl{max-width:56rem}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-6{gap:1.5rem}.overflow-hidden{overflow:hidden}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-gray-200{--tw-border-opacity:1;border-color:rgb(229 231 235 / var(--tw-border-opacity, 1))}.border-gray-300{--tw-border-opacity:1;border-color:rgb(209 213 219 / var(--tw-border-opacity, 1))}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-gray-300{--tw-bg-opacity:1;background-color:rgb(209 213 219 / var(--tw-bg-opacity, 1))}.bg-gray-50{--tw-bg-opacity:1;background-color:rgb(249 250 251 / var(--tw-bg-opacity, 1))}.bg-green-600{--tw-bg-opacity:1;background-color:rgb(22 163 74 / var(--tw-bg-opacity, 1))}.bg-orange-500{--tw-bg-opacity:1;background-color:rgb(249 115 22 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.p-2{padding:0.5rem}.p-4{padding:1rem}.p-8{padding:2rem}.py-12{padding-top:3rem;padding-bottom:3rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.pt-5{padding-top:1.25rem}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:bg-gray-400:hover{--tw-bg-opacity:1;background-color:rgb(156 163 175 / var(--tw-bg-opacity, 1))}.hover\:bg-green-700:hover{--tw-bg-opacity:1;background-color:rgb(21 128 61 / var(--tw-bg-opacity, 1))}.hover\:bg-orange-600:hover{--tw-bg-opacity:1;background-color:rgb(234 88 12 / var(--tw-bg-opacity, 1))}.hover\:text-blue-800:hover{--tw-text-opacity:1;color:rgb(30 64 175 / var(--tw-text-opacity, 1))}.hover\:text-red-700:hover{--tw-text-opacity:1;color:rgb(185 28 28 / var(--tw-text-opacity, 1))}.focus\:border-indigo-500:focus{--tw-border-opacity:1;border-color:rgb(99 102 241 / var(--tw-border-opacity, 1))}.focus\:ring-indigo-500:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(99 102 241 / var(--tw-ring-opacity, 1))}.disabled\:opacity-50:disabled{opacity:0.5}@media (min-width: 640px){.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:p-6{padding:1.5rem}}</style></head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen py-12">
+
+    <main class="w-full max-w-4xl mx-auto p-4 md:p-6">
+        <div class="bg-white rounded-2xl shadow-xl tricolor-border-top">
+            <!-- Header Section -->
+            <div class="p-8 text-center border-b border-gray-200">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-16 h-auto mx-auto mb-4" onerror="this.onerror=null; this.src='https://placehold.co/64x80/EFEFEF/333333?text=Emblem';">
+                <h1 class="text-2xl font-bold text-gray-800">Resume Builder</h1>
+                <p class="text-gray-500 mt-1">Government of India Internship Portal</p>
+            </div>
+
+            <!-- Resume Builder Section -->
+            <div class="p-8">
+                <!-- Progress Bar -->
+                <div class="mb-8">
+                    <div class="bg-gray-200 rounded-full h-2.5">
+                        <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full progress-bar-fill" style="width: 20%"></div>
+                    </div>
+                    <div class="flex justify-between text-xs mt-2 text-gray-500">
+                        <span>Personal Info</span>
+                        <span>Education</span>
+                        <span>Experience</span>
+                        <span>Skills</span>
+                        <span>Review &amp; Download</span>
+                    </div>
+                </div>
+
+                <form id="resume-form">
+                    <!-- Step 1: Personal Information -->
+                    <div id="step-1" class="step active">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-6">Personal Information</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="fullName" placeholder="e.g., Moksh lath" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="email" placeholder="e.g., moksh@email.com" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                                <input type="tel" id="phone" placeholder="e.g., +91 98765 43210" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                            </div>
+                             <div>
+                                <label for="linkedin" class="block text-sm font-medium text-gray-700">LinkedIn Profile</label>
+                                <input type="url" id="linkedin" placeholder="e.g., linkedin.com/in/moksh" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                            </div>
+                        </div>
+                         <div class="mt-6">
+                            <div class="flex justify-between items-center mb-1">
+                                <label for="summary" class="block text-sm font-medium text-gray-700">Professional Summary</label>
+                                <button type="button" id="generate-summary" class="ai-button">
+                                    <i class="fas fa-magic mr-1"></i> Generate with AI
+                                </button>
+                            </div>
+                            <textarea id="summary" rows="4" placeholder="A brief summary of your professional background and skills..." class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Education -->
+                    <div id="step-2" class="step hidden">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-6">Education</h3>
+                        <div id="education-entries">
+                            <!-- Education Entry Template -->
+                            <div class="education-entry grid grid-cols-1 md:grid-cols-2 gap-6 p-4 border rounded-lg mb-4 relative">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Institution</label>
+                                    <input type="text" placeholder="e.g., University of Delhi" class="education-institution mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Degree</label>
+                                    <input type="text" placeholder="e.g., B.Sc. in Computer Science" class="education-degree mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Start Year</label>
+                                    <input type="number" placeholder="2020" class="education-start-year mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">End Year</label>
+                                    <input type="number" placeholder="2024" class="education-end-year mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                </div>
+                                <button type="button" class="remove-entry-btn absolute top-2 right-2 text-red-500 hover:text-red-700">×</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-education" class="mt-4 text-sm font-medium text-blue-600 hover:text-blue-800">+ Add Another Degree</button>
+                    </div>
+
+                    <!-- Step 3: Experience -->
+                    <div id="step-3" class="step hidden">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-6">Work Experience</h3>
+                         <div id="experience-entries">
+                            <div class="experience-entry p-4 border rounded-lg mb-4 relative">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Company</label>
+                                        <input type="text" placeholder="e.g., Tata Consultancy Services" class="experience-company mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Job Title</label>
+                                        <input type="text" placeholder="e.g., Software Engineer Intern" class="experience-title mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Start Date</label>
+                                        <input type="month" class="experience-start-date mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">End Date</label>
+                                        <input type="month" class="experience-end-date mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                    </div>
+                                </div>
+                                <div class="mt-6">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-sm font-medium text-gray-700">Responsibilities</label>
+                                        <button type="button" class="generate-experience ai-button">
+                                            <i class="fas fa-magic mr-1"></i> Generate with AI
+                                        </button>
+                                    </div>
+                                    <textarea rows="4" placeholder="Describe your key responsibilities and achievements..." class="experience-desc mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"></textarea>
+                                </div>
+                                <button type="button" class="remove-entry-btn absolute top-2 right-2 text-red-500 hover:text-red-700">×</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-experience" class="mt-4 text-sm font-medium text-blue-600 hover:text-blue-800">+ Add Another Position</button>
+                    </div>
+
+                    <!-- Step 4: Skills -->
+                    <div id="step-4" class="step hidden">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-6">Skills</h3>
+                        <div>
+                            <label for="skills" class="block text-sm font-medium text-gray-700">List your skills (comma separated)</label>
+                            <textarea id="skills" rows="6" placeholder="e.g., Python, JavaScript, Data Analysis, Public Speaking, Project Management" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 5: Review -->
+                    <div id="step-5" class="step hidden">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-6">Review &amp; Download Your Resume</h3>
+                        <div id="resume-preview-container" class="border rounded-lg bg-gray-50 shadow-inner overflow-hidden">
+                            <div id="resume-preview">
+                                <!-- AI Generated Resume content will be injected here -->
+                            </div>
+                        </div>
+                        <div class="text-center mt-6">
+                             <button type="button" id="download-pdf" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700">
+                                <i class="fas fa-download mr-2"></i>Download as PDF
+                             </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Navigation Buttons -->
+                <div id="navigation-buttons" class="mt-8 pt-5 border-t border-gray-200 flex justify-between">
+                    <button type="button" id="prev-btn" class="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-lg hover:bg-gray-400 disabled:opacity-50" disabled="">Previous</button>
+                    <button type="button" id="next-btn" class="bg-orange-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-600">Next</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Destructuring jsPDF for convenience
+            const { jsPDF } = window.jspdf;
+
+            const steps = document.querySelectorAll('.step');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const navigationButtons = document.getElementById('navigation-buttons');
+
+            let currentStep = 0;
+
+            // --- AI Generation Logic ---
+            const apiKey = "AIzaSyBLxoVx-RkuJeja6n_7JqrJ_O-S_teRhuA"; // Per instructions, leave this blank.
+
+            async function generateAIContent(prompt, button) {
+                button.disabled = true;
+                const originalText = button.innerHTML;
+                button.innerHTML = `<i class="fas fa-spinner fa-spin mr-1"></i> Generating...`;
+
+                try {
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                    const payload = {
+                        contents: [{ parts: [{ text: prompt }] }],
+                    };
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API request failed with status ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        return candidate.content.parts[0].text;
+                    } else {
+                         console.error("Invalid response from AI:", result);
+                        throw new Error("Invalid response structure from AI.");
+                    }
+                } catch (error) {
+                    console.error("AI Generation Error:", error);
+                    return "Error generating content. Please try again.";
+                } finally {
+                    button.disabled = false;
+                    button.innerHTML = originalText;
+                }
+            }
+            
+            // Generate Summary
+            document.getElementById('generate-summary').addEventListener('click', async (e) => {
+                const fullName = document.getElementById('fullName').value;
+                const skills = document.getElementById('skills').value;
+                const jobTitles = Array.from(document.querySelectorAll('.experience-title')).map(input => input.value).filter(t => t);
+                
+                const prompt = `Act as a professional resume writer. Write a concise and impactful professional summary for a resume. The candidate's name is ${fullName || 'the applicant'}. Their skills include ${skills || 'various abilities'}. Their previous roles include ${jobTitles.join(', ') || 'relevant positions'}. The summary should be 2-3 sentences long, tailored for an internship application, highlighting their key qualifications and eagerness to learn.`;
+                
+                const summaryTextArea = document.getElementById('summary');
+                summaryTextArea.value = "Generating summary...";
+                const generatedSummary = await generateAIContent(prompt, e.target);
+                summaryTextArea.value = generatedSummary;
+            });
+            
+            // Generate Experience (using event delegation)
+            document.getElementById('experience-entries').addEventListener('click', async (e) => {
+                const button = e.target.closest('.generate-experience');
+                if (button) {
+                    const experienceEntry = button.closest('.experience-entry');
+                    const jobTitle = experienceEntry.querySelector('.experience-title').value;
+                    const company = experienceEntry.querySelector('.experience-company').value;
+                    
+                    if(!jobTitle || !company) {
+                        alert("Please enter a Job Title and Company first.");
+                        return;
+                    }
+
+                    const prompt = `Act as a professional resume writer. For a resume, list 3-5 key responsibilities and achievements for a "${jobTitle}" at "${company}". Use action verbs and focus on quantifiable results where possible. Present the output as a bulleted list using '• '. Do not add any introductory text.`;
+                    
+                    const descTextArea = experienceEntry.querySelector('.experience-desc');
+                    descTextArea.value = "Generating responsibilities...";
+                    const generatedDesc = await generateAIContent(prompt, button);
+                    descTextArea.value = generatedDesc;
+                }
+            });
+
+
+            const updateButtons = () => {
+                prevBtn.disabled = currentStep === 0;
+                if (currentStep === steps.length - 1) {
+                    nextBtn.textContent = 'Finish';
+                    navigationButtons.classList.add('hidden'); // Hide nav on final step
+                } else {
+                    nextBtn.textContent = 'Next';
+                     navigationButtons.classList.remove('hidden');
+                }
+            };
+
+            const updateProgressBar = () => {
+                const progress = ((currentStep + 1) / steps.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+
+            const showStep = (stepIndex) => {
+                steps.forEach((step, index) => {
+                    step.classList.toggle('active', index === stepIndex);
+                    step.classList.toggle('hidden', index !== stepIndex);
+                });
+            };
+            
+            const generateResumePreview = async () => {
+                const preview = document.getElementById('resume-preview');
+                preview.innerHTML = `<div class="w-full text-center p-10"><i class="fas fa-spinner fa-spin text-4xl text-blue-600"></i><p class="mt-4 text-gray-600">Personalizing your resume with AI...</p></div>`;
+
+                const resumeData = {
+                    fullName: document.getElementById('fullName').value || "Moksh",
+                    email: document.getElementById('email').value || "moksh@email.com",
+                    phone: document.getElementById('phone').value || "+91 98765 43210",
+                    linkedin: document.getElementById('linkedin').value || "linkedin.com/in/moksh",
+                    summary: document.getElementById('summary').value || "A brief summary of your professional background and skills...",
+                    education: [],
+                    experience: [],
+                    skills: document.getElementById('skills').value.split(',').map(s => s.trim()).filter(s => s),
+                };
+
+                document.querySelectorAll('.education-entry').forEach(entry => {
+                    const institution = entry.querySelector('.education-institution').value;
+                    if(institution) {
+                        resumeData.education.push({
+                            institution,
+                            degree: entry.querySelector('.education-degree').value,
+                            startYear: entry.querySelector('.education-start-year').value,
+                            endYear: entry.querySelector('.education-end-year').value,
+                        });
+                    }
+                });
+
+                document.querySelectorAll('.experience-entry').forEach(entry => {
+                     const company = entry.querySelector('.experience-company').value;
+                     if(company) {
+                        resumeData.experience.push({
+                            company,
+                            title: entry.querySelector('.experience-title').value,
+                            startDate: entry.querySelector('.experience-start-date').value,
+                            endDate: entry.querySelector('.experience-end-date').value,
+                            description: entry.querySelector('.experience-desc').value,
+                        });
+                    }
+                });
+
+                const prompt = `You are an expert resume designer. Your task is to generate a complete, professional, and visually appealing HTML structure for a resume based on the provided JSON data.
+
+                **Data:**
+                ${JSON.stringify(resumeData, null, 2)}
+
+                **Instructions:**
+                1.  **Layout:** Create a two-column layout using a main flex container. The sidebar (30% width) should contain 'Contact' and 'Skills'. The main content area (70% width) should have 'Summary', 'Experience', and 'Education'.
+                2.  **Styling:** Use **inline CSS only**. Do not use any external CSS classes, except for Font Awesome icons. Use a professional sans-serif font like 'Inter', 'Helvetica', or 'Arial'. The base font size should be around 11pt.
+                3.  **Colors:** Use a professional color palette. Main text: #333. Section headers: #002e6d (deep blue). Accent color for header borders: #ff9933 (orange).
+                4.  **Icons:** Use Font Awesome icons for contact details: email ('fas fa-envelope'), phone ('fas fa-phone'), and LinkedIn ('fab fa-linkedin').
+                5.  **Structure:** The entire output must be a single parent \`<div>\` that contains the two columns. Do not include \`<html>\`, \`<head>\`, or \`<body>\` tags.
+                6.  **Content:** Format experience descriptions with bullet points ('• '). Ensure dates are neatly aligned.
+                7.  **Example Section Title:** \`<h2 style="font-size: 1.25rem; font-weight: 600; color: #002e6d; border-bottom: 2px solid #ff9933; padding-bottom: 4px; margin-bottom: 1rem; margin-top: 1.5rem;">Summary</h2>\`
+
+                Generate only the complete HTML code for the resume preview.`;
+                
+                const generatedHTML = await generateAIContent(prompt, nextBtn);
+                preview.innerHTML = generatedHTML;
+            };
+
+            nextBtn.addEventListener('click', async () => {
+                if (currentStep === steps.length - 2) { // Moving to the Review step
+                     await generateResumePreview();
+                }
+
+                if (currentStep < steps.length - 1) {
+                    currentStep++;
+                    showStep(currentStep);
+                    updateButtons();
+                    updateProgressBar();
+                } 
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 0) {
+                    currentStep--;
+                    showStep(currentStep);
+                    updateButtons();
+                    updateProgressBar();
+                }
+            });
+
+            // --- Dynamic Entry Management ---
+            function setupDynamicEntries(containerId, addButtonId, entryClass, template) {
+                const container = document.getElementById(containerId);
+                document.getElementById(addButtonId).addEventListener('click', () => {
+                    const newEntry = document.createElement('div');
+                    newEntry.innerHTML = template;
+                    // Reset input values in the cloned template
+                    newEntry.querySelectorAll('input, textarea').forEach(input => input.value = '');
+                    container.appendChild(newEntry.firstElementChild);
+                });
+
+                container.addEventListener('click', (e) => {
+                    const removeBtn = e.target.closest('.remove-entry-btn');
+                    if (removeBtn && container.children.length > 1) {
+                        removeBtn.closest(`.${entryClass}`).remove();
+                    }
+                });
+            }
+
+            const educationTemplate = document.querySelector('.education-entry').outerHTML;
+            setupDynamicEntries('education-entries', 'add-education', 'education-entry', educationTemplate);
+            
+            const experienceTemplate = document.querySelector('.experience-entry').outerHTML;
+            setupDynamicEntries('experience-entries', 'add-experience', 'experience-entry', experienceTemplate);
+            
+            // --- PDF Download ---
+            document.getElementById('download-pdf').addEventListener('click', () => {
+                const resumePreview = document.getElementById('resume-preview');
+                html2canvas(resumePreview, { scale: 3 }).then(canvas => { // Increased scale for better quality
+                    const imgData = canvas.toDataURL('image/png');
+                    const pdf = new jsPDF({
+                        orientation: 'portrait',
+                        unit: 'pt',
+                        format: 'a4'
+                    });
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+                    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                    pdf.save('resume.pdf');
+                });
+            });
+
+
+            // Initial setup
+            showStep(currentStep);
+            updateButtons();
+            updateProgressBar();
+        });
+    </script>
+
+
+
+</body></html>

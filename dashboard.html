@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Dashboard - Government of India Internship Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .tricolor-border-top {
+            border-top: 6px solid;
+            border-image-slice: 1;
+            border-width: 6px;
+            border-image-source: linear-gradient(to right, #FF9933, #FFFFFF, #138808);
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #138808);
+            border-radius: 4px;
+            transition: width 1s ease-in-out;
+        }
+        .apply-button {
+            background: linear-gradient(to right, #0f74b3, #0a5a8a);
+            transition: all 0.3s ease;
+        }
+        .apply-button:hover {
+            box-shadow: 0 8px 15px rgba(0, 118, 190, 0.4);
+            transform: translateY(-2px);
+        }
+        .text-gradient-orange-green {
+            background: linear-gradient(to right, #FF9933, #138808);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .logout-pill {
+             background-color: #fee2e2;
+             color: #dc2626;
+             border-radius: 9999px;
+             padding: 0.5rem 1rem;
+             transition: all 0.2s ease-in-out;
+        }
+        .logout-pill:hover {
+            background-color: #dc2626;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-spinner" class="fixed inset-0 bg-white bg-opacity-75 flex items-center justify-center z-50">
+        <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-orange-500"></div>
+    </div>
+
+    <div id="dashboard-content" class="container mx-auto p-4 md:p-8 opacity-0 transition-opacity duration-500">
+        <!-- Profile Header Card -->
+        <div class="card tricolor-border-top mb-8">
+            <div class="profile-section flex flex-col md:flex-row items-center md:items-start gap-8 flex-wrap">
+                <div id="avatar" class="avatar w-28 h-28 md:w-32 md:h-32 rounded-full flex items-center justify-center text-white text-5xl font-extrabold" style="background: linear-gradient(135deg, #FF9933, #138808);">
+                    <!-- Initials will be inserted here -->
+                </div>
+                <div class="profile-info flex-1 text-center md:text-left">
+                    <h1 id="profile-name" class="profile-name text-4xl font-extrabold text-gray-900 mb-2">
+                        <!-- User's Full Name -->
+                    </h1>
+                    <p class="profile-role text-xl text-gray-600 mt-2">Aspiring Government Intern</p>
+                    <div class="contact-grid mt-6 grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-6 text-gray-700">
+                        <div id="contact-email" class="flex items-center justify-center md:justify-start gap-3">
+                            <i class="fas fa-envelope text-blue-500 text-lg"></i>
+                            <span class="font-medium"><!-- User's Email --></span>
+                        </div>
+                        <div id="contact-location" class="flex items-center justify-center md:justify-start gap-3">
+                            <i class="fas fa-map-marker-alt text-red-500 text-lg"></i>
+                            <span class="font-medium"><!-- User's Location --></span>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" id="logout-button" class="logout-pill font-semibold self-center md:self-start flex items-center gap-2 mt-4 md:mt-0">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main content grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left column -->
+            <div class="lg:col-span-2 space-y-8">
+                <div class="card">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6 text-gradient-orange-green">Academic Snapshot</h2>
+                    <div id="academic-info" class="space-y-6">
+                        <div>
+                            <div class="flex justify-between font-semibold mb-2 text-gray-800">
+                                <span>12th Grade Performance (<span id="board12"></span>)</span>
+                                <span class="text-blue-600 font-bold" id="marks12-text"></span>
+                            </div>
+                            <div class="progress-bar bg-gray-200 rounded-full h-3">
+                                <div id="marks12-progress" class="progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between font-semibold mb-2 text-gray-800">
+                                <span>10th Grade Performance (<span id="board10"></span>)</span>
+                                <span class="text-blue-600 font-bold" id="marks10-text"></span>
+                            </div>
+                            <div class="progress-bar bg-gray-200 rounded-full h-3">
+                                <div id="marks10-progress" class="progress-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6 text-gradient-orange-green">Recommended Internships</h2>
+                    <div id="recommendations" class="space-y-4">
+                        <!-- Recommendations will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+            <!-- Right column -->
+            <div class="space-y-8">
+                <div class="card">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6 text-gradient-orange-green">Quick Actions</h3>
+                    <div class="space-y-4">
+                        <a href="#" class="flex items-center justify-center w-full text-white font-bold py-4 px-4 rounded-xl shadow-lg hover:shadow-xl transition duration-300 bg-blue-600 hover:bg-blue-700">
+                            <i class="fas fa-paper-plane mr-3 text-xl"></i> Apply for Internship
+                        </a>
+                        <a href="#" class="flex items-center justify-center w-full text-white font-bold py-3 px-4 rounded-xl transition duration-300 bg-purple-600 hover:bg-purple-700">
+                            <i class="fas fa-file-alt mr-3"></i> Build Your Resume
+                        </a>
+                        <a href="#" class="flex items-center justify-center w-full text-white font-bold py-3 px-4 rounded-xl transition duration-300 bg-teal-600 hover:bg-teal-700">
+                            <i class="fas fa-headset mr-3"></i> Practice Interview
+                        </a>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 class="text-3xl font-bold text-gray-900 mb-6 text-gradient-orange-green">Application Stats</h3>
+                    <div id="stats-grid" class="grid grid-cols-2 gap-4">
+                        <div class="text-center bg-blue-50 p-5 rounded-xl border border-blue-200">
+                            <p class="text-4xl font-extrabold text-blue-700" id="marks12-stat"></p>
+                            <p class="text-sm text-gray-600 mt-1">12th Marks</p>
+                        </div>
+                        <div class="text-center bg-green-50 p-5 rounded-xl border border-green-200">
+                            <p class="text-4xl font-extrabold text-green-700" id="marks10-stat"></p>
+                            <p class="text-sm text-gray-600 mt-1">10th Marks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center py-8 mt-12 bg-white shadow-inner">
+        <p class="text-sm text-gray-500">&copy; 2025 Government of India. All rights reserved.</p>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+    const spinner = document.getElementById('loading-spinner');
+    const dashboardContent = document.getElementById('dashboard-content');
+    const loginUrl = new URL('login.html', window.location.href).href;
+    
+    const userId = localStorage.getItem('loggedInUserId');
+    if (!userId) {
+        window.location.href = loginUrl;
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:3000/user/' + userId);
+        if (!response.ok) {
+            throw new Error('User data not found.');
+        }
+        const user = await response.json();
+
+        // --- Populate Dashboard with User Data ---
+
+        // Header
+        const nameParts = user.fullName.trim().split(/\s+/);
+        const initials = (nameParts.length > 1 ? nameParts[0][0] + nameParts[nameParts.length - 1][0] : nameParts[0].substring(0, 2)).toUpperCase();
+        document.getElementById('avatar').textContent = initials;
+        document.getElementById('profile-name').textContent = user.fullName;
+        document.querySelector('#contact-email span').textContent = user.email;
+        document.querySelector('#contact-location span').textContent = `${user.city}, ${user.state}`;
+
+        // Academic Snapshot
+        document.getElementById('board12').textContent = user.board12;
+        document.getElementById('marks12-text').textContent = `${user.marks12}%`;
+        document.getElementById('marks12-progress').style.width = `${user.marks12}%`;
+
+        document.getElementById('board10').textContent = user.board10;
+        document.getElementById('marks10-text').textContent = `${user.marks10}%`;
+        document.getElementById('marks10-progress').style.width = `${user.marks10}%`;
+
+        // Application Stats
+        document.getElementById('marks12-stat').textContent = `${user.marks12}%`;
+        document.getElementById('marks10-stat').textContent = `${user.marks10}%`;
+        
+        // Recommendations (using the user's city)
+        const recommendationsContainer = document.getElementById('recommendations');
+        recommendationsContainer.innerHTML = `
+            <div class="p-5 border border-gray-200 rounded-xl hover:shadow-lg transition-shadow duration-300 bg-gray-50">
+                <h4 class="font-bold text-xl text-gray-800 flex items-center mb-2"><i class="fas fa-laptop-code text-blue-500 mr-3"></i>IT & Software Development Intern</h4>
+                <p class="text-md text-gray-600 ml-8">National Informatics Centre (NIC) - ${user.city}</p>
+                <p class="text-sm text-gray-500 mt-3 ml-8"><span class="font-semibold">Skills:</span> Java, Python, SQL, Web Development</p>
+                <button class="apply-button mt-4 ml-8 w-auto text-white font-bold py-2 px-5 rounded-lg">Apply Now</button>
+            </div>
+            <div class="p-5 border border-gray-200 rounded-xl hover:shadow-lg transition-shadow duration-300 bg-gray-50">
+                <h4 class="font-bold text-xl text-gray-800 flex items-center mb-2"><i class="fas fa-chart-line text-green-500 mr-3"></i>Public Policy Research Intern</h4>
+                <p class="text-md text-gray-600 ml-8">NITI Aayog - Lucknow</p>
+                <p class="text-sm text-gray-500 mt-3 ml-8"><span class="font-semibold">Skills:</span> Research, Data Analysis, Report Writing, Economics</p>
+                <button class="apply-button mt-4 ml-8 w-auto text-white font-bold py-2 px-5 rounded-lg">Apply Now</button>
+            </div>
+        `;
+
+        // Logout Button
+        document.getElementById('logout-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('loggedInUserId');
+            window.location.href = loginUrl;
+        });
+
+    } catch (error) {
+        console.error("Failed to load dashboard:", error);
+        const mainContent = document.getElementById('dashboard-content');
+        mainContent.innerHTML = `
+            <div class="card text-center">
+                <h2 class="text-2xl font-bold text-red-600 mb-4">Could not load dashboard</h2>
+                <p class="text-gray-600">There was an error fetching your data. Please try logging in again.</p>
+                <a href="${loginUrl}" class="mt-6 inline-block bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700">Go to Login</a>
+            </div>
+        `;
+    } finally {
+        // Hide spinner and show content
+        spinner.style.display = 'none';
+        dashboardContent.classList.remove('opacity-0');
+    }
+});
+</script>
+</body>
+</html>
+

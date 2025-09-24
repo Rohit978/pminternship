@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Selection Predictor - Government of India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tricolor-border-top {
+            border-top: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+            border-image-source: linear-gradient(to right, #ff9933, #ffffff, #138808);
+        }
+        .progress-bar-fill {
+            transition: width 0.5s ease-in-out;
+        }
+        /* Styles for the prediction gauge */
+        .gauge-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+        .gauge-bg, .gauge-fill {
+            fill: none;
+            stroke-width: 20;
+            transform-origin: 50% 50%;
+            transform: rotate(-90deg);
+        }
+        .gauge-bg {
+            stroke: #e6e6e6;
+        }
+        .gauge-fill {
+            stroke: #4f46e5;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 1.5s ease-in-out;
+        }
+        .gauge-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            fill: #333;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen py-12">
+
+    <main class="w-full max-w-4xl mx-auto p-4 md:p-6">
+        <div class="bg-white rounded-2xl shadow-xl tricolor-border-top">
+            <!-- Header Section -->
+            <div class="p-8 text-center border-b border-gray-200">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-16 h-auto mx-auto mb-4" onerror="this.onerror=null; this.src='https://placehold.co/64x80/EFEFEF/333333?text=Emblem';">
+                <h1 class="text-2xl font-bold text-gray-800">Internship Selection Predictor</h1>
+                <p class="text-gray-500 mt-1">Government of India Internship Portal</p>
+            </div>
+
+            <!-- Main Content -->
+            <div class="p-8">
+                <!-- Progress Bar -->
+                <div id="progress-container" class="mb-8">
+                    <div class="bg-gray-200 rounded-full h-2.5">
+                        <div id="progress-bar" class="bg-blue-600 h-2.5 rounded-full progress-bar-fill" style="width: 25%;"></div>
+                    </div>
+                    <div class="flex justify-between text-xs mt-2 text-gray-500">
+                        <span>Personal Info</span>
+                        <span>Education & Sector</span>
+                        <span>Experience & Skills</span>
+                        <span>Prediction</span>
+                    </div>
+                </div>
+
+                <form id="predictor-form">
+                    <!-- Step 1: Personal Information -->
+                    <div id="step-1" class="step active">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-6">Personal Information</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                <input type="text" id="fullName" placeholder="e.g., Priya Sharma" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="email" placeholder="e.g., priya.sharma@email.com" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Education -->
+                    <div id="step-2" class="step hidden">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-6">Education & Sector Interest</h3>
+                         <div id="education-entries">
+                            <div class="education-entry grid grid-cols-1 md:grid-cols-2 gap-6 p-4 border rounded-lg mb-4 relative">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Degree</label>
+                                    <select class="education-degree mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                        <option value="Bachelors">Bachelor's Degree</option>
+                                        <option value="Masters">Master's Degree</option>
+                                        <option value="PhD">PhD</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Field of Study</label>
+                                    <input type="text" placeholder="e.g., Computer Science" class="education-field mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-4 border rounded-lg bg-gray-50">
+                            <label for="sector" class="block text-sm font-medium text-gray-700">Preferred Internship Sector</label>
+                            <select id="sector" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                                <option value="Technology">Technology & IT</option>
+                                <option value="Finance">Finance & Economics</option>
+                                <option value="Policy">Public Policy & Governance</option>
+                                <option value="External">Foreign Affairs</option>
+                                <option value="General">General/Unspecified</option>
+                            </select>
+                       </div>
+                    </div>
+
+                    <!-- Step 3: Experience & Skills -->
+                    <div id="step-3" class="step hidden">
+                        <h3 class="text-xl font-semibold text-gray-700 mb-6">Experience & Skills</h3>
+                        <div>
+                            <label for="experience" class="block text-sm font-medium text-gray-700">Years of Relevant Experience</label>
+                            <input type="number" id="experience" placeholder="e.g., 2" min="0" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2">
+                        </div>
+                        <div class="mt-6">
+                             <label for="skills" class="block text-sm font-medium text-gray-700">Key Skills (comma separated)</label>
+                            <textarea id="skills" rows="4" placeholder="e.g., Python, Data Analysis, Public Policy, Economics, Project Management" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4: Prediction -->
+                    <div id="step-4" class="step hidden">
+                        <div id="prediction-loading" class="text-center p-10">
+                             <i class="fas fa-spinner fa-spin text-4xl text-blue-600"></i>
+                             <p class="mt-4 text-gray-600">Analyzing your profile against ministry requirements...</p>
+                        </div>
+                        <div id="prediction-result" class="hidden text-center fade-in">
+                            <h3 class="text-xl font-semibold text-gray-700 mb-4">Your Predicted Selection Chance</h3>
+                            <div class="gauge-container mx-auto">
+                                <svg class="w-full h-full" viewbox="0 0 120 120">
+                                    <circle class="gauge-bg" cx="60" cy="60" r="50"></circle>
+                                    <circle id="gauge-fill" class="gauge-fill" cx="60" cy="60" r="50" stroke-dasharray="314" stroke-dashoffset="314"></circle>
+                                    <text id="gauge-text" class="gauge-text" x="50%" y="50%" alignment-baseline="middle" text-anchor="middle">0%</text>
+                                </svg>
+                            </div>
+                            <div id="prediction-summary" class="mt-6 text-left">
+                                <!-- AI generated summary will go here -->
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Navigation Buttons -->
+                <div id="navigation-buttons" class="mt-8 pt-5 border-t border-gray-200 flex justify-between">
+                    <button type="button" id="prev-btn" class="bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-lg hover:bg-gray-400 disabled:opacity-50" disabled>Previous</button>
+                    <button type="button" id="next-btn" class="bg-orange-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-600">Next</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const steps = document.querySelectorAll('.step');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const progressContainer = document.getElementById('progress-container');
+            const navigationButtons = document.getElementById('navigation-buttons');
+
+            let currentStep = 0;
+
+            const updateButtons = () => {
+                prevBtn.disabled = currentStep === 0;
+                if (currentStep === steps.length - 2) {
+                    nextBtn.textContent = 'Predict My Chances';
+                } else if (currentStep === steps.length - 1) {
+                    navigationButtons.classList.add('hidden');
+                }
+                else {
+                    nextBtn.textContent = 'Next';
+                }
+            };
+
+            const updateProgressBar = () => {
+                const progress = ((currentStep + 1) / steps.length) * 100;
+                progressBar.style.width = `${progress}%`;
+            }
+
+            const showStep = (stepIndex) => {
+                steps.forEach((step, index) => {
+                    step.classList.toggle('active', index === stepIndex);
+                    step.classList.toggle('hidden', index !== stepIndex);
+                });
+            };
+            
+            // --- Prediction Logic ---
+            const runPrediction = () => {
+                // Show loading state
+                document.getElementById('prediction-loading').classList.remove('hidden');
+                document.getElementById('prediction-result').classList.add('hidden');
+                progressContainer.classList.add('hidden');
+
+                // Simulate API call and analysis
+                setTimeout(() => {
+                    const degree = document.querySelector('.education-degree').value;
+                    const experience = parseInt(document.getElementById('experience').value) || 0;
+                    const skills = document.getElementById('skills').value.toLowerCase().split(',').map(s => s.trim()).filter(s => s);
+                    const sector = document.getElementById('sector').value;
+                    
+                    let score = 0;
+                    
+                    // Score based on education (max 35)
+                    if (degree === 'Masters') score += 25;
+                    else if (degree === 'PhD') score += 35;
+                    else score += 15;
+
+                    // Score based on experience (max 25)
+                    score += Math.min(experience * 5, 25);
+
+                    // Score based on skills (max 40: 25 general + 15 sector bonus)
+                    const highDemandSkills = ['python', 'data analysis', 'machine learning', 'ai', 'economics', 'public policy', 'statistics', 'cybersecurity', 'blockchain'];
+                    const sectorSkills = {
+                        'Technology': ['python', 'cybersecurity', 'machine learning', 'ai', 'blockchain'],
+                        'Finance': ['economics', 'statistics', 'data analysis'],
+                        'Policy': ['public policy', 'research', 'economics'],
+                        'External': ['international relations', 'public policy', 'research']
+                    };
+
+                    let skillScore = 0;
+                    skills.forEach(skill => {
+                        if (highDemandSkills.includes(skill)) {
+                            skillScore += 3;
+                        } else {
+                            skillScore += 1;
+                        }
+                    });
+                    score += Math.min(skillScore, 25); // Cap general skill score
+
+                    let sectorBonus = 0;
+                    if (sectorSkills[sector]) {
+                        const relevantSkills = sectorSkills[sector];
+                        const userRelevantSkills = skills.filter(skill => relevantSkills.includes(skill));
+                        sectorBonus = Math.min(userRelevantSkills.length * 5, 15); // Bonus for sector-specific skills
+                    }
+                    score += sectorBonus;
+                    
+                    // Add a small random factor for realism
+                    score += Math.floor(Math.random() * 5); 
+
+                    const finalPercentage = Math.min(Math.round(score), 100);
+
+                    // Update UI
+                    updateGauge(finalPercentage);
+                    generatePredictionSummary(finalPercentage, skills, sector);
+
+                    document.getElementById('prediction-loading').classList.add('hidden');
+                    document.getElementById('prediction-result').classList.remove('hidden');
+
+                }, 2500); // 2.5 second delay
+            };
+
+            const updateGauge = (percentage) => {
+                const gaugeFill = document.getElementById('gauge-fill');
+                const gaugeText = document.getElementById('gauge-text');
+                const radius = gaugeFill.r.baseVal.value;
+                const circumference = 2 * Math.PI * radius;
+                const offset = circumference - (percentage / 100) * circumference;
+
+                gaugeFill.style.strokeDashoffset = offset;
+                
+                // Animate text
+                let current = 0;
+                const interval = setInterval(() => {
+                    if (current >= percentage) {
+                        clearInterval(interval);
+                    }
+                    gaugeText.textContent = `${current}%`;
+                    current++;
+                }, 15);
+            };
+
+            const generatePredictionSummary = (percentage, userSkills, sector) => {
+                 const summaryDiv = document.getElementById('prediction-summary');
+                 let summaryHTML = `<h4 class="font-semibold text-lg mb-2 text-gray-800">Analysis Breakdown:</h4>`;
+                 
+                 if (percentage > 75) {
+                    summaryHTML += `<p class="text-green-700 bg-green-100 p-3 rounded-lg mb-4">You have a very strong profile! Your combination of skills and education is highly sought after for competitive government internships.</p>`;
+                 } else if (percentage > 50) {
+                     summaryHTML += `<p class="text-blue-700 bg-blue-100 p-3 rounded-lg mb-4">You have a solid profile with good potential. Focusing on high-demand skills could significantly boost your chances.</p>`;
+                 } else {
+                     summaryHTML += `<p class="text-orange-700 bg-orange-100 p-3 rounded-lg mb-4">Your profile shows promise. Gaining more experience or skills in key areas would make you a more competitive candidate.</p>`;
+                 }
+
+                if (sector !== 'General') {
+                    summaryHTML += `<p class="text-gray-600 mb-4">Based on your interest in the <strong>${sector}</strong> sector, here are some potential matches:</p>`;
+                }
+
+                const ministrySkills = {
+                    "Ministry of Finance": ["economics", "statistics", "data analysis"],
+                    "Ministry of Electronics & IT": ["python", "cybersecurity", "machine learning", "ai", "blockchain"],
+                    "NITI Aayog": ["public policy", "research", "economics"],
+                    "Ministry of External Affairs": ["international relations", "public policy", "research"]
+                };
+
+                const ministrySectors = {
+                    "Ministry of Finance": "Finance",
+                    "Ministry of Electronics & IT": "Technology",
+                    "NITI Aayog": "Policy",
+                    "Ministry of External Affairs": "External"
+                };
+
+                let matches = [];
+                for (const ministry in ministrySkills) {
+                    const required = ministrySkills[ministry];
+                    const commonSkills = userSkills.filter(skill => required.includes(skill));
+                    if(commonSkills.length > 0) {
+                        const isMatchForSector = ministrySectors[ministry] === sector;
+                        let listItem = isMatchForSector 
+                            ? `<li class="font-semibold text-indigo-800 bg-indigo-100 p-2 rounded-md">`
+                            : `<li>`;
+                        
+                        listItem += `<strong>${ministry}:</strong> Your skills in <em>${commonSkills.join(', ')}</em> are a good fit.`;
+                        if (isMatchForSector) listItem += ` <span class="text-xs font-bold text-white bg-indigo-500 px-2 py-1 rounded-full ml-2">PREFERRED SECTOR</span>`;
+                        listItem += `</li>`;
+                        matches.push({html: listItem, isMatch: isMatchForSector});
+                    }
+                }
+
+                // Sort matches to show preferred sector matches first
+                matches.sort((a, b) => b.isMatch - a.isMatch);
+                
+                if (matches.length > 0) {
+                    summaryHTML += `<h5 class="font-semibold mt-4 mb-2">Potential Ministry Matches:</h5><ul class="list-disc list-inside text-gray-600 space-y-2">${matches.map(m => m.html).join('')}</ul>`;
+                } else {
+                     summaryHTML += `<p class="mt-4 text-gray-600">Consider tailoring your skills towards specific ministries. For example, learn 'Economics' for the Ministry of Finance or 'Python' for the Ministry of IT.</p>`;
+                }
+
+                 summaryDiv.innerHTML = summaryHTML;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                // Simple validation
+                const activeStep = document.querySelector('.step.active');
+                const inputs = activeStep.querySelectorAll('input[required]');
+                let allValid = true;
+                inputs.forEach(input => {
+                    if(!input.value) {
+                        input.style.borderColor = 'red';
+                        allValid = false;
+                    } else {
+                        input.style.borderColor = '';
+                    }
+                });
+
+                if(!allValid) return;
+
+
+                if (currentStep === steps.length - 2) { // Moving to the Prediction step
+                    currentStep++;
+                    showStep(currentStep);
+                    updateButtons();
+                    runPrediction();
+                    return;
+                }
+
+                if (currentStep < steps.length - 1) {
+                    currentStep++;
+                    showStep(currentStep);
+                    updateButtons();
+                    updateProgressBar();
+                } 
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 0) {
+                    currentStep--;
+                    showStep(currentStep);
+                    updateButtons();
+                    updateProgressBar();
+                }
+            });
+
+            // Initial setup
+            showStep(currentStep);
+            updateButtons();
+            updateProgressBar();
+        });
+    </script>
+
+</body>
+</html>
+

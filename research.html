@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research & Analytics Internships - Government of India Internship Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
+        .tricolor-border-bottom {
+            border-bottom: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+            border-image-source: linear-gradient(to right, #ff9933, #ffffff, #138808);
+        }
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md tricolor-border-bottom">
+        <div class="container mx-auto p-6 flex justify-between items-center">
+            <div class="flex items-center">
+                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-12 h-auto mr-4"
+                      onerror="this.onerror=null; this.src='https://placehold.co/48x60/EFEFEF/333333?text=Emblem';">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">Internship Portal</h1>
+                    <p class="text-gray-500">Government of India</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-blue-600 hover:underline font-medium">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-8">
+        <div class="text-center">
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-2">Research & Analytics Internships</h2>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Dive into data-driven roles in policy making, economic analysis, and scientific research at India's foremost government institutions.</p>
+        </div>
+
+        <!-- Search and Filter Bar -->
+        <div class="my-8 p-6 bg-white rounded-xl shadow-md">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                <div class="md:col-span-2">
+                    <label for="search-keyword" class="block text-sm font-medium text-gray-700">Keyword</label>
+                    <input type="text" id="search-keyword" placeholder="e.g., 'Data Analysis', 'Economics'" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                <div>
+                    <label for="filter-location" class="block text-sm font-medium text-gray-700">Location</label>
+                    <select id="filter-location" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                        <option>All Locations</option>
+                        <option>New Delhi</option>
+                        <option>Bengaluru</option>
+                        <option>Hyderabad</option>
+                        <option>Kolkata</option>
+                        <option>Remote</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Internship Listings -->
+        <div class="space-y-6">
+            
+            <!-- Internship Card 1: Economic Research Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Economic Research Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Ministry of Finance - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Conduct research on macroeconomic trends, fiscal policy, and financial markets. Assist in preparing economic surveys and reports that inform national policy decisions.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Econometrics</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Stata</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">R</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Report Writing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 2: Social Science Researcher -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Social Science Researcher</h3>
+                        <p class="text-md text-gray-600 mt-1">NITI Aayog - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Work on qualitative and quantitative research projects related to social welfare, education, and healthcare. Assist with survey design, data collection, and analysis of key social indicators.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Qualitative Analysis</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Survey Design</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">SPSS</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Policy Research</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 3: Data Analyst Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Data Analyst Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">National Health Authority - Bengaluru</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Analyze large-scale healthcare data from national health schemes. Your work will involve data cleaning, creating dashboards, and generating insights to improve public health outcomes.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">SQL</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Python</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Data Visualization</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Tableau</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 4: Geospatial Data Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Geospatial Data Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Indian Space Research Organisation (ISRO) - Hyderabad</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Work with satellite imagery and geospatial data to support projects in urban planning, disaster management, and environmental monitoring. Analyze spatial patterns and create maps.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">GIS</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Remote Sensing</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">QGIS</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Python</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Internship Card 5: Agricultural Research Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Agricultural Research Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Indian Council of Agricultural Research (ICAR) - Pune</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Assist agricultural scientists with field trials, data collection, and analysis of crop yields. Contribute to research aimed at improving food security and sustainable farming practices.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Agricultural Science</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Statistical Analysis</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Field Research</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 6: Statistical Officer Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Statistical Officer Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">National Statistical Office (NSO) - Kolkata</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Participate in the collection, compilation, and analysis of official statistics for India. Learn about survey methodologies and contribute to national census and survey projects.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">Statistics</span>
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">R / SAS</span>
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">Survey Methodology</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 7: Environmental Research Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Environmental Research Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Ministry of Environment, Forest and Climate Change - Chennai</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Support research projects on climate change, biodiversity, and pollution control. Responsibilities include sample collection, laboratory analysis, and data interpretation.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Environmental Science</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Data Collection</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Lab Analysis</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 8: Public Policy Research Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Public Policy Research Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">PRS Legislative Research - Remote</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Analyze parliamentary debates, legislative bills, and government reports. Produce research briefs and articles that make complex legislative issues accessible to the public and policymakers.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Legislative Analysis</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Legal Research</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Writing Skills</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 9: Scientific Research Assistant -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Scientific Research Assistant</h3>
+                        <p class="text-md text-gray-600 mt-1">Council of Scientific & Industrial Research (CSIR) - Mumbai</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Work alongside scientists in a laboratory setting. Assist with experiments, record data with precision, and help in the preparation of research papers and scientific articles.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Scientific Method</span>
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Lab Techniques</span>
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Data Recording</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 10: Urban Planning Research Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Urban Planning Research Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Ministry of Housing and Urban Affairs - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Analyze urban development data to support smart city projects. This role involves using GIS tools, studying zoning regulations, and contributing to reports on sustainable urban growth.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">Urban Planning</span>
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">AutoCAD</span>
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">GIS</span>
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">Data Analysis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center mt-8 py-6 bg-white border-t">
+        <p class="text-sm text-gray-500">&copy; 2025 Government of India. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,145 @@
+Government of India Internship Portal - Project Documentation
+Date: September 11, 2025
+
+1. Project Overview
+The Government of India Internship Portal is a comprehensive web application designed to serve as a central hub for students and graduates seeking internship opportunities within various government ministries and institutions. The platform provides a seamless user experience, from registration and login to exploring opportunities and even building a professional resume with AI assistance.
+
+The primary goal of the project is to create an engaging and user-friendly portal that connects aspiring interns with meaningful public service opportunities, streamlining the application process and providing valuable career-building tools.
+
+2. Core Features
+The portal is composed of several key features that work together to provide a complete experience for the user.
+
+2.1. User Authentication System
+A secure user registration and login system is the backbone of the portal.
+
+Registration (register.html): A detailed, multi-section form that captures all necessary applicant information, including:
+
+Personal details (Name, Email, DOB)
+
+Complete address with dynamic State/City dropdowns
+
+Academic history (10th & 12th marks with board selection)
+
+Secure password creation with a confirmation field.
+
+Login (login.html): A clean and secure login page for returning users.
+
+Backend Logic (server.js): The server handles user creation, checks for existing users, and uses bcryptjs to securely hash and store passwords, ensuring that plain-text passwords are never saved.
+
+2.2. Internship Exploration
+Once logged in, users can explore internship opportunities tailored to their interests.
+
+Explore Programs Page (explore-programs.html): A central landing page that directs users to different internship sectors.
+
+Dedicated Sector Pages: Individual, detailed pages for each internship category, including:
+
+technology.html
+
+design.html
+
+business.html
+
+research.html
+
+content.html
+
+healthcare.html
+
+Each page features a search and filter bar and ten sample internship listings to showcase available roles.
+
+2.3. Interactive Homepage (index.html)
+The main landing page is designed to be engaging and informative.
+
+Interactive Map of India: An SVG-based map displays the number of available internships in each state upon hovering, providing a visual overview of opportunities across the nation.
+
+Interactive Chatbot Widget: A floating chatbot in the bottom-right corner provides assistance to users, helping them navigate the site and understand the program.
+
+Login as a Widget: The login form is integrated as a pop-up modal, allowing users to sign in without leaving the homepage, creating a seamless experience.
+
+2.4. AI-Powered Resume Builder (resume-builder.html)
+A standout feature of the portal is the AI-assisted resume builder.
+
+Multi-Step Form: Guides the user through creating a resume section by section (Personal Info, Education, Experience, Skills).
+
+AI Content Generation:
+
+Professional Summary: Uses the Gemini API to generate a personalized summary based on the user's skills and experience.
+
+Job Responsibilities: Helps users write impactful descriptions for their previous roles by generating relevant bullet points based on their job title.
+
+AI-Powered Resume Design: In the final step, the AI generates a complete, professionally designed HTML layout for the resume, which can then be downloaded as a PDF.
+
+3. Technical Architecture
+The project is built using a modern client-server architecture.
+
+Frontend:
+
+HTML5: For the structure of all web pages.
+
+Tailwind CSS: For all styling, ensuring a modern, responsive, and consistent design across the application.
+
+JavaScript (Vanilla): For all client-side interactivity, including the chatbot, resume builder logic, dynamic dropdowns, and communication with the backend.
+
+Backend (server.js):
+
+Node.js: The runtime environment for the server.
+
+Express.js: A web application framework for Node.js, used to create the API endpoints for registration and login.
+
+Dependencies:
+
+cors: For enabling secure communication between the frontend and backend.
+
+bcryptjs: For hashing passwords securely.
+
+fast-csv: For reading from and writing to the CSV database file.
+
+Database:
+
+CSV File (users.csv): A simple file-based database used to store all user registration data. While not suitable for large-scale production, it serves as a functional and easy-to-manage database for this project.
+
+External APIs:
+
+Gemini API: Used for all AI-powered features within the resume builder, including content generation and resume design.
+
+4. File Structure
+The project is organized into the following key files:
+
+index.html: The main landing page with interactive elements.
+
+login.html: The user login page.
+
+register.html: The user registration page with the detailed form.
+
+explore-programs.html: The hub for browsing internship sectors.
+
+about.html: A page describing the mission and vision of the program.
+
+resume-builder.html: The AI-powered resume building tool.
+
+technology.html, design.html, etc.: The individual pages for each internship sector.
+
+server.js: The backend server that manages all user authentication and data storage.
+
+users.csv: The file that acts as the user database, storing registration information.
+
+5. Setup and Running Instructions
+To run this project locally, you will need to have Node.js and npm installed.
+
+Step 1: Save All Project Files
+Create a single folder (e.g., internship-portal) and place all the files (.html, .js, .csv) inside it.
+
+Step 2: Install Dependencies
+Open your terminal or command prompt, navigate into your project folder, and run the following command to install the necessary libraries for the server:
+
+npm install express cors bcryptjs fast-csv
+
+Step 3: Start the Backend Server
+In the same terminal, run the following command to start the server:
+
+node server.js
+
+You should see the confirmation message: Server is running on http://localhost:3000. Keep this terminal window open while you use the application.
+
+Step 4: Use the Website
+You can now open the index.html file in your web browser. All features, including registration, login, and the AI resume builder, will be fully functional and able to communicate with your running server.

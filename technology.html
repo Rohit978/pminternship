@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology & Software Internships - Government of India Internship Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
+        .tricolor-border-bottom {
+            border-bottom: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+            border-image-source: linear-gradient(to right, #ff9933, #ffffff, #138808);
+        }
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md tricolor-border-bottom">
+        <div class="container mx-auto p-6 flex justify-between items-center">
+            <div class="flex items-center">
+                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-12 h-auto mr-4"
+                      onerror="this.onerror=null; this.src='https://placehold.co/48x60/EFEFEF/333333?text=Emblem';">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">Internship Portal</h1>
+                    <p class="text-gray-500">Government of India</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-blue-600 hover:underline font-medium">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-8">
+        <div class="text-center">
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-2">Technology & Software Internships</h2>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Explore cutting-edge internships in web development, cybersecurity, data science, and more within India's top government bodies.</p>
+        </div>
+
+        <!-- Search and Filter Bar -->
+        <div class="my-8 p-6 bg-white rounded-xl shadow-md">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                <div class="md:col-span-2">
+                    <label for="search-keyword" class="block text-sm font-medium text-gray-700">Keyword</label>
+                    <input type="text" id="search-keyword" placeholder="e.g., 'Python', 'Cybersecurity'" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                <div>
+                    <label for="filter-location" class="block text-sm font-medium text-gray-700">Location</label>
+                    <select id="filter-location" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                        <option>All Locations</option>
+                        <option>New Delhi</option>
+                        <option>Bengaluru</option>
+                        <option>Hyderabad</option>
+                        <option>Pune</option>
+                        <option>Remote</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Internship Listings -->
+        <div class="space-y-6">
+            <!-- Sample Internship Card 1 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Web Development Intern (Frontend)</h3>
+                        <p class="text-md text-gray-600 mt-1">Ministry of Electronics & Information Technology (MeitY) - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Contribute to the Digital India initiative by developing user-friendly interfaces for government portals. You will work with a team of experienced developers on projects that impact millions of citizens.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">HTML5</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">CSS3</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">React</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Internship Card 2 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Data Science Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">NITI Aayog - Bengaluru</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Work with large datasets to analyze trends and support national policy-making. This role involves data cleaning, statistical analysis, and creating visualizations to present findings to stakeholders.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Python</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Pandas</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">SQL</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Tableau</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Internship Card 3 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Aerospace Software Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Indian Space Research Organisation (ISRO) - Hyderabad</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Join a prestigious team working on software for satellite systems and ground control. This is a unique opportunity to contribute to India's space program and work with cutting-edge technology.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">C++</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Embedded Systems</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Linux</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Real-Time OS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Internship Card 4 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Cybersecurity Analyst Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">National Informatics Centre (NIC) - Pune</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Help protect national digital infrastructure by monitoring networks for security breaches, investigating violations, and preparing reports on security incidents. </p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Networking</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Firewalls</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">SIEM</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Linux</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sample Internship Card 5 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">AI/ML Research Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Defence Research and Development Organisation (DRDO) - Bengaluru</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Engage in innovative research in artificial intelligence and machine learning. Work on projects involving natural language processing, computer vision, and predictive modeling.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Python</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">TensorFlow</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">PyTorch</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Machine Learning</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Internship Card 6 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Backend Developer Intern (Node.js)</h3>
+                        <p class="text-md text-gray-600 mt-1">MyGov - Remote</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Develop robust and scalable server-side applications for citizen engagement platforms. You will be responsible for designing and implementing APIs and managing databases.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Node.js</span>
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Express</span>
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">MongoDB</span>
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">REST APIs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Internship Card 7 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">UI/UX Design Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Digital India Corporation - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Create intuitive and visually appealing designs for various government applications. Conduct user research, create wireframes and prototypes, and collaborate with developers to ensure a seamless user experience.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">Figma</span>
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">Adobe XD</span>
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">User Research</span>
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">Wireframing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Internship Card 8 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Cloud Infrastructure Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">National e-Governance Division - Hyderabad</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Assist in the management and deployment of cloud services for various e-governance projects. Gain hands-on experience with AWS, Docker, and infrastructure-as-code principles.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">AWS</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Docker</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Kubernetes</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Terraform</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Internship Card 9 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Mobile App Development Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Centre for Development of Advanced Computing (C-DAC) - Pune</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Develop and maintain mobile applications for public services on both Android and iOS platforms. Work with modern frameworks like Flutter to create high-performance apps.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Flutter</span>
+                         <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Dart</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Firebase</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Android/iOS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Internship Card 10 -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">IT Support Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Parliament of India - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Provide essential technical support to ensure the smooth operation of IT systems. Responsibilities include troubleshooting hardware and software issues, and assisting staff with technical queries.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">Troubleshooting</span>
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">Windows OS</span>
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">Networking Basics</span>
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">Helpdesk</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center mt-8 py-6 bg-white border-t">
+        <p class="text-sm text-gray-500">&copy; 2025 Government of India. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+

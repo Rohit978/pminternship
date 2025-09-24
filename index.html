@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government of India - Internship Program</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General body and typography styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937; /* Default text color */
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Dark mode styles, toggled by the JavaScript */
+        body.dark-mode {
+            background-color: #111827;
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .header-bg {
+            background-color: #1f2937;
+        }
+
+        body.dark-mode .blue-button {
+            background-color: #4b5563;
+            color: #d1d5db;
+            border-color: #6b7280;
+        }
+
+        body.dark-mode .blue-button:hover {
+            background-color: #6b7280;
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .feature-card,
+        body.dark-mode .ministry-card,
+        body.dark-mode .testimonial-card {
+            background-color: #1f2937;
+            color: #e5e7eb;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .testimonial-card p {
+            color: #d1d5db;
+        }
+       
+        .dark-mode .section-title,
+        .dark-mode .section-subtitle,
+        .dark-mode h4 {
+          color: white;
+        }
+       
+        .dark-mode .testimonial-card small {
+          color: #9ca3af;
+        }
+
+
+        /* Reusable container class for centering content */
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Custom styles for the header */
+        .header-bg {
+            background-color: #002e6d; /* Dark blue background */
+            color: white;
+        }
+
+        .header-text-white {
+            color: white;
+        }
+
+        .header-link-border {
+            border-right: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .blue-button {
+            background-color: white;
+            color: #002e6d;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .blue-button:hover {
+            background-color: #d1d5db;
+            transform: translateY(-2px);
+        }
+       
+        /* New nav header styling */
+        .nav-header {
+            background-color: #002e6d;
+            color: white;
+        }
+
+        .nav-button {
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+       
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+
+        /* Hero section styling */
+        .hero {
+            background-color: black;
+            color: white;
+            padding: 5rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+       
+        /* The new orange button style from the image */
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: #002e6d;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+        }
+       
+        .cta-button.orange {
+            background-color: #ff6600;
+            color: white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Section-wide styles */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            max-width: 768px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Grid layouts for features, ministries, and testimonials */
+        .features,
+        .ministries,
+        .testimonials {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        .features-grid,
+        .ministry-grid,
+        .testimonial-grid {
+            display: grid;
+            gap: 2rem;
+            text-align: center;
+        }
+       
+        .features-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+       
+        .ministry-grid,
+        .testimonial-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .feature-card,
+        .ministry-card,
+        .testimonial-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover,
+        .ministry-card:hover,
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .ministry-card {
+            padding: 0;
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+
+        .testimonial-card small {
+            display: block;
+            margin-top: 0.25rem;
+            color: #9ca3af;
+        }
+
+            .bodyfooter {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #000000 0%, #000000 100%);
+    min-height: 100vh;
+    height: 100vh; /* Fixed height to prevent overflow */
+    display: flex;
+    align-items: stretch; /* Changed from center to stretch */
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    overflow: hidden; /* Prevent any overflow */
+}
+
+.footer {
+    background: rgba(255, 249, 249, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 0;
+    padding: 30px 50px; /* Reduced padding */
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: none;
+    border-right: none;
+    border-top: none; /* Remove top border */
+    border-bottom: none; /* Remove bottom border */
+    color: white;
+    margin: 0;
+    box-sizing: border-box;
+    line-height: 1.3; /* Slightly reduced line height */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px; /* Slightly reduced gap */
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    flex-grow: 1;
+    align-items: center; /* Center align grid items */
+}
+
+.footer-section {
+    position: relative;
+}
+
+.footer-section h3 {
+    margin-bottom: 18px; /* Slightly reduced margin */
+    font-size: 1.3em; /* Reduced font size */
+    position: relative;
+    padding-bottom: 8px; /* Reduced padding */
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 45px; /* Slightly smaller underline */
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+    border-radius: 2px;
+}
+
+.contact-info {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-info li {
+    margin-bottom: 12px; /* Reduced margin */
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    font-size: 0.95em; /* Slightly smaller font */
+}
+
+.contact-info li:hover {
+    transform: translateX(5px);
+}
+
+.contact-info i {
+    margin-right: 10px; /* Reduced margin */
+    width: 18px; /* Smaller icon width */
+    color: #4ecdc4;
+    font-size: 1em; /* Reduced icon size */
+}
+
+.contact-info a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: #4ecdc4;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px; /* Reduced gap */
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px; /* Smaller social icons */
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px; /* Slightly smaller border radius */
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em; /* Smaller font size */
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.social-link.facebook:hover {
+    background: #1877f2;
+    border-color: #1877f2;
+}
+
+.social-link.twitter:hover {
+    background: #1da1f2;
+    border-color: #1da1f2;
+}
+
+.social-link.instagram:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    border-color: #bc1888;
+}
+
+.social-link.linkedin:hover {
+    background: #0077b5;
+    border-color: #0077b5;
+}
+
+.social-link.youtube:hover {
+    background: #ff0000;
+    border-color: #ff0000;
+}
+
+.footer-images {
+    display: flex;
+    gap: 12px; /* Reduced gap */
+    flex-wrap: wrap;
+}
+
+.footer-image {
+    width: 90px; /* Smaller images */
+    height: 90px;
+    border-radius: 10px; /* Smaller border radius */
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.85em; /* Smaller font for image placeholders */
+}
+
+.footer-image:hover {
+    transform: scale(1.1);
+    border-color: #4ecdc4;
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+}
+
+.footer-bottom {
+    padding-top: 30px; /* Reduced padding */
+    font-size: 0.85em; /* Smaller font size */
+    margin-bottom: 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 30px; /* Reduced margin */
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.footer-bottom p {
+    margin-bottom: 8px; /* Reduced margin */
+}
+
+.footer-bottom a {
+    color: #4ecdc4;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+    color: #ff6b6b;
+}
+
+@media (max-width: 968px) {
+    .footer {
+        padding: 25px 35px; /* Reduced padding */
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px; /* Reduced gap */
+    }
+    
+    .footer-section h3 {
+        font-size: 1.2em; /* Smaller heading on tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 20px 15px; /* Further reduced padding */
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 25px; /* Reduced gap */
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-images {
+        justify-content: center;
+    }
+    
+    .footer-section h3 {
+        font-size: 1.1em; /* Even smaller heading on mobile */
+    }
+    
+    .contact-info li {
+        font-size: 0.9em; /* Smaller text on mobile */
+    }
+}
+
+        
+
+    h2 {
+      text-align: center;
+      padding: 30px 0 10px;
+      font-size: 32px;
+      color: #333;
+    }
+
+    .carousel-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 1s ease-in-out;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      display: flex;
+      justify-content: space-around;
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .block {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 30%;
+      aspect-ratio: 1 / 1;
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .block:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.2);
+    }
+
+    .block img {
+      width: 100%;
+      height: 70%;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      transition: transform 0.5s ease;
+    }
+
+    .block:hover img {
+      transform: scale(1.1);
+    }
+
+    .block p {
+      padding: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+
+    .btn-show-more {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 30px;
+      font-size: 18px;
+      background-color: #1310e3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .btn-show-more:hover {
+      background-color: #e65700;
+    }
+
+    /* Expanded view styles */
+    .expanded .carousel-track {
+      flex-direction: column;
+      transform: none !important;
+    }
+
+    .expanded .carousel-item {
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+    .expanded .block {
+      width: 22%;
+      aspect-ratio: 1 / 1;
+      margin: 15px 0;
+    }
+
+    @media (max-width: 1024px) {
+      .expanded .block {
+        width: 30%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .block {
+        width: 45%;
+      }
+      .expanded .block {
+        width: 40%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .block {
+        width: 90%;
+      }
+      .expanded .block {
+        width: 90%;
+      }
+      .carousel-item {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Lightbox overlay */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .lightbox-close:hover {
+      color: #e65700;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 50px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px;
+    }
+
+    .lightbox-prev { left: 30px; }
+    .lightbox-next { right: 30px; }
+  /* Position the chatbot container at a fixed location on the page */
+   /* Styles for the chatbot toggle button and container */
+.chatbot-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.chatbot-toggle {
+    background: #002e6d;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    border: none;
+}
+
+.chatbot-toggle:hover {
+    transform: scale(1.1);
+}
+
+.chatbot-container {
+    display: none; /* This is the key change to hide it initially */
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    width: 350px;
+    height: 500px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    flex-direction: column;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    z-index: 1000;
+}
+
+/* New class to make the chatbot visible */
+.chatbot-container.is-visible {
+    display: flex;
+}
+
+/* Style the header of the chatbot */
+.chat-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Style the main message area */
+.chat-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Base style for all messages */
+.message {
+    max-width: 85%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    line-height: 1.4;
+}
+
+/* Styles for bot messages */
+.bot-message {
+    background-color: #e9e9eb;
+    color: #333;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+}
+
+/* Styles for user messages */
+.user-message {
+    background-color: #007bff;
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+/* Style for the options buttons */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.option-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.option-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Typing indicator styles */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-style: italic;
+    color: #888;
+}
+
+.typing-dots {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+.help-dropdown {
+    transition: opacity 0.5s ease, visibility 0.5s;
+    opacity: 0;
+    visibility: hidden;
+}
+.group:hover .help-dropdown {
+    opacity: 1;
+    visibility: visible;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-8px);
+    }
+}
+   
+
+
+
+    </style>
+</head>
+       <body class="bg-gray-100">
+
+    <header class="header-bg py-2 px-4 md:px-8 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                
+                <span class="header-text-white text-sm md:text-base font-semibold">
+                    भारत सरकार / Government of India
+                </span>
+            </div>
+            
+            <div class="flex items-center space-x-2 md:space-x-4">
+                <div class="hidden md:flex items-center space-x-2 header-link-border pr-2 md:pr-4">
+                  
+                    <div class="icon-container">
+                       
+                        <i class="fas fa-eye text-white text-lg cursor-pointer"></i>
+                    </div>
+                    <div class="icon-container" id="theme-toggle">
+                        <i class="fas fa-adjust text-white text-lg cursor-pointer"></i>
+                    </div>
+                </div>
+                <div class="hidden md:block header-link-border pr-2 md:pr-4">
+                    <select id="language-select" class="bg-transparent header-text-white text-sm md:text-base cursor-pointer">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="be">Bengali</option>
+                        <option value="or">Oriya</option>
+                        <option value="ta">Tamil</option>
+                        <option value="ml">Malyalam</option>
+                        <option value="pb">Punjabi</option>
+                        <option value="ur">Urdu</option>
+                        <option value="ma">Marathi</option>
+                        <option value="ka">Kannda</option>
+                        <option value="bh">Bhojpuri</option>
+                        <option value="hs">Haryanavi</option>
+                    </select>
+                </div>
+                <div class="flex items-center space-x-1 header-link-border pr-2 md:pr-4 text-white">
+                    <button id="font-decrease" class="bg-transparent border border-white text-xs w-6 h-6 rounded-full font-bold transition-all duration-200 hover:bg-white hover:text-black">A-</button>
+                    <button id="font-reset" class="bg-transparent border border-white text-sm w-6 h-6 rounded-full font-bold transition-all duration-200 hover:bg-white hover:text-black">A</button>
+                    <button id="font-increase" class="bg-transparent border border-white text-base w-6 h-6 rounded-full font-bold transition-all duration-200 hover:bg-white hover:text-black">A+</button>
+                </div>
+                <button class="blue-button">
+                    <a href="login.html"> Sign-in</a>
+                </button>
+               
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-black py-3 px-4 md:px-8 shadow-md">
+        <div class="container mx-auto">
+            <nav class="flex justify-center items-center space-x-4 text-white">
+                <a href="#" class="nav-button text-sm">Home</a>
+                <a href="about.html" class="nav-button text-sm">About</a>
+                <a href="#gallery-section" class="nav-button text-sm" id="gallerybutton">Gallery</a>
+                <a href="guideline.html" class="nav-button text-sm">Guidelines</a>
+                 <a href="faq.html" class="nav-button text-sm">FAQ</a>
+                <a href="contact.html" class="nav-button text-sm">Contact </a>
+                  <a href="lh.html" class="nav-button text-sm">Do's & Dont's </a>
+   <div class="relative group inline-block">
+  <button class="nav-button text-sm focus:outline-none">
+    Help <i class="fas fa-caret-down ml-1"></i>
+  </button>
+  <div class="absolute help-dropdown bg-white text-black rounded shadow-lg min-w-[140px] mt-2 right-0 z-50 flex flex-row space-x-2 py-2 px-2">
+    <a href="help.html" class="px-4 py-2 hover:bg-gray-100 rounded">AI Help</a>
+    <a href="analyse.html" class="px-4 py-2 hover:bg-gray-100 rounded">AI Mock Interview</a>
+    <a href="resume.html" class="px-4 py-2 hover:bg-gray-100 rounded">Resume Assistant</a>
+    <a href="prediction.html" class="px-4 py-2 hover:bg-gray-100 rounded">Predictor</a>
+  </div>
+</div>
+                  
+                
+                 
+            </nav>
+        </div>
+    </div>
+      
+     <section class="hero" style="background-color: #000; padding: 40px 0;">
+  <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+    
+    <!-- Left Side Text -->
+    <div style="flex: 1; min-width: 300px; color: white; padding: 20px;">
+      <h1>Shape India's Future</h1>
+      <p>Join prestigious internships across various government ministries and departments. Gain real-world experience while contributing to nation-building initiatives.</p>
+      <a href="explore.html" class="cta-button orange" style="padding: 10px 20px; background: orange; color: white; text-decoration: none; border-radius: 6px;">Explore Programs</a>
+    </div>
+
+    <!-- Right Side Image -->
+    <div style="flex: 1; min-width: 300px; text-align: center; padding: 20px;">
+      <img src="banner.jpg" alt="PM Internship Banner" style="width: 100%; max-width: 600px; border-radius: 10px;">
+    </div>
+
+  </div>
+</section>
+     
+
+    <section class="features">
+        <div class="container text-center">
+            <h2 class="section-title">Why Choose Our Internship Program?</h2>
+            <p class="section-subtitle">Our program is designed to give you more than just experience—it's a launchpad for your career. We blend hands-on projects with dedicated mentorship and professional development to help you grow.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-hammer text-4xl mb-4 text-orange-500"></i>
+                    <h3>Hands-On Projects</h3>
+                    <p>You'll work on real-world projects that have a direct impact on our products and services, not just busywork.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chalkboard-teacher text-4xl mb-4 text-blue-500"></i>
+                    <h3>Dedicated Mentorship</h3>
+                    <p>Each intern is paired with an experienced mentor who will guide your professional and technical development throughout the program.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-network-wired text-4xl mb-4 text-green-500"></i>
+                    <h3>Networking Opportunities</h3>
+                    <p>Connect with industry leaders and fellow interns through company events, workshops, and social activities.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-graduation-cap text-4xl mb-4 text-purple-500"></i>
+                    <h3>Professional Development</h3>
+                    <p>Participate in workshops and training sessions focused on technical skills, communication, and career planning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ministries bg-gray-800 text-white">
+        <div class="container">
+              <div class="container mx-auto max-w-2xl text-center">
+    <!-- Centered, white text for the title -->
+    <h2 class="section-title text-white px-6 text-2xl font-bold">Participating Ministries</h2>
+
+    <!-- Centered, white text for the subtitle -->
+    <p class="section-subtitle text-white">Choose from diverse departments based on your interests and career goals</p>
+  </div>
+            <div class="ministry-grid">
+                <section class="bg-gray-100 py-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
+
+        <div class="ministry-card bg-white overflow-hidden rounded shadow-lg">
+            <div class="h-40 w-full">
+                <img src="isroimages.png" alt="ISRO" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+                <h4 class="font-semibold text-lg mb-2">Department of Space (ISRO)</h4>
+                <p class="bg-black text-white p-2 rounded">Work on cutting-edge space missions and satellite technology</p>
+            </div>
+        </div>
+
+        <div class="ministry-card bg-white overflow-hidden rounded shadow-lg">
+            <div class="h-40 w-full">
+                <img src="meityimages.jpg" alt="Ministry of Electronics & IT" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+                <h4 class="font-semibold text-lg mb-2">Ministry of Electronics &amp; IT</h4>
+                <p class="bg-black text-white p-2 rounded">Contribute to Digital India initiatives and e-governance projects</p>
+            </div>
+        </div>
+
+        <div class="ministry-card bg-white overflow-hidden rounded shadow-lg">
+            <div class="h-40 w-full">
+                <img src="mnreimages.jpg" alt="Ministry of New & Renewable Energy" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+                <h4 class="font-semibold text-lg mb-2">Ministry of New &amp; Renewable Energy</h4>
+                <p class="bg-black text-white p-2 rounded">Support India's transition to sustainable energy solutions</p>
+            </div>
+        </div>
+
+        <div class="ministry-card bg-white overflow-hidden rounded shadow-lg">
+            <div class="h-40 w-full">
+                <img src="nitiaayog.jpg" alt="NITI Aayog" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+                <h4 class="font-semibold text-lg mb-2">NITI Aayog</h4>
+                <p class="bg-black text-white p-2 rounded">Engage with national policy planning and development strategies</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+            </div>
+        </div>
+    </section>
+
+     <!--gallery section-->
+    <div class="gallery" id="gallery-section">
+        
+  <h2>EXHIBIT SPACE</h2>
+
+  <div class="carousel-container" id="carouselContainer">
+    <div class="carousel-track" id="carousel-track">
+      <!-- Slide 1 -->
+      <div class="carousel-item">
+        <div class="block">
+          <img src="1.png" alt="IT" loading="lazy">
+          <p>Eve of Independence Day</p>
+        </div>
+        <div class="block">
+          <img src="2.png" alt="Leather" loading="lazy">
+          <p>Intern Interaction Event</p>
+        </div>
+        <div class="block">
+          <img src="3.png" alt="Manufacturing" loading="lazy">
+          <p>PMIS North-East Round Table</p>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="block">
+          <img src="4.png" alt="Media" loading="lazy">
+          <p>PMIS Intern Connect</p>
+        </div>
+        <div class="block">
+          <img src="5.png" alt="Healthcare" loading="lazy">
+          <p>PMIS Intern-Industry Interaction</p>
+        </div>
+        <div class="block">
+          <img src="6.png" alt="Telecom" loading="lazy">
+          <p>Cycle-2 Winners</p>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="block">
+          <img src="7.png" alt="Finance" loading="lazy">
+          <p>Working Space</p>
+        </div>
+        <div class="block">
+          <img src="8.png" alt="Construction" loading="lazy">
+          <p>State Offers</p>
+        </div>
+        <div class="block">
+          <img src="9.png" alt="Retail" loading="lazy">
+          <p>Offers made by Companies</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-show-more" id="toggleButton">Show More</button>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <span class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</span>
+    <img id="lightboxImg" src="" alt="Enlarged View">
+    <span class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</span>
+  </div>
+     </div>
+
+    <section class="testimonials bg-gray-800 text-white m-0 p-0">
+  <div class="container m-0 p-1 pb-5">
+<div class="text-center py-1 m-0">
+  <h2 class="text-2xl font-semibold py-2 my-2 text-white">Success Stories</h2>
+  <p class="text-base py-2 my-2 text-white">Hear from our previous interns</p>
+</div>
+
+    <div class="testimonial-grid m-0 p-0">
+
+      <div class="testimonial-card m-0 p-0">
+        <div class="w-20 h-20 rounded-full mx-auto mb-2 overflow-hidden">
+          <img src="interngirl.jpg" alt="Priya Sharma" class="w-full h-full object-cover">
+        </div>
+        <p class="m-0">"This internship opened doors I never imagined. Working with ISRO gave me insights into India's space program that textbooks couldn't provide."</p>
+        <h4 class="mt-2 mb-0">Priya Sharma</h4>
+        <small class="m-0">ISRO Intern 2024</small>
+      </div>
+
+      <div class="testimonial-card m-0 p-0">
+        <div class="w-20 h-20 rounded-full mx-auto mb-2 overflow-hidden">
+          <img src="maleintern1.jpg" alt="Arjun Patel" class="w-full h-full object-cover">
+        </div>
+        <p class="m-0">"The mentorship I received at NITI Aayog shaped my understanding of policy-making. Now I work in the development sector with confidence."</p>
+        <h4 class="mt-2 mb-0">Arjun Patel</h4>
+        <small class="m-0">NITI Aayog Intern 2024</small>
+      </div>
+
+      <div class="testimonial-card m-0 p-0">
+        <div class="w-20 h-20 rounded-full mx-auto mb-2 overflow-hidden">
+          <img src="maleintern2.jpg" alt="Rajesh Kumar" class="w-full h-full object-cover">
+        </div>
+        <p class="m-0">"Working on Digital India projects taught me how technology can transform governance. The experience was invaluable for my career."</p>
+        <h4 class="mt-2 mb-0">Rajesh Kumar</h4>
+        <small class="m-0">MeitY Intern 2024</small>
+      </div>
+
+    </div>
+  </div>
+</section>
+      <div class="bodyfooter m-0 p-0 bg-gray-900 text-white">
+  <footer class="footer w-full m-0 p-6">
+    <div class="footer-content w-full m-0 p-0 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-screen-xl mx-auto">
+
+      <div class="footer-section m-0 p-0">
+        <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+        <ul class="contact-info space-y-2 list-none p-0 m-0">
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>JSS ACADEMY OF TECHNICAL EDUCATION, SEC-62, NOIDA-201301</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-phone"></i>
+            <a href="tel:+1234567890" class="hover:underline">1800122244</a>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:info@yourwebsite.com" class="hover:underline">pminternship@gmail.com</a>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-globe"></i>
+            <a href="https://www.yourwebsite.com" class="hover:underline">www.pmgovhelp.com</a>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-clock"></i>
+            <span>Mon - Fri: 9:00 AM - 6:00 PM</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-section m-0 p-0">
+        <h3 class="text-xl font-semibold mb-4">Follow Us</h3>
+        <div class="social-links flex space-x-4">
+          <a href="#" class="social-link facebook text-blue-600 hover:text-blue-800" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-link twitter text-blue-400 hover:text-blue-600" title="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-link instagram text-pink-600 hover:text-pink-800" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="social-link linkedin text-blue-700 hover:text-blue-900" title="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="social-link youtube text-red-600 hover:text-red-800" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-section m-0 p-0">
+        <h3 class="text-xl font-semibold mb-4">Gallery</h3>
+        <div class="footer-images grid grid-cols-3 gap-2">
+          <img src="footerimage1.jpg" alt="Office Space" class="footer-image w-full h-auto object-cover rounded" />
+          <img src="footerimage2.jpg" alt="Team Meeting" class="footer-image w-full h-auto object-cover rounded" />
+          <img src="footerimage3.jpg" alt="Business Building" class="footer-image w-full h-auto object-cover rounded" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom border-t border-gray-700 mt-4 py-3 px-4 text-center text-sm m-0">
+      <p>&copy; 2025 PM INTERNSHIP SCHEME.</p>
+      <p>
+        <a href="#" class="hover:underline mx-1">Privacy Policy</a> |
+        <a href="#" class="hover:underline mx-1">Guidelines</a> |
+        <a href="#" class="hover:underline mx-1">FAQ's</a>
+      </p>
+    </div>
+  </footer>
+</div>
+
+
+      
+<div class="chatbot-widget">
+    <button id="chatbot-toggle" class="chatbot-toggle">
+        <i class="fas fa-robot"></i>
+    </button>
+    <div id="chatbot-container" class="chatbot-container">
+        <div class="chat-header">
+            🤖 Internship Assistant
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            </div>
+    </div>
+</div>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+    const chatbotToggleBtn = document.getElementById('chatbot-toggle');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const chatMessages = document.getElementById('chatMessages');
+
+    class InternshipChatbot {
+        constructor() {
+            this.chatMessages = chatMessages;
+            this.currentStep = 'greeting';
+            this.userSelections = {};
+        }
+
+        async showGreeting() {
+            this.chatMessages.innerHTML = ''; // Clear existing content
+            await this.delay(500);
+
+            this.addMessage("Hi! I'm here to help you find an internship. Click the button to get started!");
+            
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'options-container';
+            const startButton = document.createElement('button');
+            startButton.className = 'option-btn';
+            startButton.textContent = 'Start Chat 🚀';
+            startButton.onclick = () => this.askInterestDomain();
+            optionsContainer.appendChild(startButton);
+            
+            const initialMessageDiv = document.createElement('div');
+            initialMessageDiv.className = 'message bot-message';
+            initialMessageDiv.appendChild(optionsContainer);
+            this.chatMessages.appendChild(initialMessageDiv);
+
+            this.scrollToBottom();
+        }
+
+        async askInterestDomain() {
+            this.addMessage("Let's get started! 🚀", true);
+            this.currentStep = 'interest_domain';
+            await this.delay(800);
+            this.showTypingIndicator();
+            await this.delay(1500);
+            this.removeTypingIndicator();
+            this.addMessage(
+                "Which domain interests you the most?",
+                false,
+                [
+                    { text: "💻 Technology & Software", action: () => this.selectDomain('Technology & Software') },
+                    { text: "🎨 Design & Creative", action: () => this.selectDomain('Design & Creative') },
+                    { text: "📊 Business & Marketing", action: () => this.selectDomain('Business & Marketing') },
+                    { text: "🔬 Research & Analytics", action: () => this.selectDomain('Research & Analytics') },
+                    { text: "📝 Content & Writing", action: () => this.selectDomain('Content & Writing') },
+                    { text: "🏥 Healthcare & Life Sciences", action: () => this.selectDomain('Healthcare & Life Sciences') }
+                ]
+            );
+        }
+
+        async selectDomain(domain) {
+            this.addMessage(domain, true);
+            this.userSelections.domain = domain;
+            await this.delay(800);
+            this.showTypingIndicator();
+            await this.delay(1500);
+            this.removeTypingIndicator();
+            this.addMessage(`Great choice! ${domain} is an exciting field with lots of opportunities.`);
+            await this.delay(1000);
+            
+            // This is the function that will now be called correctly
+            this.askExperienceLevel();
+        }
+
+        async askExperienceLevel() {
+            this.showTypingIndicator();
+            await this.delay(1500);
+            this.removeTypingIndicator();
+            this.addMessage(
+                "What's your experience level in this domain?",
+                false,
+                [
+                    { text: "🌱 Beginner (0-1 years)", action: () => this.selectExperience('Beginner') },
+                    { text: "📈 Intermediate (1-3 years)", action: () => this.selectExperience('Intermediate') },
+                    { text: "🚀 Advanced (3+ years)", action: () => this.selectExperience('Advanced') }
+                ]
+            );
+        }
+
+        async selectExperience(experience) {
+            this.addMessage(experience, true);
+            this.userSelections.experience = experience;
+            await this.delay(800);
+            this.showTypingIndicator();
+            await this.delay(1500);
+            this.removeTypingIndicator();
+            this.showRecommendations();
+        }
+
+        async showRecommendations() {
+            const { domain, experience } = this.userSelections;
+            this.addMessage(`Perfect! Based on your selection of ${domain} with ${experience} experience level, here are some recommendations:`);
+            await this.delay(1000);
+            this.showTypingIndicator();
+            await this.delay(2000);
+            this.removeTypingIndicator();
+            let recommendations = this.getRecommendations(domain, experience);
+            this.addMessage(recommendations);
+            await this.delay(1500);
+            this.addMessage(
+                "Would you like to explore more options or start over?",
+                false,
+                [
+                    { text: "🔍 More Information", action: () => this.showMoreInfo() },
+                    { text: "🔄 Start Over", action: () => this.restart() }
+                ]
+            );
+        }
+
+        getRecommendations(domain, experience) {
+            const recommendations = {
+                'Technology & Software': {
+                    'Beginner': '• Frontend Development Intern\n• QA Testing Intern\n• Technical Support Intern\n• Mobile App Development Intern',
+                    'Intermediate': '• Full-Stack Developer Intern\n• Data Science Intern\n• DevOps Intern\n• Cybersecurity Intern',
+                    'Advanced': '• Software Architecture Intern\n• AI/ML Research Intern\n• Lead Developer Intern\n• Product Management Intern'
+                },
+                'Design & Creative': {
+                    'Beginner': '• Graphic Design Intern\n• Social Media Design Intern\n• UI/UX Assistant\n• Content Creation Intern',
+                    'Intermediate': '• UX Designer Intern\n• Brand Identity Intern\n• Video Production Intern\n• Digital Marketing Creative',
+                    'Advanced': '• Senior UX/UI Intern\n• Creative Director Intern\n• Product Design Intern\n• Design Strategy Intern'
+                },
+                'Business & Marketing': {
+                    'Beginner': '• Marketing Assistant Intern\n• Sales Support Intern\n• Market Research Intern\n• Customer Service Intern',
+                    'Intermediate': '• Digital Marketing Intern\n• Business Analyst Intern\n• Project Management Intern\n• Operations Intern',
+                    'Advanced': '• Marketing Strategy Intern\n• Business Development Intern\n• Consulting Intern\n• Product Marketing Intern'
+                },
+                'Research & Analytics': {
+                    'Beginner': '• Data Analyst Intern\n• Policy Research Assistant\n• Market Research Intern',
+                    'Intermediate': '• Research Fellow\n• Quantitative Analyst Intern\n• Data Scientist Intern',
+                    'Advanced': '• Senior Research Associate\n• Economic Policy Analyst Intern\n• AI/ML Research Intern'
+                },
+                'Content & Writing': {
+                    'Beginner': '• Content Writer Intern\n• Social Media Content Creator\n• Copywriting Intern',
+                    'Intermediate': '• Technical Writer Intern\n• SEO Content Strategist\n• Journalist Intern',
+                    'Advanced': '• Lead Content Strategist\n• Editor-in-Chief Intern\n• Communications Manager Intern'
+                },
+                'Healthcare & Life Sciences': {
+                    'Beginner': '• Medical Research Assistant\n• Clinical Intern\n• Public Health Intern',
+                    'Intermediate': '• Pharmacovigilance Intern\n• Biomedical Engineer Intern\n• Health Informatics Intern',
+                    'Advanced': '• Clinical Research Coordinator Intern\n• Healthcare Policy Analyst\n• Medical Affairs Intern'
+                }
+            };
+            return recommendations[domain]?.[experience] || '• Custom internship opportunities available\n• Mentorship programs\n• Flexible project-based roles';
+        }
+
+        async showMoreInfo() {
+            this.addMessage("More Information", true);
+            await this.delay(800);
+            this.showTypingIndicator();
+            await this.delay(1500);
+            this.removeTypingIndicator();
+            this.addMessage("Here's additional information about our internship program:");
+            await this.delay(1000);
+            this.addMessage(
+                "📋 Program Details:\n• Duration: 3-6 months\n• Stipend: Competitive compensation\n• Mentorship: 1-on-1 guidance\n• Certificate: Upon completion\n• Remote/Hybrid options available",
+                false,
+                [
+                    { text: "🔄 Start Over", action: () => this.restart() }
+                ]
+            );
+        }
+
+        async restart() {
+            this.addMessage("Start Over", true);
+            this.chatMessages.innerHTML = '';
+            this.userSelections = {};
+            this.currentStep = 'greeting';
+            await this.delay(500);
+            this.showGreeting();
+        }
+
+        scrollToBottom() {
+            this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+        }
+
+        delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        addMessage(text, isUser = false, options = null) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.innerHTML = text.replace(/\n/g, '<br>'); // Handles newline characters for bullet points
+            if (options && !isUser) {
+                const optionsContainer = document.createElement('div');
+                optionsContainer.className = 'options-container';
+                options.forEach(option => {
+                    const optionBtn = document.createElement('button');
+                    optionBtn.className = 'option-btn';
+                    optionBtn.textContent = option.text;
+                    optionBtn.onclick = () => option.action();
+                    optionsContainer.appendChild(optionBtn);
+                });
+                messageDiv.appendChild(optionsContainer);
+            }
+            this.chatMessages.appendChild(messageDiv);
+            this.scrollToBottom();
+        }
+
+        showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot-message typing-indicator';
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = `
+                Bot is typing
+                <div class="typing-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            `;
+            this.chatMessages.appendChild(typingDiv);
+            this.scrollToBottom();
+        }
+
+        removeTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+    }
+
+    let chatbotInstance = null;
+
+    chatbotToggleBtn.addEventListener('click', () => {
+        chatbotContainer.classList.toggle('is-visible');
+
+        if (chatbotContainer.classList.contains('is-visible') && !chatbotInstance) {
+            chatbotInstance = new InternshipChatbot();
+            chatbotInstance.showGreeting();
+        }
+    });
+});
+</script>
+<script src="showmore.js"></script>
+
+<script src="server.js"></script>
+<script src="nightmode.js"></script>
+      
+</body>
+</html>

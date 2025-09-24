@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applicant Prep Hub - Interactive Presentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony (Slate Gray, Indigo accents) -->
+    <!-- Application Structure Plan: A single-page scrolling SPA with a sticky navigation bar linking to thematic sections: 'The Idea' (features overview), 'How it Works' (interactive flowcharts), 'Impact' (benefits with a chart), and 'Roadmap' (visual timeline of future development). This structure is chosen to guide the user through a narrative—from the core concept to its mechanics, impact, and future—making the presentation's content more engaging and explorable than a linear slide deck. -->
+    <!-- Visualization & Content Choices: Slide 2 (Idea) -> Goal: Inform -> 3-Card Layout -> Hover effects -> Justification: Clear, parallel presentation of core features. Slide 3 (Tech) -> Goal: Organize -> Interactive HTML/CSS Flowcharts -> JS-powered click-to-reveal details -> Justification: Breaks down complex processes into digestible, interactive steps. Slide 5 (Impact) -> Goal: Compare/Inform -> Chart.js Bar Chart in responsive container -> Tooltips on hover -> Justification: Visually quantifies the project's key benefit ('Increased Confidence'). Slide 4 (Feasibility) -> Goal: Organize -> HTML/CSS Vertical Timeline -> Static visual -> Justification: Transforms challenges into a clear, positive development plan. All visualizations use Canvas or HTML/CSS, confirming NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
+        @media (min-width: 768px) { .chart-container { height: 350px; } }
+        .flow-node { transition: all 0.2s ease-in-out; }
+        .flow-node:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+        .flow-detail { transition: opacity 0.3s ease-out, max-height 0.3s ease-out, margin-top 0.3s ease-out; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-700">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-slate-900">Applicant Prep Hub</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#idea" class="text-slate-600 hover:text-indigo-600 font-medium">The Idea</a>
+                <a href="#how-it-works" class="text-slate-600 hover:text-indigo-600 font-medium">How It Works</a>
+                <a href="#impact" class="text-slate-600 hover:text-indigo-600 font-medium">Impact</a>
+                <a href="#roadmap" class="text-slate-600 hover:text-indigo-600 font-medium">Roadmap</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="py-24 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-5xl font-extrabold text-slate-900 leading-tight">Empowering Job Applicants for Success.</h2>
+                 <p class="mt-4 text-xl text-slate-600 max-w-3xl mx-auto">An AI-powered platform to practice interviews, analyze your resume, and build the confidence you need to land your dream job.</p>
+                 <div class="mt-8">
+                    <a href="#idea" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-indigo-700 transition">Explore The Hub</a>
+                 </div>
+            </div>
+        </section>
+
+        <section id="idea" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-slate-900">A Smarter Way to Prepare</h2>
+                <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">The Applicant Prep Hub combines three powerful tools into a single, seamless experience to give you a competitive edge.</p>
+
+                <div class="mt-16 grid md:grid-cols-3 gap-8 text-left">
+                    <div class="bg-white p-8 rounded-xl shadow-md transition hover:shadow-xl hover:-translate-y-1">
+                        <div class="text-3xl mb-4 text-indigo-500">🎤</div>
+                        <h3 class="text-xl font-bold text-slate-900">Mock Interview Simulator</h3>
+                        <p class="mt-2 text-slate-600">Practice common interview questions and refine your answers in a stress-free environment.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md transition hover:shadow-xl hover:-translate-y-1">
+                        <div class="text-3xl mb-4 text-indigo-500">📄</div>
+                        <h3 class="text-xl font-bold text-slate-900">Instant ATS Score</h3>
+                        <p class="mt-2 text-slate-600">See how your resume scores against a job description and get actionable feedback instantly.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-xl shadow-md transition hover:shadow-xl hover:-translate-y-1">
+                        <div class="text-3xl mb-4 text-indigo-500">📊</div>
+                        <h3 class="text-xl font-bold text-slate-900">Selection Probability</h3>
+                        <p class="mt-2 text-slate-600">Receive a data-driven estimate of your selection chances to better focus your job search.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold text-slate-900">Explore the Process</h2>
+                    <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">Our platform uses straightforward, powerful logic to provide valuable insights. Click on each step in our interactive workflows to learn more.</p>
+                </div>
+
+                <div class="mt-16 grid lg:grid-cols-2 gap-16 items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center">ATS & Probability Score Workflow</h3>
+                        <div class="space-y-4" id="ats-flow">
+                            <div class="flow-node cursor-pointer bg-slate-50 p-4 rounded-lg shadow-sm border-l-4 border-indigo-500" data-target="detail-1">
+                                <p class="font-semibold text-slate-800">1. User Input</p>
+                            </div>
+                            <div id="detail-1" class="flow-detail pl-8 max-h-0 opacity-0 overflow-hidden">
+                                <p class="text-slate-600 bg-indigo-50 p-4 rounded-md">The user uploads their resume and pastes a job description, providing the raw data for analysis.</p>
+                            </div>
+                            <div class="text-center text-slate-400">▼</div>
+                             <div class="flow-node cursor-pointer bg-slate-50 p-4 rounded-lg shadow-sm border-l-4 border-indigo-500" data-target="detail-2">
+                                <p class="font-semibold text-slate-800">2. Keyword Extraction</p>
+                            </div>
+                            <div id="detail-2" class="flow-detail pl-8 max-h-0 opacity-0 overflow-hidden">
+                                <p class="text-slate-600 bg-indigo-50 p-4 rounded-md">The system processes both texts to extract and clean the most relevant keywords and skills.</p>
+                            </div>
+                            <div class="text-center text-slate-400">▼</div>
+                             <div class="flow-node cursor-pointer bg-slate-50 p-4 rounded-lg shadow-sm border-l-4 border-indigo-500" data-target="detail-3">
+                                <p class="font-semibold text-slate-800">3. Comparison & Scoring</p>
+                            </div>
+                            <div id="detail-3" class="flow-detail pl-8 max-h-0 opacity-0 overflow-hidden">
+                                <p class="text-slate-600 bg-indigo-50 p-4 rounded-md">It compares the two keyword sets, calculates a match percentage, and applies a scoring algorithm.</p>
+                            </div>
+                             <div class="text-center text-slate-400">▼</div>
+                             <div class="flow-node cursor-pointer bg-slate-50 p-4 rounded-lg shadow-sm border-l-4 border-green-500" data-target="detail-4">
+                                <p class="font-semibold text-slate-800">4. Results Display</p>
+                            </div>
+                            <div id="detail-4" class="flow-detail pl-8 max-h-0 opacity-0 overflow-hidden">
+                                <p class="text-slate-600 bg-green-50 p-4 rounded-md">The final ATS score, selection probability, and actionable feedback are presented to the user.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center">Mock Interview Workflow</h3>
+                        <div class="space-y-4" id="interview-flow">
+                           <div class="flow-node cursor-pointer bg-slate-50 p-4 rounded-lg shadow-sm border-l-4 border-indigo-500" data-target="detail-5">
+                                <p class="font-semibold text-slate-800">1. Start Session</p>
+                            </div>
+                            <div id="detail-5" class="flow-detail pl-8 max-h-0 opacity-0 overflow-hidden">
+                                <p class="text-slate-600 bg-indigo-50 p-4 rounded-md">The user initiates the practice session by clicking "Next Question".</p>
+                            </div>
+                            <div class="text-center text-slate-400">▼</div>
+                           <div class="flow-node cursor-pointer bg-slate-50 p-4 rounded-lg shadow-sm border-l-4 border-indigo-500" data-target="detail-6">
+                                <p class="font-semibold text-slate-800">2. Question Display</p>
+                            </div>
+                            <div id="detail-6" class="flow-detail pl-8 max-h-0 opacity-0 overflow-hidden">
+                                <p class="text-slate-600 bg-indigo-50 p-4 rounded-md">The system selects a question from its curated database and displays it to the user.</p>
+                            </div>
+                            <div class="text-center text-slate-400">▼</div>
+                           <div class="flow-node cursor-pointer bg-slate-50 p-4 rounded-lg shadow-sm border-l-4 border-indigo-500" data-target="detail-7">
+                                <p class="font-semibold text-slate-800">3. User Practice</p>
+                            </div>
+                            <div id="detail-7" class="flow-detail pl-8 max-h-0 opacity-0 overflow-hidden">
+                                <p class="text-slate-600 bg-indigo-50 p-4 rounded-md">The user formulates and types their answer, practicing their response.</p>
+                            </div>
+                            <div class="text-center text-slate-400 text-2xl">↻</div>
+                             <div class="flow-node cursor-pointer bg-slate-50 p-4 rounded-lg shadow-sm border-l-4 border-green-500" data-target="detail-8">
+                                <p class="font-semibold text-slate-800">4. Loop for Practice</p>
+                            </div>
+                            <div id="detail-8" class="flow-detail pl-8 max-h-0 opacity-0 overflow-hidden">
+                                <p class="text-slate-600 bg-green-50 p-4 rounded-md">The user can request a new question at any time to continue the practice loop.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold text-slate-900">Making a Tangible Impact</h2>
+                    <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">By providing accessible tools, we aim to boost applicant confidence and create a more level playing field in the job market.</p>
+                </div>
+                
+                <div class="mt-16 grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 bg-green-100 text-green-600 rounded-full h-12 w-12 flex items-center justify-center text-xl">🌍</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">Social Benefit</h3>
+                                <p class="mt-1 text-slate-600">Reduces unemployment by making candidates more competitive and better prepared for the modern hiring process.</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 bg-indigo-100 text-indigo-600 rounded-full h-12 w-12 flex items-center justify-center text-xl">💰</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">Economic Benefit</h3>
+                                <p class="mt-1 text-slate-600">Successful job seekers contribute to the economy faster. Creates a foundation for a freemium model with advanced features.</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start gap-4">
+                             <div class="flex-shrink-0 bg-amber-100 text-amber-600 rounded-full h-12 w-12 flex items-center justify-center text-xl">🎓</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">Educational Benefit</h3>
+                                <p class="mt-1 text-slate-600">Teaches a critical job-seeking skill: how to analyze job descriptions and tailor applications effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="chart-container bg-white p-4 rounded-xl shadow-md">
+                            <canvas id="impactChart"></canvas>
+                        </div>
+                        <p class="text-center mt-4 text-sm text-slate-500">Visualization of the projected increase in applicant confidence after using the Prep Hub.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="text-center">
+                    <h2 class="text-4xl font-bold text-slate-900">Our Journey Forward</h2>
+                    <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">We have a functional MVP and a clear vision for the future. Here's our roadmap to enhance the platform.</p>
+                </div>
+
+                <div class="mt-16 max-w-3xl mx-auto">
+                    <div class="relative">
+                        <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-slate-200" aria-hidden="true"></div>
+                        <div class="relative flex flex-col items-center gap-12">
+                            
+                            <div class="flex items-center w-full">
+                                <div class="w-1/2 pr-8 text-right">
+                                    <p class="text-indigo-600 font-semibold">Current</p>
+                                    <h3 class="text-xl font-bold text-slate-900">MVP Complete</h3>
+                                    <p class="text-slate-600 mt-1">A functional product with core features for interviews and ATS scoring, built on HTML, CSS, and JS.</p>
+                                </div>
+                                <div class="absolute left-1/2 -translate-x-1/2 bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold ring-8 ring-white z-10">1</div>
+                            </div>
+                            
+                             <div class="flex items-center w-full">
+                                <div class="w-1/2"></div>
+                                <div class="w-1/2 pl-8 text-left">
+                                     <p class="text-slate-500 font-semibold">Future: Q1</p>
+                                     <h3 class="text-xl font-bold text-slate-900">Advanced Resume Parsing</h3>
+                                    <p class="text-slate-600 mt-1">Implement a Python backend to handle complex file formats like PDF and DOCX, increasing accessibility.</p>
+                                </div>
+                                 <div class="absolute left-1/2 -translate-x-1/2 bg-slate-400 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold ring-8 ring-white z-10">2</div>
+                            </div>
+                            
+                            <div class="flex items-center w-full">
+                                 <div class="w-1/2 pr-8 text-right">
+                                     <p class="text-slate-500 font-semibold">Future: Q2</p>
+                                     <h3 class="text-xl font-bold text-slate-900">Semantic Analysis Engine</h3>
+                                    <p class="text-slate-600 mt-1">Enhance the ATS algorithm with NLP to understand context and semantics, providing more accurate scores.</p>
+                                </div>
+                                <div class="absolute left-1/2 -translate-x-1/2 bg-slate-400 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold ring-8 ring-white z-10">3</div>
+                            </div>
+
+                             <div class="flex items-center w-full">
+                                <div class="w-1/2"></div>
+                                <div class="w-1/2 pl-8 text-left">
+                                     <p class="text-slate-500 font-semibold">Future: Q3</p>
+                                     <h3 class="text-xl font-bold text-slate-900">Dynamic Content Platform</h3>
+                                    <p class="text-slate-600 mt-1">Allow users to contribute interview questions and create a community-driven, ever-growing question bank.</p>
+                                </div>
+                                 <div class="absolute left-1/2 -translate-x-1/2 bg-slate-400 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold ring-8 ring-white z-10">4</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="bg-slate-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Applicant Prep Hub. All rights reserved.</p>
+            <p class="text-sm text-slate-400 mt-1">An idea presentation for the Smart India Hackathon.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ctx = document.getElementById('impactChart').getContext('2d');
+            const impactChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Before Prep Hub', 'After Prep Hub'],
+                    datasets: [{
+                        label: 'Applicant Confidence Level',
+                        data: [45, 85],
+                        backgroundColor: [
+                            'rgba(165, 180, 252, 0.6)',
+                            'rgba(99, 102, 241, 0.6)'
+                        ],
+                        borderColor: [
+                            'rgba(165, 180, 252, 1)',
+                            'rgba(99, 102, 241, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            max: 100,
+                            ticks: {
+                                color: '#64748b' 
+                            },
+                             grid: {
+                                color: '#e2e8f0'
+                            }
+                        },
+                        x: {
+                             ticks: {
+                                color: '#64748b'
+                            },
+                             grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        title: { 
+                            display: true, 
+                            text: 'Projected Confidence Boost',
+                            color: '#334155',
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            });
+
+            function setupFlow(containerId) {
+                const flowContainer = document.getElementById(containerId);
+                if (!flowContainer) return;
+                
+                const nodes = flowContainer.querySelectorAll('.flow-node');
+                nodes.forEach(node => {
+                    node.addEventListener('click', () => {
+                        const targetId = node.dataset.target;
+                        const detailEl = document.getElementById(targetId);
+                        
+                        // Close other open details in the same flow
+                        const allDetails = flowContainer.querySelectorAll('.flow-detail');
+                        allDetails.forEach(el => {
+                            if (el.id !== targetId) {
+                                el.style.maxHeight = '0px';
+                                el.style.opacity = '0';
+                                el.style.marginTop = '0';
+                            }
+                        });
+
+                        if(detailEl.style.maxHeight && detailEl.style.maxHeight !== '0px') {
+                            detailEl.style.maxHeight = '0px';
+                            detailEl.style.opacity = '0';
+                            detailEl.style.marginTop = '0';
+                        } else {
+                            detailEl.style.maxHeight = detailEl.scrollHeight + 'px';
+                            detailEl.style.opacity = '1';
+                            detailEl.style.marginTop = '1rem';
+                        }
+                    });
+                });
+            }
+            
+            setupFlow('ats-flow');
+            setupFlow('interview-flow');
+        });
+    </script>
+</body>
+</html>
+

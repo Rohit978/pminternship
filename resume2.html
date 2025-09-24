@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Internship Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style> 
+        body { font-family: 'Inter', sans-serif; } 
+        .tricolor-border-top {
+            border-top: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+            border-image-source: linear-gradient(to right, #ff9933, #ffffff, #138808);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen py-12 px-4">
+
+    <main class="w-full max-w-md mx-auto">
+        <div class="bg-white rounded-2xl shadow-xl tricolor-border-top">
+            <!-- Header Section -->
+            <div class="p-8 text-center border-b border-gray-200">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-16 h-auto mx-auto mb-4" onerror="this.onerror=null; this.src='https://placehold.co/64x80/EFEFEF/333333?text=Emblem';">
+                <h1 class="text-2xl font-bold text-gray-800">Welcome Back!</h1>
+                <p class="text-gray-500 mt-1">Government of India Internship Portal</p>
+            </div>
+
+            <!-- Login Form Section -->
+            <div class="p-8">
+                <form id="login-form">
+                    <div class="mb-4">
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="you@example.com" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="password" name="password" required placeholder="••••••••" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    
+                    <p id="error-message" class="text-red-500 text-sm mb-4 text-center hidden"></p>
+
+                    <button type="submit" id="submit-button" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Log In
+                    </button>
+                </form>
+                <p class="text-center text-sm text-gray-600 mt-6">
+                    Don't have an account? <a href="/register.html" class="text-blue-600 hover:underline font-medium">Register here</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            const submitButton = document.getElementById('submit-button');
+            
+            errorMessage.classList.add('hidden');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Logging in...';
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.message || 'Login failed.');
+                }
+                
+                // IMPORTANT: Save user data to sessionStorage to persist the login
+                sessionStorage.setItem('loggedInUser', JSON.stringify(result.user));
+
+                // Redirect to the dashboard on successful login
+                window.location.href = '/dashboard.html';
+
+            } catch (error) {
+                errorMessage.textContent = error.message;
+                errorMessage.classList.remove('hidden');
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Log In';
+            }
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Government of India Internship Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tricolor-border-bottom {
+            border-bottom: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+            border-image-source: linear-gradient(to right, #ff9933, #ffffff, #138808);
+        }
+        .info-card, .quick-link {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .info-card:hover, .quick-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .faq-answer.open {
+            max-height: 200px;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .faq-icon.rotated {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md tricolor-border-bottom sticky top-0 z-50">
+        <div class="container mx-auto p-6 flex justify-between items-center">
+            <div class="flex items-center">
+                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-12 h-auto mr-4"
+                      onerror="this.onerror=null; this.src='https://placehold.co/48x60/EFEFEF/333333?text=Emblem';">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">Internship Portal</h1>
+                    <p class="text-gray-500">Government of India</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-blue-600 hover:underline font-medium">
+                <i class="fas fa-home mr-2"></i>Back to Home
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-8">
+        
+        <!-- Page Title Section -->
+        <section class="text-center py-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">Contact Us</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                We're here to help you succeed in your PM internship journey. Have questions or need support? Reach out to us.
+            </p>
+        </section>
+
+        <!-- Contact Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            
+            <!-- Contact Form -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center"><i class="fas fa-paper-plane mr-3 text-blue-600"></i>Get in Touch</h2>
+                <form id="contactForm" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Full Name *</label>
+                        <input type="text" id="name" name="name" required class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email Address *</label>
+                        <input type="email" id="email" name="email" required class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="subject" class="block text-sm font-medium text-gray-700">Subject *</label>
+                        <select id="subject" name="subject" required class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-white">
+                            <option value="">Select a subject...</option>
+                            <option value="General Inquiry">General Inquiry</option>
+                            <option value="Technical Support">Technical Support</option>
+                            <option value="Application Issue">Application Issue</option>
+                            <option value="Partnership">Partnership Opportunities</option>
+                            <option value="Feedback">Feedback & Suggestions</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700">Message *</label>
+                        <textarea id="message" name="message" rows="5" required class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
+                            Send Message
+                        </button>
+                    </div>
+                     <div id="successMessage" class="hidden p-4 text-sm rounded-lg bg-green-100 text-green-700" role="alert">
+                        <span class="font-medium">✅ Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.</span>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 info-card">
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 text-blue-600 rounded-full h-12 w-12 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-envelope fa-lg"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold text-gray-800">Email Support</h3>
+                            <p class="text-gray-600"><strong>General:</strong> support@pminternship.com</p>
+                            <p class="text-gray-600"><strong>Technical:</strong> tech@pminternship.com</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 info-card">
+                    <div class="flex items-start">
+                        <div class="bg-green-100 text-green-600 rounded-full h-12 w-12 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-phone-alt fa-lg"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold text-gray-800">Phone Support</h3>
+                            <p class="text-gray-600"><strong>Toll-Free:</strong> 1800-XXX-XXXX</p>
+                            <p class="text-gray-600"><strong>Hours:</strong> Mon-Fri, 9 AM - 6 PM</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 info-card">
+                    <div class="flex items-start">
+                        <div class="bg-orange-100 text-orange-500 rounded-full h-12 w-12 flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-map-marker-alt fa-lg"></i>
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-xl font-semibold text-gray-800">Our Office</h3>
+                            <p class="text-gray-600">JSS Academy of Technical Education, C-20/1, Sector-62, Noida, Uttar Pradesh 201301</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Links & FAQ Section -->
+        <div class="mt-16 bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+             <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Quick Resources</h2>
+             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Quick Links</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <a href="faq.html" class="quick-link bg-gray-50 hover:bg-blue-600 hover:text-white p-4 rounded-lg flex items-center"><i class="fas fa-question-circle mr-3"></i>FAQs</a>
+                        <a href="guideline.html" class="quick-link bg-gray-50 hover:bg-blue-600 hover:text-white p-4 rounded-lg flex items-center"><i class="fas fa-book-open mr-3"></i>Guidelines</a>
+                        <a href="#" class="quick-link bg-gray-50 hover:bg-blue-600 hover:text-white p-4 rounded-lg flex items-center"><i class="fas fa-bug mr-3"></i>Report a Bug</a>
+                        <a href="#" class="quick-link bg-gray-50 hover:bg-blue-600 hover:text-white p-4 rounded-lg flex items-center"><i class="fas fa-lightbulb mr-3"></i>Feature Requests</a>
+                    </div>
+                </div>
+                <!-- Quick Answers -->
+                <div>
+                     <h3 class="text-xl font-semibold text-gray-800 mb-4">Quick Answers</h3>
+                     <div class="space-y-2">
+                        <div class="faq-item border rounded-lg">
+                            <div class="faq-question p-4 flex justify-between items-center cursor-pointer">
+                                <span class="font-medium text-gray-700">How quickly will I receive a response?</span>
+                                <i class="fas fa-chevron-down faq-icon text-gray-500"></i>
+                            </div>
+                            <div class="faq-answer px-4">
+                                <p class="pb-4 text-gray-600">We typically respond to general inquiries within 24 hours and technical issues within 4 hours.</p>
+                            </div>
+                        </div>
+                         <div class="faq-item border rounded-lg">
+                            <div class="faq-question p-4 flex justify-between items-center cursor-pointer">
+                                <span class="font-medium text-gray-700">Can I schedule a call with your team?</span>
+                                <i class="fas fa-chevron-down faq-icon text-gray-500"></i>
+                            </div>
+                            <div class="faq-answer px-4">
+                                <p class="pb-4 text-gray-600">For partnership or specific inquiries, you can request a call in your message, and our team will get in touch to schedule a time.</p>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+             </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center mt-16 py-6 bg-white border-t">
+        <p class="text-sm text-gray-500">&copy; 2025 Government of India. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.remove('hidden');
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+            }, 5000);
+            this.reset();
+        });
+
+        document.querySelectorAll('.faq-item').forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon');
+                answer.classList.toggle('open');
+                icon.classList.toggle('rotated');
+            });
+        });
+    </script>
+
+</body>
+</html>
+

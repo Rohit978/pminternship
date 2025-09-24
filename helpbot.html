@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Application Assistant - Government of India Internship Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tricolor-border-bottom {
+            border-bottom: 5px solid;
+            border-image: linear-gradient(to right, #ff9933, #ffffff, #138808) 1;
+        }
+        #chat-messages::-webkit-scrollbar { width: 8px; }
+        #chat-messages::-webkit-scrollbar-track { background: #f1f1f1; }
+        #chat-messages::-webkit-scrollbar-thumb { background: #888; border-radius: 4px; }
+        #chat-messages::-webkit-scrollbar-thumb:hover { background: #555; }
+        .message-bubble { max-width: 80%; word-wrap: break-word; }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col h-screen">
+
+    <header class="bg-white shadow-md tricolor-border-bottom">
+        <div class="container mx-auto p-6 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-12 h-auto mr-4">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">AI Application Assistant</h1>
+                    <p class="text-gray-500">Government of India Internship Portal</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-blue-600 hover:underline font-medium">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Home
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto p-4 md:p-8 flex justify-center">
+        <div class="w-full max-w-4xl bg-white rounded-xl shadow-lg flex flex-col h-full max-h-[80vh]">
+            
+            <div id="chat-messages" class="flex-grow p-6 space-y-4 overflow-y-auto">
+                <div class="flex justify-start">
+                    <div class="message-bubble bg-blue-500 text-white p-4 rounded-lg rounded-bl-none">
+                        <p>Hello! I am InternBot, your AI assistant. How can I help you with your application today? Feel free to ask about eligibility, documents, or resume building.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="typing-indicator" class="p-6 hidden">
+                <div class="flex items-center justify-start">
+                    <div class="message-bubble bg-gray-200 text-gray-700 p-4 rounded-lg rounded-bl-none flex items-center">
+                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-pulse mr-2"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-pulse mr-2" style="animation-delay: 0.2s;"></div>
+                        <div class="w-2 h-2 bg-gray-500 rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 border-t border-gray-200">
+                <form id="chat-form" class="flex items-center space-x-4">
+                    <input type="text" id="user-input" placeholder="Type your question here..." autocomplete="off" required
+                           class="w-full rounded-full border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-4 transition">
+                    <button type="submit" id="submit-button" class="bg-blue-600 text-white rounded-full p-4 hover:bg-blue-700 transition duration-300 shrink-0">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatForm = document.getElementById('chat-form');
+            const userInput = document.getElementById('user-input');
+            const submitButton = document.getElementById('submit-button');
+            const chatMessages = document.getElementById('chat-messages');
+            const typingIndicator = document.getElementById('typing-indicator');
+
+            const aPIProxyUrl = '/api/chat'; // This now points to your secure backend server
+
+            const systemInstruction = {
+                role: "model",
+                parts: [{
+                    text: `You are an expert, friendly, and professional AI assistant for the Government of India's Internship Portal. Your name is 'InternBot'. Your sole purpose is to help applicants with their internship application.
+
+                    **Your Knowledge Base:**
+                    1.  **Eligibility Criteria:** Age limits, educational qualifications (e.g., pursuing graduation, final year students), required percentages, and citizenship (must be Indian citizen).
+                    2.  **Required Documents:** Clearly state what documents are needed (e.g., photo ID like Aadhaar/PAN, academic transcripts, proof of address), their required formats (PDF, JPG), and common size limits (e.g., under 500KB).
+                    3.  **Application Process:** Guide users on filling out the form, saving progress, and navigating sections.
+                    4.  **Technical Issues:** Provide simple troubleshooting for common problems (e.g., form not submitting, upload errors). Suggest steps like "try clearing your browser cache," "check your internet connection," or "ensure file sizes are within the limit."
+                    5.  **Application Status:** Explain how to check application status: "You can check your status by logging into the portal and navigating to the 'My Applications' dashboard."
+
+                    **Your Behavior:**
+                    - **Tone:** Be helpful, professional, encouraging, and clear. Use simple language.
+                    - **Persona:** You are 'InternBot', an official assistant.
+                    - **Stay on Topic:** Politely decline to answer questions not related to the Government of India internship application process. For example, if asked about weather or politics, respond with: "My purpose is to assist with internship applications. How can I help you with that?"
+                    - **Fallback:** If you cannot answer a specific or complex question, direct the user to the official support channel: "That's a very specific question. For the most accurate information, please contact the official support team at 'internships@gov.in'."
+                    - **Grounding:** Use the provided search tool to find the most current information if the user's question is not covered in your instructions.`
+                }]
+            };
+
+            let conversationHistory = [systemInstruction];
+            
+            const specialCommands = {
+                'resume': {
+                    keywords: ['resume', 'cv', 'bio-data'],
+                    action: () => {
+                        displayBotMessage('Of course! Let me redirect you to the resume builder page.');
+                        setTimeout(() => { window.location.href = 'resume.html'; }, 1500);
+                    }
+                },
+                'developer': {
+                    keywords: ['developer', 'who made you', 'creator', 'built you'],
+                    action: () => displayBotMessage('I was developed by Team SmartMatch.')
+                }
+            };
+            
+            const toggleFormState = (disabled) => {
+                userInput.disabled = disabled;
+                submitButton.disabled = disabled;
+                userInput.classList.toggle('bg-gray-100', disabled);
+            };
+
+            const sanitizeHTML = (str) => {
+                const temp = document.createElement('div');
+                temp.textContent = str;
+                return temp.innerHTML;
+            };
+
+            const displayMessage = (sender, message) => {
+                const messageContainer = document.createElement('div');
+                messageContainer.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+                
+                const bubble = document.createElement('div');
+                const bubbleClasses = sender === 'user' 
+                    ? 'bg-gray-200 text-gray-800 rounded-br-none' 
+                    : 'bg-blue-500 text-white rounded-bl-none';
+                bubble.className = `message-bubble p-4 rounded-lg shadow-sm ${bubbleClasses}`;
+                bubble.innerHTML = `<p>${sanitizeHTML(message)}</p>`;
+
+                messageContainer.appendChild(bubble);
+                chatMessages.appendChild(messageContainer);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            };
+
+            const displayBotMessage = (message) => {
+                typingIndicator.classList.remove('hidden');
+                setTimeout(() => {
+                    typingIndicator.classList.add('hidden');
+                    displayMessage('bot', message);
+                }, 1000);
+            };
+
+            const handleSpecialCommand = (message) => {
+                const lowerCaseMessage = message.toLowerCase();
+                for (const commandKey in specialCommands) {
+                    const command = specialCommands[commandKey];
+                    if (command.keywords.some(keyword => lowerCaseMessage.includes(keyword))) {
+                        command.action();
+                        return true; 
+                    }
+                }
+                return false;
+            };
+
+            const handleUserMessage = async () => {
+                const userMessage = userInput.value.trim();
+                if (!userMessage) return;
+
+                displayMessage('user', userMessage);
+                userInput.value = '';
+                toggleFormState(true);
+
+                if (handleSpecialCommand(userMessage)) {
+                    toggleFormState(false);
+                    return;
+                }
+
+                typingIndicator.classList.remove('hidden');
+                conversationHistory.push({ role: "user", parts: [{ text: userMessage }] });
+
+                try {
+                    const payload = {
+                        contents: conversationHistory,
+                        tools: [{ "google_search": {} }]
+                    };
+
+                    const response = await fetch(aPIProxyUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API request failed with status ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+                    let botMessage = "I'm sorry, I'm having trouble responding right now. Please try again later.";
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        botMessage = candidate.content.parts[0].text;
+                    }
+                    
+                    conversationHistory.push({ role: "model", parts: [{ text: botMessage }] });
+                    displayMessage('bot', botMessage);
+
+                } catch (error) {
+                    console.error("AI Chatbot Error:", error);
+                    displayMessage('bot', "There was an error connecting to the AI assistant. Please check your connection and try again.");
+                } finally {
+                    typingIndicator.classList.add('hidden');
+                    toggleFormState(false);
+                    userInput.focus();
+                }
+            };
+            
+            chatForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                handleUserMessage();
+            });
+        });
+    </script>
+</body>
+</html>

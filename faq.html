@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - Government of India Internship Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tricolor-border-bottom {
+            border-bottom: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+            border-image-source: linear-gradient(to right, #ff9933, #ffffff, #138808);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .faq-answer.open {
+            max-height: 200px; /* Adjust as needed */
+        }
+        .faq-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .faq-icon.rotated {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md tricolor-border-bottom sticky top-0 z-50">
+        <div class="container mx-auto p-6 flex justify-between items-center">
+            <div class="flex items-center">
+                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-12 h-auto mr-4"
+                      onerror="this.onerror=null; this.src='https://placehold.co/48x60/EFEFEF/333333?text=Emblem';">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">Internship Portal</h1>
+                    <p class="text-gray-500">Government of India</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-blue-600 hover:underline font-medium">
+                <i class="fas fa-home mr-2"></i>Back to Home
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-8">
+        
+        <!-- Page Title Section -->
+        <section class="text-center py-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">Frequently Asked Questions</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Find answers to common questions about our platform, the application process, and our AI-powered features.
+            </p>
+        </section>
+
+        <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <!-- Search Box -->
+             <div class="mb-10 relative">
+                <input type="text" id="searchInput" class="w-full pl-12 pr-4 py-4 text-lg border-2 border-gray-200 rounded-full focus:ring-blue-500 focus:border-blue-500" placeholder="Search for a question...">
+                <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+            </div>
+            
+            <!-- FAQ List -->
+            <div id="faqList" class="grid md:grid-cols-2 md:gap-x-8 gap-y-4">
+                
+                <div class="faq-item border-b border-gray-200 py-4">
+                    <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <h3 class="font-semibold text-lg text-gray-800">How does the preference-based matching work?</h3>
+                        <i class="fas fa-chevron-down faq-icon text-blue-600"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pt-4 text-gray-600">Our AI-powered system analyzes your profile and preferences to match you with the most suitable internship opportunities. The more detailed your profile, the better the matches.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-gray-200 py-4">
+                    <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <h3 class="font-semibold text-lg text-gray-800">What kind of companies offer internships?</h3>
+                        <i class="fas fa-chevron-down faq-icon text-blue-600"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pt-4 text-gray-600">We partner with a diverse range of government ministries, departments, and public sector undertakings across various sectors like technology, research, and design.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-gray-200 py-4">
+                    <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <h3 class="font-semibold text-lg text-gray-800">How do I use the AI Application Assistant?</h3>
+                        <i class="fas fa-chevron-down faq-icon text-blue-600"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pt-4 text-gray-600">You can find the AI Assistant on its dedicated page. Simply type your questions about the application process, and it will provide you with helpful, real-time answers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-gray-200 py-4">
+                    <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <h3 class="font-semibold text-lg text-gray-800">What is the typical duration of an internship?</h3>
+                        <i class="fas fa-chevron-down faq-icon text-blue-600"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pt-4 text-gray-600">Internship durations typically range from 2 to 6 months. The specific duration for each opportunity will be mentioned in the internship listing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-gray-200 py-4">
+                    <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <h3 class="font-semibold text-lg text-gray-800">Are the internships paid?</h3>
+                        <i class="fas fa-chevron-down faq-icon text-blue-600"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pt-4 text-gray-600">Yes, all internships listed on our portal come with a stipend as per government norms. The exact amount will be detailed in the internship description.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-gray-200 py-4">
+                    <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <h3 class="font-semibold text-lg text-gray-800">What qualifications do I need?</h3>
+                        <i class="fas fa-chevron-down faq-icon text-blue-600"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pt-4 text-gray-600">Eligibility criteria vary by role but generally require you to be a student pursuing an undergraduate or postgraduate degree. Please refer to the specific internship listings for detailed requirements.</p>
+                    </div>
+                </div>
+
+                 <div class="faq-item border-b border-gray-200 py-4">
+                    <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <h3 class="font-semibold text-lg text-gray-800">Can I update my profile after registration?</h3>
+                        <i class="fas fa-chevron-down faq-icon text-blue-600"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pt-4 text-gray-600">Yes, you can and should keep your profile updated. An accurate profile helps our AI recommendation engine suggest the most relevant internships for you.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item border-b border-gray-200 py-4">
+                    <div class="faq-question flex justify-between items-center cursor-pointer">
+                        <h3 class="font-semibold text-lg text-gray-800">How does the AI Resume Builder work?</h3>
+                        <i class="fas fa-chevron-down faq-icon text-blue-600"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pt-4 text-gray-600">Our resume builder uses AI to help you write content for your summary and experience sections. In the final step, it generates a complete, professional resume layout based on your inputs.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center mt-16 py-6 bg-white border-t">
+        <p class="text-sm text-gray-500">&copy; 2025 Government of India. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    const answer = item.querySelector('.faq-answer');
+                    const icon = item.querySelector('.faq-icon');
+                    
+                    if (answer.classList.contains('open')) {
+                        answer.classList.remove('open');
+                        icon.classList.remove('rotated');
+                        answer.style.paddingTop = '0';
+                        answer.style.paddingBottom = '0';
+
+                    } else {
+                        answer.classList.add('open');
+                        icon.classList.add('rotated');
+                        answer.style.paddingTop = '1rem';
+                        answer.style.paddingBottom = '1rem';
+                    }
+                });
+            });
+
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                
+                faqItems.forEach(item => {
+                    const questionText = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                    const answerText = item.querySelector('.faq-answer p').textContent.toLowerCase();
+                    
+                    if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

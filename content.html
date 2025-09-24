@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content & Writing Internships - Government of India Internship Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
+        .tricolor-border-bottom {
+            border-bottom: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+            border-image-source: linear-gradient(to right, #ff9933, #ffffff, #138808);
+        }
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md tricolor-border-bottom">
+        <div class="container mx-auto p-6 flex justify-between items-center">
+            <div class="flex items-center">
+                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-12 h-auto mr-4"
+                      onerror="this.onerror=null; this.src='https://placehold.co/48x60/EFEFEF/333333?text=Emblem';">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">Internship Portal</h1>
+                    <p class="text-gray-500">Government of India</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-blue-600 hover:underline font-medium">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-8">
+        <div class="text-center">
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-2">Content & Writing Internships</h2>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Shape the narrative and communicate important messages through internships in copywriting, technical writing, journalism, and more.</p>
+        </div>
+
+        <!-- Search and Filter Bar -->
+        <div class="my-8 p-6 bg-white rounded-xl shadow-md">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                <div class="md:col-span-2">
+                    <label for="search-keyword" class="block text-sm font-medium text-gray-700">Keyword</label>
+                    <input type="text" id="search-keyword" placeholder="e.g., 'Copywriting', 'Technical Writing'" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                <div>
+                    <label for="filter-location" class="block text-sm font-medium text-gray-700">Location</label>
+                    <select id="filter-location" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                        <option>All Locations</option>
+                        <option>New Delhi</option>
+                        <option>Mumbai</option>
+                        <option>Remote</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Internship Listings -->
+        <div class="space-y-6">
+            
+            <!-- Internship Card 1: Content Writer -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Content Writer Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Press Information Bureau (PIB) - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Draft press releases, articles, and features on government policies and initiatives. This role requires strong writing skills and the ability to simplify complex information for a general audience.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">English Writing</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Journalism</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Editing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 2: Technical Writer -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Technical Writer Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Defence Research and Development Organisation (DRDO) - Bengaluru</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Create clear and concise documentation for complex technical systems and research projects. You will be responsible for user manuals, technical specifications, and research papers.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Technical Writing</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">MS Word</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Documentation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 3: Scriptwriter Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Scriptwriter Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Doordarshan (Prasar Bharati) - Mumbai</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Develop scripts for a variety of television programs, including documentaries, educational shows, and cultural events. Collaborate with producers and directors to bring stories to life.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Scriptwriting</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Creative Writing</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Storytelling</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 4: Social Media Content Creator -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Social Media Content Creator</h3>
+                        <p class="text-md text-gray-600 mt-1">MyGov - Remote</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Create engaging and informative content for various social media platforms to promote citizen engagement and government initiatives. Develop content calendars and track performance metrics.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Copywriting</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Social Media Management</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Canva</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Internship Card 5: Editorial Assistant -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Editorial Assistant</h3>
+                        <p class="text-md text-gray-600 mt-1">Publications Division, Ministry of I&B - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Support the editorial team in the production of government books and journals. Responsibilities include proofreading, fact-checking, and coordinating with authors and designers.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Proofreading</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Editing</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Fact-Checking</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 6: Copywriter Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Copywriter Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Ministry of Tourism - Remote</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Write persuasive copy for websites, brochures, and advertisements for the 'Incredible India' campaign. Craft compelling narratives that showcase India's tourism destinations.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">Copywriting</span>
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">Content Marketing</span>
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">Creative Writing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 7: Legal Content Writer -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Legal Content Writer</h3>
+                        <p class="text-md text-gray-600 mt-1">Ministry of Law and Justice - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Simplify complex legal topics into easy-to-understand articles, FAQs, and guides for the public. This role requires a background in law and excellent writing skills.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Legal Writing</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Legal Research</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Content Simplification</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 8: Hindi Language Content Writer -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Hindi Language Content Writer</h3>
+                        <p class="text-md text-gray-600 mt-1">Ministry of Home Affairs - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Create and translate content into Hindi for official government communications. This role is crucial for ensuring information reaches a wider audience across the country.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Hindi Proficiency</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Translation</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Content Writing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 9: Instructional Content Developer -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Instructional Content Developer</h3>
+                        <p class="text-md text-gray-600 mt-1">National Council of Educational Research and Training (NCERT) - Remote</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Develop engaging and effective learning materials for school students. This role involves writing educational content for textbooks, e-learning modules, and teacher training programs.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Curriculum Development</span>
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Instructional Design</span>
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Academic Writing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 10: Science Communicator -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Science Communicator Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Vigyan Prasar - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Translate complex scientific concepts into engaging content for the public. Write articles, create social media posts, and develop scripts for videos to promote scientific literacy.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">Science Communication</span>
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">Content Creation</span>
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">Writing Skills</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center mt-8 py-6 bg-white border-t">
+        <p class="text-sm text-gray-500">&copy; 2025 Government of India. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+

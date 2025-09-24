@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business & Marketing Internships - Government of India Internship Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
+        .tricolor-border-bottom {
+            border-bottom: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+            border-image-source: linear-gradient(to right, #ff9933, #ffffff, #138808);
+        }
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md tricolor-border-bottom">
+        <div class="container mx-auto p-6 flex justify-between items-center">
+            <div class="flex items-center">
+                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-12 h-auto mr-4"
+                      onerror="this.onerror=null; this.src='https://placehold.co/48x60/EFEFEF/333333?text=Emblem';">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">Internship Portal</h1>
+                    <p class="text-gray-500">Government of India</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-blue-600 hover:underline font-medium">
+                <i class="fas fa-arrow-left mr-2"></i>Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-8">
+        <div class="text-center">
+            <h2 class="text-4xl font-extrabold text-gray-800 mb-2">Business & Marketing Internships</h2>
+            <p class="text-gray-600 text-lg max-w-3xl mx-auto">Explore opportunities in market research, policy analysis, digital marketing, and public relations within India's leading government bodies.</p>
+        </div>
+
+        <!-- Search and Filter Bar -->
+        <div class="my-8 p-6 bg-white rounded-xl shadow-md">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                <div class="md:col-span-2">
+                    <label for="search-keyword" class="block text-sm font-medium text-gray-700">Keyword</label>
+                    <input type="text" id="search-keyword" placeholder="e.g., 'Market Research', 'Digital Marketing'" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                </div>
+                <div>
+                    <label for="filter-location" class="block text-sm font-medium text-gray-700">Location</label>
+                    <select id="filter-location" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-3">
+                        <option>All Locations</option>
+                        <option>New Delhi</option>
+                        <option>Mumbai</option>
+                        <option>Bengaluru</option>
+                        <option>Chennai</option>
+                        <option>Remote</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Internship Listings -->
+        <div class="space-y-6">
+            
+            <!-- Internship Card 1: Market Research Analyst -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Market Research Analyst Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Ministry of Commerce and Industry - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Analyze domestic and international market trends to support India's trade policies. You will be responsible for collecting data, preparing reports, and providing insights on key industry sectors.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Data Analysis</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Market Research</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">MS Excel</span>
+                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Report Writing</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 2: Digital Marketing Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Digital Marketing Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Ministry of Tourism - Remote</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Support the 'Incredible India' campaign by creating and managing digital marketing content. Responsibilities include SEO/SEM, social media management, and analyzing campaign performance.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">SEO/SEM</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Social Media Marketing</span>
+                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Google Analytics</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 3: Public Relations Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Public Relations Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Press Information Bureau (PIB) - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Assist in managing communications for various government initiatives. This role includes drafting press releases, organizing press conferences, and monitoring media coverage.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Content Writing</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Media Relations</span>
+                        <span class="bg-red-100 text-red-800 text-sm font-medium px-3 py-1 rounded-full">Communication Skills</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 4: Business Development Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Business Development Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Invest India - Mumbai</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Support the national investment promotion agency by identifying potential investors and assisting with outreach programs. Help prepare pitch decks and industry analysis reports.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Business Acumen</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">Lead Generation</span>
+                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">MS PowerPoint</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Internship Card 5: Policy Analyst Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Policy Analyst Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">NITI Aayog - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Contribute to the formulation of national policies by conducting in-depth research on economic and social issues. You will assist in drafting policy papers and briefs for senior officials.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Policy Research</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Economics</span>
+                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Analytical Skills</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 6: Human Resources Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Human Resources Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Department of Personnel and Training - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Gain experience in public sector HR management. Assist with recruitment processes, employee onboarding, training program coordination, and maintaining personnel records.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">Human Resources</span>
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">Recruitment</span>
+                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">MS Office Suite</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 7: Financial Analyst Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Financial Analyst Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Ministry of Finance - Mumbai</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Assist in the analysis of financial data, budget preparation, and economic forecasting. This role provides a unique insight into the nation's financial planning and management.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Financial Modeling</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Excel</span>
+                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">Accounting</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 8: Supply Chain Management Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Supply Chain Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Food Corporation of India (FCI) - Chennai</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Learn about national food grain procurement, storage, and distribution. Assist in logistics planning, inventory management, and optimizing the public distribution system.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Logistics</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Inventory Management</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Supply Chain</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 9: Event Management Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Event Management Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">Ministry of External Affairs - New Delhi</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Support the organization of high-profile international conferences and diplomatic events. Responsibilities include vendor coordination, logistics, and on-site support.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Event Planning</span>
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Organization</span>
+                        <span class="bg-gray-200 text-gray-800 text-sm font-medium px-3 py-1 rounded-full">Communication</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Card 10: Content Strategy Intern -->
+            <div class="bg-white rounded-xl shadow-md p-6 border border-gray-200 card-hover-effect">
+                <div class="flex flex-col md:flex-row justify-between items-start">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Content Strategy Intern</h3>
+                        <p class="text-md text-gray-600 mt-1">MyGov - Remote</p>
+                    </div>
+                    <a href="#" class="mt-4 md:mt-0 w-full md:w-auto text-center bg-orange-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-orange-600 transition duration-300">Apply Now</a>
+                </div>
+                <p class="mt-4 text-gray-700">Develop and implement content strategies to increase citizen engagement on government platforms. Analyze user data to identify content gaps and plan editorial calendars.</p>
+                <div class="mt-4">
+                    <h4 class="font-semibold text-gray-800">Skills Required:</h4>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">Content Strategy</span>
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">SEO</span>
+                        <span class="bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center mt-8 py-6 bg-white border-t">
+        <p class="text-sm text-gray-500">&copy; 2025 Government of India. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+

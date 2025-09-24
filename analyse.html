@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Coach & ATS Analyzer - Government of India Internship Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
+        .tricolor-border-bottom {
+            border-bottom: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+            border-image-source: linear-gradient(to right, #ff9933, #ffffff, #138808);
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.5s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .message-bubble {
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+        /* New Styles for Results Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+        .modal-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            transform: scale(0.95);
+            transition: transform 0.3s ease-in-out;
+        }
+        .modal-overlay.visible .modal-content {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md tricolor-border-bottom sticky top-0 z-50">
+        <div class="container mx-auto p-6 flex justify-between items-center">
+            <div class="flex items-center">
+                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-12 h-auto mr-4"
+                      onerror="this.onerror=null; this.src='https://placehold.co/48x60/EFEFEF/333333?text=Emblem';">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">Internship Portal</h1>
+                    <p class="text-gray-500">Government of India</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-blue-600 hover:underline font-medium">
+                <i class="fas fa-home mr-2"></i>Back to Home
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-8">
+        
+        <!-- Page Title Section -->
+        <section class="text-center py-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">AI Preparation Tools</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Use our AI-powered tools to analyze your resume and practice for your upcoming interviews.
+            </p>
+        </section>
+
+        <!-- Main Tool Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <!-- Left Column: ATS Analysis -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Resume Analysis</h2>
+                
+                <!-- Step 1: Upload -->
+                <div>
+                    <label for="job-description" class="block text-sm font-medium text-gray-700 mb-2">Paste a Job Description</label>
+                    <textarea id="job-description" rows="6" class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Paste the job description here to get an accurate ATS score..."></textarea>
+                </div>
+                <div class="mt-6">
+                    <label for="resume-upload" class="block text-sm font-medium text-gray-700 mb-2">Upload Your Resume (PDF)</label>
+                    <input type="file" id="resume-upload" accept=".pdf" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                </div>
+                <div class="mt-6">
+                    <button id="analyze-btn" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center justify-center">
+                        Analyze My Resume
+                    </button>
+                </div>
+
+                <!-- Step 2: Results -->
+                <div id="results-container" class="mt-8 pt-6 border-t border-gray-200 text-center hidden">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Your Results</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- ATS Score -->
+                        <div>
+                            <p class="text-sm text-gray-500">ATS Score</p>
+                            <div class="relative inline-flex items-center justify-center">
+                                <svg class="w-24 h-24">
+                                    <circle class="text-gray-200" stroke-width="8" stroke="currentColor" fill="transparent" r="40" cx="48" cy="48" />
+                                    <circle id="ats-progress" class="text-green-500 progress-ring-circle" stroke-width="8" stroke="currentColor" fill="transparent" r="40" cx="48" cy="48" />
+                                </svg>
+                                <span id="ats-score" class="absolute text-2xl font-bold text-gray-700">0%</span>
+                            </div>
+                        </div>
+                        <!-- Selection Probability -->
+                         <div>
+                            <p class="text-sm text-gray-500">Selection Probability</p>
+                             <div class="relative inline-flex items-center justify-center">
+                                <svg class="w-24 h-24">
+                                    <circle class="text-gray-200" stroke-width="8" stroke="currentColor" fill="transparent" r="40" cx="48" cy="48" />
+                                    <circle id="prob-progress" class="text-blue-500 progress-ring-circle" stroke-width="8" stroke="currentColor" fill="transparent" r="40" cx="48" cy="48" />
+                                </svg>
+                                <span id="selection-prob" class="absolute text-2xl font-bold text-gray-700">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Mock Interview -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 flex flex-col">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">AI Mock Interview Coach</h2>
+                
+                <!-- Sector Selection -->
+                <div class="mb-4">
+                    <label for="sector-select" class="block text-sm font-medium text-gray-700 mb-2">Select a sector to practice for:</label>
+                    <div class="flex space-x-4">
+                        <select id="sector-select" name="sector" class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                            <option value="" disabled selected>Choose a sector...</option>
+                            <option value="Technology & Software">Technology & Software</option>
+                            <option value="Design & Creative">Design & Creative</option>
+                            <option value="Business & Marketing">Business & Marketing</option>
+                            <option value="Research & Analytics">Research & Analytics</option>
+                            <option value="Content & Writing">Content & Writing</option>
+                            <option value="Healthcare & Life Sciences">Healthcare & Life Sciences</option>
+                        </select>
+                        <button id="start-interview-btn" disabled class="bg-gray-400 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Start</button>
+                    </div>
+                </div>
+
+                <div id="interview-chat-container" class="flex-grow flex flex-col mt-4">
+                    <div id="chat-messages" class="flex-grow p-4 space-y-4 overflow-y-auto bg-gray-50 rounded-lg min-h-[400px]">
+                        <!-- Interview messages will appear here -->
+                         <div class="flex justify-start">
+                            <div class="message-bubble bg-blue-500 text-white p-3 rounded-lg rounded-bl-none">
+                                <p>Welcome! Please select a sector above and click "Start" to begin your personalized mock interview.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="interview-controls" class="mt-6">
+                        <form id="interview-form" class="flex items-center space-x-4 hidden">
+                            <textarea id="user-answer" rows="2" placeholder="Type your answer here..." class="w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 p-3 resize-none"></textarea>
+                            <button type="submit" class="bg-blue-600 text-white rounded-full p-4 hover:bg-blue-700 transition duration-300 flex-shrink-0">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                        <button id="get-results-btn" class="w-full bg-green-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-700 transition duration-300 hidden">Get My Results</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Results Modal -->
+    <div id="results-modal" class="modal-overlay">
+        <div class="modal-content bg-white rounded-2xl shadow-xl w-full max-w-2xl m-4">
+            <div class="p-6 border-b flex justify-between items-center bg-gray-50 rounded-t-2xl">
+                <h2 class="text-2xl font-bold text-gray-800">Interview Performance Report</h2>
+                <button id="close-results-modal" class="text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
+            </div>
+            <div id="modal-body" class="p-8 max-h-[70vh] overflow-y-auto">
+                <!-- AI-generated results will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-16 py-6 bg-white border-t">
+        <p class="text-sm text-gray-500">&copy; 2025 Government of India. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- ATS Analysis Logic ---
+            // ... (code remains the same)
+
+            // --- Mock Interview Logic ---
+            const interviewForm = document.getElementById('interview-form');
+            const userAnswerInput = document.getElementById('user-answer');
+            const chatMessages = document.getElementById('chat-messages');
+            const sectorSelect = document.getElementById('sector-select');
+            const startInterviewBtn = document.getElementById('start-interview-btn');
+            const getResultsBtn = document.getElementById('get-results-btn');
+            const resultsModal = document.getElementById('results-modal');
+            const closeResultsModalBtn = document.getElementById('close-results-modal');
+            const modalBody = document.getElementById('modal-body');
+            
+            const apiKey = "AIzaSyBLxoVx-RkuJeja6n_7JqrJ_O-S_teRhuA"; // Per instructions, leave blank
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            let interviewHistory = [];
+            let questionCount = 0;
+            const TOTAL_QUESTIONS = 3;
+
+            sectorSelect.addEventListener('change', () => {
+                startInterviewBtn.disabled = !sectorSelect.value;
+                startInterviewBtn.classList.toggle('bg-gray-400', !sectorSelect.value);
+                startInterviewBtn.classList.toggle('bg-green-600', !!sectorSelect.value);
+            });
+
+            startInterviewBtn.addEventListener('click', async () => {
+                const selectedSector = sectorSelect.value;
+                if (!selectedSector) return;
+                
+                startInterviewBtn.disabled = true;
+                sectorSelect.disabled = true;
+                startInterviewBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                chatMessages.innerHTML = '';
+                questionCount = 0;
+                
+                const systemPrompt = `You are an expert interviewer for a Government of India internship in the "${selectedSector}" sector. Your tone is professional and encouraging. Ask one challenging, open-ended question relevant to this sector. Do not number the questions. Just ask the question directly.`;
+                interviewHistory = [{ role: "user", parts: [{ text: systemPrompt }] }, { role: "model", parts: [{ text: "Understood. I will act as an interviewer for this role. Let's begin." }] }];
+
+                const firstQuestion = await getAIResponse("Ask the first question.");
+                addMessage('bot', firstQuestion);
+                questionCount++;
+                interviewForm.classList.remove('hidden');
+                startInterviewBtn.classList.add('hidden');
+            });
+            
+            interviewForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const userAnswer = userAnswerInput.value.trim();
+                if (!userAnswer) return;
+
+                addMessage('user', userAnswer);
+                userAnswerInput.value = '';
+                addMessage('bot', '<i class="fas fa-spinner fa-spin"></i>');
+
+                interviewHistory.push({ role: "user", parts: [{ text: `My answer is: "${userAnswer}"` }] });
+
+                if (questionCount < TOTAL_QUESTIONS) {
+                    const nextQuestionPrompt = `That was my answer. Now, please ask the next question for the "${sectorSelect.value}" role.`;
+                    const nextQuestion = await getAIResponse(nextQuestionPrompt);
+                    chatMessages.lastChild.remove();
+                    addMessage('bot', nextQuestion);
+                    questionCount++;
+                } else {
+                    chatMessages.lastChild.remove();
+                    addMessage('bot', "Thank you. This concludes the interview. Please click the button below to get your results.");
+                    interviewForm.classList.add('hidden');
+                    getResultsBtn.classList.remove('hidden');
+                }
+            });
+
+            getResultsBtn.addEventListener('click', async () => {
+                getResultsBtn.disabled = true;
+                getResultsBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Calculating Results...';
+                modalBody.innerHTML = '<div class="text-center p-10"><i class="fas fa-spinner fa-spin text-4xl text-blue-600"></i><p class="mt-4 text-gray-600">Generating your performance report...</p></div>';
+                resultsModal.classList.add('visible');
+
+                const finalPrompt = `I have completed the interview for the "${sectorSelect.value}" internship. Here is the full transcript:\n\n${JSON.stringify(interviewHistory)}\n\nPlease provide a final evaluation. Your response MUST be a single JSON object. Do not include any text or markdown formatting before or after the JSON. The JSON object must have these exact keys: "score" (a number out of 10), "feedback" (a string containing detailed overall feedback), and "improvements" (an array of strings with specific suggestions for improvement).`;
+                
+                let rawResponse = await getAIResponse(finalPrompt);
+
+                try {
+                    // Clean potential markdown formatting from the response
+                    rawResponse = rawResponse.replace(/```json/g, '').replace(/```/g, '').trim();
+                    const result = JSON.parse(rawResponse);
+
+                    const scoreHTML = `
+                        <div class="text-center pb-6 border-b">
+                            <p class="text-lg text-gray-500">Overall Score</p>
+                            <p class="text-7xl font-bold text-blue-600">${result.score}<span class="text-3xl text-gray-400">/10</span></p>
+                        </div>
+                    `;
+
+                    const feedbackHTML = `
+                        <div class="mt-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fas fa-comment-dots text-gray-400 mr-3"></i>Overall Feedback</h3>
+                            <p class="text-gray-600 leading-relaxed bg-gray-50 p-4 rounded-lg">${result.feedback}</p>
+                        </div>
+                    `;
+
+                    const improvementsHTML = `
+                        <div class="mt-6">
+                            <h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center"><i class="fas fa-arrow-up text-gray-400 mr-3"></i>Areas for Improvement</h3>
+                            <ul class="space-y-3">
+                                ${result.improvements.map(item => `
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check-circle text-green-500 mr-3 mt-1 flex-shrink-0"></i>
+                                        <span class="text-gray-600">${item}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `;
+
+                    modalBody.innerHTML = scoreHTML + feedbackHTML + improvementsHTML;
+                } catch (error) {
+                    console.error("Failed to parse AI response:", error);
+                    modalBody.innerHTML = `<p class="text-red-600">Sorry, there was an error generating your report. The AI returned an unexpected format. Please try again.</p>`;
+                }
+
+                getResultsBtn.innerHTML = 'Results Received';
+            });
+
+
+            closeResultsModalBtn.addEventListener('click', () => {
+                resultsModal.classList.remove('visible');
+            });
+            resultsModal.addEventListener('click', (e) => {
+                if(e.target === resultsModal) {
+                    resultsModal.classList.remove('visible');
+                }
+            });
+
+            function addMessage(sender, message) {
+                const bubble = document.createElement('div');
+                bubble.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
+                bubble.innerHTML = `<div class="message-bubble p-3 rounded-lg max-w-md ${sender === 'user' ? 'bg-gray-200 text-gray-800 rounded-br-none' : 'bg-blue-500 text-white rounded-bl-none'}"><p>${message}</p></div>`;
+                chatMessages.appendChild(bubble);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            async function getAIResponse(prompt) {
+                 interviewHistory.push({ role: "user", parts: [{ text: prompt }] });
+                try {
+                    const payload = { contents: interviewHistory };
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) throw new Error(`API Error: ${response.status}`);
+                    const result = await response.json();
+                    const aiResponse = result.candidates[0].content.parts[0].text;
+                    interviewHistory.push({ role: "model", parts: [{ text: aiResponse }] });
+                    return aiResponse;
+                } catch (error) {
+                    console.error("AI Response Error:", error);
+                    return "{\"score\": 0, \"feedback\": \"I'm sorry, I encountered an error and could not process the results.\", \"improvements\": [\"Please try the interview again.\"]}";
+                }
+            }
+             // --- ATS Analysis Logic ---
+            const atsProgressEl = document.getElementById('ats-progress');
+            const probProgressEl = document.getElementById('prob-progress');
+            if(atsProgressEl && probProgressEl) {
+                const radius = atsProgressEl.r.baseVal.value;
+                const circumference = 2 * Math.PI * radius;
+                atsProgressEl.style.strokeDasharray = `${circumference} ${circumference}`;
+                probProgressEl.style.strokeDasharray = `${circumference} ${circumference}`;
+                
+                document.getElementById('analyze-btn').addEventListener('click', async () => {
+                    const resumeFile = document.getElementById('resume-upload').files[0];
+                    const jobDescription = document.getElementById('job-description').value;
+                    if (!resumeFile || !jobDescription) {
+                        alert("Please upload a resume and paste a job description.");
+                        return;
+                    }
+                    const analyzeBtn = document.getElementById('analyze-btn');
+                    analyzeBtn.disabled = true;
+                    analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Analyzing...';
+                    const formData = new FormData();
+                    formData.append('resume', resumeFile);
+                    formData.append('jobDescription', jobDescription);
+                    try {
+                        const response = await fetch('http://localhost:3000/analyze-resume', { method: 'POST', body: formData });
+                        if (!response.ok) throw new Error('Failed to analyze resume.');
+                        const result = await response.json();
+                        document.getElementById('results-container').classList.remove('hidden');
+                        document.getElementById('ats-score').textContent = `${result.ats_score}%`;
+                        document.getElementById('selection-prob').textContent = `${result.selection_probability}%`;
+                        atsProgressEl.style.strokeDashoffset = circumference - (result.ats_score / 100) * circumference;
+                        probProgressEl.style.strokeDashoffset = circumference - (result.selection_probability / 100) * circumference;
+                    } catch (error) {
+                        console.error('Analysis Error:', error);
+                        alert('An error occurred during analysis. Please try again.');
+                    } finally {
+                        analyzeBtn.disabled = false;
+                        analyzeBtn.innerHTML = 'Analyze My Resume';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

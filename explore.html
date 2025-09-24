@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Internship Programs - Government of India</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
+        .tricolor-border-bottom {
+            border-bottom: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+            border-image-source: linear-gradient(to right, #ff9933, #ffffff, #138808);
+        }
+        .sector-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        .sector-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .sector-card-icon {
+            background-color: #e0e7ff;
+            color: #3730a3;
+            width: 64px;
+            height: 64px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md tricolor-border-bottom sticky top-0 z-50">
+        <div class="container mx-auto p-6 flex justify-between items-center">
+            <div class="flex items-center">
+                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-12 h-auto mr-4"
+                      onerror="this.onerror=null; this.src='https://placehold.co/48x60/EFEFEF/333333?text=Emblem';">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">Internship Portal</h1>
+                    <p class="text-gray-500">Government of India</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-blue-600 hover:underline font-medium">
+                <i class="fas fa-home mr-2"></i>Back to Home
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-8">
+        
+        <!-- Page Title Section -->
+        <section class="text-center py-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">Explore Internship Programs</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Find the perfect internship that aligns with your skills and career aspirations. Browse through our diverse sectors to discover opportunities where you can make a real impact.
+            </p>
+        </section>
+
+        <!-- Internship Sectors Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Sector Card: Technology & Software -->
+            <div class="sector-card bg-white rounded-xl p-8 flex flex-col items-start">
+                <div class="sector-card-icon rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-laptop-code fa-2x"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-3">Technology & Software</h2>
+                <p class="text-gray-600 mb-6 flex-grow">Engage with cutting-edge projects in web development, data science, cybersecurity, and AI within various government departments.</p>
+                <a href="login.html" class="w-full text-center bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
+                    View Internships
+                </a>
+            </div>
+
+            <!-- Sector Card: Design & Creative -->
+            <div class="sector-card bg-white rounded-xl p-8 flex flex-col items-start">
+                <div class="sector-card-icon rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-paint-brush fa-2x"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-3">Design & Creative</h2>
+                <p class="text-gray-600 mb-6 flex-grow">Apply your creative talents to UI/UX, graphic design, and video production to enhance public communication and cultural initiatives.</p>
+                <a href="login.html" class="w-full text-center bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
+                    View Internships
+                </a>
+            </div>
+
+            <!-- Sector Card: Business & Marketing -->
+            <div class="sector-card bg-white rounded-xl p-8 flex flex-col items-start">
+                <div class="sector-card-icon rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-briefcase fa-2x"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-3">Business & Marketing</h2>
+                <p class="text-gray-600 mb-6 flex-grow">Contribute to national economic growth through roles in market research, policy analysis, digital marketing, and public relations.</p>
+                <a href="login.html" class="w-full text-center bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
+                    View Internships
+                </a>
+            </div>
+
+            <!-- Sector Card: Research & Analytics -->
+            <div class="sector-card bg-white rounded-xl p-8 flex flex-col items-start">
+                <div class="sector-card-icon rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-chart-line fa-2x"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-3">Research & Analytics</h2>
+                <p class="text-gray-600 mb-6 flex-grow">Dive into data-driven projects that inform national policy, from economic forecasting to social science and geospatial analysis.</p>
+                <a href="login.html" class="w-full text-center bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
+                    View Internships
+                </a>
+            </div>
+
+            <!-- Sector Card: Content & Writing -->
+            <div class="sector-card bg-white rounded-xl p-8 flex flex-col items-start">
+                <div class="sector-card-icon rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-pencil-alt fa-2x"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-3">Content & Writing</h2>
+                <p class="text-gray-600 mb-6 flex-grow">Shape public discourse through internships in technical writing, journalism, copywriting, and social media content creation.</p>
+                <a href="login.html" class="w-full text-center bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
+                    View Internships
+                </a>
+            </div>
+
+            <!-- Sector Card: Healthcare & Life Sciences -->
+            <div class="sector-card bg-white rounded-xl p-8 flex flex-col items-start">
+                <div class="sector-card-icon rounded-full flex items-center justify-center mb-6">
+                    <i class="fas fa-heartbeat fa-2x"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-3">Healthcare & Life Sciences</h2>
+                <p class="text-gray-600 mb-6 flex-grow">Get involved in national health initiatives through roles in medical research, public health, pharmaceuticals, and bioinformatics.</p>
+                <a href="login.html" class="w-full text-center bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">
+                    View Internships
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center mt-16 py-6 bg-white border-t">
+        <p class="text-sm text-gray-500">&copy; 2025 Government of India. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Guidelines - Government of India Internship Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .tricolor-border-bottom {
+            border-bottom: 5px solid;
+            border-image-slice: 1;
+            border-width: 5px;
+            border-image-source: linear-gradient(to right, #ff9933, #ffffff, #138808);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        .nav-tab.active {
+            border-color: #2563eb; /* Blue border for active tab */
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md tricolor-border-bottom sticky top-0 z-50">
+        <div class="container mx-auto p-6 flex justify-between items-center">
+            <div class="flex items-center">
+                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Emblem_of_India.svg/120px-Emblem_of_India.svg.png" alt="Emblem of India" class="w-12 h-auto mr-4"
+                      onerror="this.onerror=null; this.src='https://placehold.co/48x60/EFEFEF/333333?text=Emblem';">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">Internship Portal</h1>
+                    <p class="text-gray-500">Government of India</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-blue-600 hover:underline font-medium">
+                <i class="fas fa-home mr-2"></i>Back to Home
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-8">
+        
+        <!-- Page Title Section -->
+        <section class="text-center py-16">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">Platform Guidelines</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                Your complete guide to using our internship platform effectively and making the most of your application journey.
+            </p>
+        </section>
+
+        <div class="bg-white p-8 rounded-2xl shadow-lg">
+            <!-- Navigation Tabs -->
+            <div class="flex border-b-2 border-gray-200 mb-8 overflow-x-auto whitespace-nowrap">
+                <button id="getting-started-tab" class="nav-tab px-6 py-3 text-base font-semibold text-gray-600 transition-colors duration-300 border-b-4 border-transparent hover:text-blue-600">Getting Started</button>
+                <button id="profile-setup-tab" class="nav-tab px-6 py-3 text-base font-semibold text-gray-600 transition-colors duration-300 border-b-4 border-transparent hover:text-blue-600">Profile Setup</button>
+                <button id="ai-chatbot-tab" class="nav-tab px-6 py-3 text-base font-semibold text-gray-600 transition-colors duration-300 border-b-4 border-transparent hover:text-blue-600">AI Assistants</button>
+                <button id="application-tab" class="nav-tab px-6 py-3 text-base font-semibold text-gray-600 transition-colors duration-300 border-b-4 border-transparent hover:text-blue-600">Application Process</button>
+                <button id="best-practices-tab" class="nav-tab px-6 py-3 text-base font-semibold text-gray-600 transition-colors duration-300 border-b-4 border-transparent hover:text-blue-600">Best Practices</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div>
+                <!-- Getting Started Tab Content -->
+                <div id="getting-started" class="tab-content">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Getting Started</h2>
+                    <div class="space-y-4">
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">1. Create Your Account</h3>
+                            <p class="text-gray-600">Register on our portal using a valid email address. A verification link will be sent to you to activate your account.</p>
+                        </div>
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">2. Complete Your Profile</h3>
+                            <p class="text-gray-600">Fill out all the sections in your applicant profile, including personal details, address, and academic information. A complete profile is crucial for getting noticed.</p>
+                        </div>
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                             <h3 class="font-semibold text-lg text-gray-800 mb-1">3. Build Your Resume</h3>
+                            <p class="text-gray-600">Use our AI-powered Resume Builder to create a professional resume. You can generate content and even the final design with AI assistance.</p>
+                        </div>
+                         <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                             <h3 class="font-semibold text-lg text-gray-800 mb-1">4. Explore Programs</h3>
+                            <p class="text-gray-600">Navigate to the "Explore Programs" page to see the various sectors offering internships. You will be prompted to log in before viewing the listings.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Setup Tab Content -->
+                <div id="profile-setup" class="tab-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Profile Setup Guidelines</h2>
+                    <div class="space-y-4">
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Accurate Information</h3>
+                            <p class="text-gray-600">Ensure all details, especially your name, date of birth, and academic marks, are entered correctly as they appear on your official documents.</p>
+                        </div>
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Address Details</h3>
+                            <p class="text-gray-600">Provide your full and correct address. The dynamic State and City dropdowns are designed to help ensure accuracy.</p>
+                        </div>
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Secure Password</h3>
+                            <p class="text-gray-600">Choose a strong password that is at least 6 characters long. Use the "show/hide" icon to verify your password as you type.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Chatbot Tab Content -->
+                <div id="ai-chatbot" class="tab-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Using Our AI Assistants</h2>
+                     <div class="space-y-4">
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">AI Application Assistant</h3>
+                            <p class="text-gray-600">Our main chatbot can answer your questions about the application process, required documents, and technical issues. It uses Google Search to provide up-to-date information.</p>
+                        </div>
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">AI Resume Builder</h3>
+                            <p class="text-gray-600">The resume builder uses AI to help you write your professional summary and job descriptions. In the final step, it designs a complete, professional resume layout for you.</p>
+                        </div>
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">AI Recommendation Engine</h3>
+                            <p class="text-gray-600">Once you are logged in, our custom machine learning model will analyze your profile and recommend the most relevant internships for you on the homepage.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application Process Tab Content -->
+                <div id="application" class="tab-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Application Process</h2>
+                     <div class="space-y-4">
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Logging In</h3>
+                            <p class="text-gray-600">You must be registered and logged in to view internship listings. You can log in via the widget on the homepage or on the dedicated login page.</p>
+                        </div>
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Browsing Internships</h3>
+                            <p class="text-gray-600">After logging in, you can navigate to the specific sector pages (e.g., Technology, Design) to view and apply for available positions.</p>
+                        </div>
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Submitting an Application</h3>
+                            <p class="text-gray-600">Each internship listing will have an "Apply Now" button which will guide you through the submission process for that specific role.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Best Practices Tab Content -->
+                <div id="best-practices" class="tab-content hidden">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Best Practices for Success</h2>
+                    <div class="space-y-4">
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Keep Your Profile Updated</h3>
+                            <p class="text-gray-600">An up-to-date profile ensures our AI recommendation engine provides you with the most relevant internship opportunities.</p>
+                        </div>
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Tailor Your Resume</h3>
+                            <p class="text-gray-600">Use the resume builder to create a strong base resume, but consider tailoring the summary and skills for each specific application to highlight the most relevant qualifications.</p>
+                        </div>
+                        <div class="p-5 bg-gray-50 rounded-lg border border-gray-200">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Be Professional</h3>
+                            <p class="text-gray-600">Ensure all your written communications, from your resume summary to any direct contact, are professional and free of errors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center mt-16 py-6 bg-white border-t">
+        <p class="text-sm text-gray-500">&copy; 2025 Government of India. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript to handle tab switching -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.nav-tab');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetId = tab.id.replace('-tab', '');
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.add('hidden'));
+
+                    tab.classList.add('active');
+                    const targetContent = document.getElementById(targetId);
+                    targetContent.classList.remove('hidden');
+                    targetContent.classList.add('fade-in');
+                });
+            });
+
+            // Initial state: show the first tab and its content
+            document.getElementById('getting-started-tab').click();
+        });
+    </script>
+</body>
+</html>

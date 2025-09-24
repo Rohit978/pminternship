@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Chatbot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chatbot-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 400px;
+            max-width: 90vw;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .bot-message {
+            background: #f0f2f5;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #4facfe;
+            color: #4facfe;
+            padding: 12px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .option-btn:hover {
+            background: #4facfe;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 3px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: #666;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .restart-btn {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 10px;
+            align-self: center;
+        }
+
+        .restart-btn:hover {
+            background: #ff5252;
+        }
+    </style>
+</head>
+<body> 
+    
+    <div class="chatbot-container">
+        <div class="chat-header">
+            🤖 Internship Assistant
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Messages will be added here dynamically -->
+        </div>
+    </div>
+
+    <script>
+        class InternshipChatbot {
+            constructor() {
+                this.chatMessages = document.getElementById('chatMessages');
+                this.currentStep = 'greeting';
+                this.userSelections = {};
+                this.init();
+            }
+
+            init() {
+                this.showGreeting();
+            }
+
+            addMessage(text, isUser = false, options = null) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+                messageDiv.innerHTML = text;
+
+                if (options && !isUser) {
+                    const optionsContainer = document.createElement('div');
+                    optionsContainer.className = 'options-container';
+                    
+                    options.forEach(option => {
+                        const optionBtn = document.createElement('button');
+                        optionBtn.className = 'option-btn';
+                        optionBtn.textContent = option.text;
+                        optionBtn.onclick = () => option.action();
+                        optionsContainer.appendChild(optionBtn);
+                    });
+                    
+                    messageDiv.appendChild(optionsContainer);
+                }
+
+                this.chatMessages.appendChild(messageDiv);
+                this.scrollToBottom();
+            }
+
+            showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'message bot-message typing-indicator';
+                typingDiv.id = 'typing-indicator';
+                typingDiv.innerHTML = `
+                    Bot is typing
+                    <div class="typing-dots">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                `;
+                this.chatMessages.appendChild(typingDiv);
+                this.scrollToBottom();
+            }
+
+            removeTypingIndicator() {
+                const typingIndicator = document.getElementById('typing-indicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
+
+            async showGreeting() {
+                this.showTypingIndicator();
+                await this.delay(1500);
+                this.removeTypingIndicator();
+                
+                this.addMessage("Hi there! 👋 Welcome to our Internship Portal!");
+                
+                await this.delay(1000);
+                this.showTypingIndicator();
+                await this.delay(1500);
+                this.removeTypingIndicator();
+                
+                this.addMessage(
+                    "I'm here to help you find the perfect internship opportunity. Let's start by understanding your interests!",
+                    false,
+                    [
+                        { text: "Let's get started! 🚀", action: () => this.askInterestDomain() }
+                    ]
+                );
+            }
+
+            async askInterestDomain() {
+                this.addMessage("Let's get started! 🚀", true);
+                this.currentStep = 'interest_domain';
+                
+                await this.delay(800);
+                this.showTypingIndicator();
+                await this.delay(1500);
+                this.removeTypingIndicator();
+                
+                this.addMessage(
+                    "Which domain interests you the most?",
+                    false,
+                    [
+                        { text: "💻 Technology & Software", action: () => this.selectDomain('Technology & Software') },
+                        { text: "🎨 Design & Creative", action: () => this.selectDomain('Design & Creative') },
+                        { text: "📊 Business & Marketing", action: () => this.selectDomain('Business & Marketing') },
+                        { text: "🔬 Research & Analytics", action: () => this.selectDomain('Research & Analytics') },
+                        { text: "📝 Content & Writing", action: () => this.selectDomain('Content & Writing') },
+                        { text: "🏥 Healthcare & Life Sciences", action: () => this.selectDomain('Healthcare & Life Sciences') }
+                    ]
+                );
+            }
+
+            async selectDomain(domain) {
+                this.addMessage(domain, true);
+                this.userSelections.domain = domain;
+                
+                await this.delay(800);
+                this.showTypingIndicator();
+                await this.delay(1500);
+                this.removeTypingIndicator();
+                
+                this.addMessage(`Great choice! ${domain} is an exciting field with lots of opportunities.`);
+                
+                await this.delay(1000);
+                this.askExperienceLevel();
+            }
+
+            async askExperienceLevel() {
+                this.showTypingIndicator();
+                await this.delay(1500);
+                this.removeTypingIndicator();
+                
+                this.addMessage(
+                    "What's your experience level in this domain?",
+                    false,
+                    [
+                        { text: "🌱 Beginner (0-1 years)", action: () => this.selectExperience('Beginner') },
+                        { text: "📈 Intermediate (1-3 years)", action: () => this.selectExperience('Intermediate') },
+                        { text: "🚀 Advanced (3+ years)", action: () => this.selectExperience('Advanced') }
+                    ]
+                );
+            }
+
+            async selectExperience(experience) {
+                this.addMessage(experience, true);
+                this.userSelections.experience = experience;
+                
+                await this.delay(800);
+                this.showTypingIndicator();
+                await this.delay(1500);
+                this.removeTypingIndicator();
+                
+                this.showRecommendations();
+            }
+
+            async showRecommendations() {
+                const { domain, experience } = this.userSelections;
+                
+                this.addMessage(`Perfect! Based on your selection of ${domain} with ${experience} experience level, here are some recommendations:`);
+                
+                await this.delay(1000);
+                this.showTypingIndicator();
+                await this.delay(2000);
+                this.removeTypingIndicator();
+                
+                let recommendations = this.getRecommendations(domain, experience);
+                this.addMessage(recommendations);
+                
+                await this.delay(1500);
+                this.addMessage(
+                    "Would you like to explore more options or start over?",
+                    false,
+                    [
+                        { text: "🔍 More Information", action: () => this.showMoreInfo() },
+                        { text: "🔄 Start Over", action: () => this.restart() }
+                    ]
+                );
+            }
+
+            getRecommendations(domain, experience) {
+                const recommendations = {
+                    'Technology & Software': {
+                        'Beginner': '• Frontend Development Intern\n• QA Testing Intern\n• Technical Support Intern\n• Mobile App Development Intern',
+                        'Intermediate': '• Full-Stack Developer Intern\n• Data Science Intern\n• DevOps Intern\n• Cybersecurity Intern',
+                        'Advanced': '• Software Architecture Intern\n• AI/ML Research Intern\n• Lead Developer Intern\n• Product Management Intern'
+                    },
+                    'Design & Creative': {
+                        'Beginner': '• Graphic Design Intern\n• Social Media Design Intern\n• UI/UX Assistant\n• Content Creation Intern',
+                        'Intermediate': '• UX Designer Intern\n• Brand Identity Intern\n• Video Production Intern\n• Digital Marketing Creative',
+                        'Advanced': '• Senior UX/UI Intern\n• Creative Director Intern\n• Product Design Intern\n• Design Strategy Intern'
+                    },
+                    'Business & Marketing': {
+                        'Beginner': '• Marketing Assistant Intern\n• Sales Support Intern\n• Market Research Intern\n• Customer Service Intern',
+                        'Intermediate': '• Digital Marketing Intern\n• Business Analyst Intern\n• Project Management Intern\n• Operations Intern',
+                        'Advanced': '• Marketing Strategy Intern\n• Business Development Intern\n• Consulting Intern\n• Product Marketing Intern'
+                    }
+                };
+                
+                return recommendations[domain]?.[experience] || '• Custom internship opportunities available\n• Mentorship programs\n• Flexible project-based roles';
+            }
+
+            async showMoreInfo() {
+                this.addMessage("More Information", true);
+                
+                await this.delay(800);
+                this.showTypingIndicator();
+                await this.delay(1500);
+                this.removeTypingIndicator();
+                
+                this.addMessage("Here's additional information about our internship program:");
+                
+                await this.delay(1000);
+                this.addMessage(
+                    "📋 Program Details:\n• Duration: 3-6 months\n• Stipend: Competitive compensation\n• Mentorship: 1-on-1 guidance\n• Certificate: Upon completion\n• Remote/Hybrid options available",
+                    false,
+                    [
+                        { text: "🔄 Start Over", action: () => this.restart() }
+                    ]
+                );
+            }
+
+            async restart() {
+                this.addMessage("Start Over", true);
+                this.chatMessages.innerHTML = '';
+                this.userSelections = {};
+                this.currentStep = 'greeting';
+                await this.delay(500);
+                this.showGreeting();
+            }
+
+            scrollToBottom() {
+                this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+            }
+
+            delay(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+        }
+
+        // Initialize the chatbot when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new InternshipChatbot();
+        });
+    </script>
+</body>
+</html>
