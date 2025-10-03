@@ -7,10 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Calm Harmony (Slate Gray, Indigo accents) -->
-    <!-- Application Structure Plan: A single-page scrolling SPA with a sticky navigation bar linking to thematic sections: 'The Idea' (features overview), 'How it Works' (interactive flowcharts), 'Impact' (benefits with a chart), and 'Roadmap' (visual timeline of future development). This structure is chosen to guide the user through a narrative—from the core concept to its mechanics, impact, and future—making the presentation's content more engaging and explorable than a linear slide deck. -->
-    <!-- Visualization & Content Choices: Slide 2 (Idea) -> Goal: Inform -> 3-Card Layout -> Hover effects -> Justification: Clear, parallel presentation of core features. Slide 3 (Tech) -> Goal: Organize -> Interactive HTML/CSS Flowcharts -> JS-powered click-to-reveal details -> Justification: Breaks down complex processes into digestible, interactive steps. Slide 5 (Impact) -> Goal: Compare/Inform -> Chart.js Bar Chart in responsive container -> Tooltips on hover -> Justification: Visually quantifies the project's key benefit ('Increased Confidence'). Slide 4 (Feasibility) -> Goal: Organize -> HTML/CSS Vertical Timeline -> Static visual -> Justification: Transforms challenges into a clear, positive development plan. All visualizations use Canvas or HTML/CSS, confirming NO SVG/Mermaid. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+ 
+
+
+    
     <style>
         body { font-family: 'Inter', sans-serif; }
         .chart-container { position: relative; width: 100%; max-width: 600px; margin-left: auto; margin-right: auto; height: 300px; max-height: 400px; }
@@ -321,7 +321,7 @@
                         const targetId = node.dataset.target;
                         const detailEl = document.getElementById(targetId);
                         
-                        // Close other open details in the same flow
+
                         const allDetails = flowContainer.querySelectorAll('.flow-detail');
                         allDetails.forEach(el => {
                             if (el.id !== targetId) {

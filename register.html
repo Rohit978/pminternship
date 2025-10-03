@@ -225,7 +225,7 @@
             const stateSelect = document.getElementById('state');
             const citySelect = document.getElementById('city');
 
-            // Data for states and cities in India
+
             const stateCityMap = {
                 "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Kurnool"],
                 "Arunachal Pradesh": ["Itanagar", "Naharlagun"],
@@ -258,7 +258,7 @@
                 "West Bengal": ["Kolkata", "Asansol", "Silguri", "Durgapur"]
             };
 
-            // Populate states dropdown
+
             for (const state in stateCityMap) {
                 const option = document.createElement('option');
                 option.value = state;
@@ -266,7 +266,7 @@
                 stateSelect.appendChild(option);
             }
 
-            // Handle state change
+
             stateSelect.addEventListener('change', () => {
                 const selectedState = stateSelect.value;
                 citySelect.innerHTML = '<option value="" disabled selected>Select City</option>'; // Reset cities
@@ -296,7 +296,7 @@
                 window.scrollTo(0, 0);
             }
 
-            // Password visibility toggle logic
+
             document.querySelectorAll('.password-toggle').forEach(toggle => {
                 toggle.addEventListener('click', () => {
                     const passwordInput = toggle.previousElementSibling;

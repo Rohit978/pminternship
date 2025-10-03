@@ -1,157 +1,1909 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Government of India - Internship Program</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f3f4f6;
-      color: #1f2937;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government of India - Internship Program</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General body and typography styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937; /* Default text color */
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Dark mode styles, toggled by the JavaScript */
+        body.dark-mode {
+            background-color: #111827;
+            color: #e5e7eb;
+        }
+
+        body.dark-mode .header-bg {
+            background-color: #1f2937;
+        }
+
+        body.dark-mode .blue-button {
+            background-color: #4b5563;
+            color: #d1d5db;
+            border-color: #6b7280;
+        }
+
+        body.dark-mode .blue-button:hover {
+            background-color: #6b7280;
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .feature-card,
+        body.dark-mode .ministry-card,
+        body.dark-mode .testimonial-card {
+            background-color: #1f2937;
+            color: #e5e7eb;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .testimonial-card p {
+            color: #d1d5db;
+        }
+       
+        .dark-mode .section-title,
+        .dark-mode .section-subtitle,
+        .dark-mode h4 {
+          color: white;
+        }
+       
+        .dark-mode .testimonial-card small {
+          color: #9ca3af;
+        }
+
+
+        /* Reusable container class for centering content */
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Custom styles for the header */
+        .header-bg {
+            background-color: #002e6d; /* Dark blue background */
+            color: white;
+        }
+
+        .header-text-white {
+            color: white;
+        }
+
+        .header-link-border {
+            border-right: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .blue-button {
+            background-color: white;
+            color: #002e6d;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .blue-button:hover {
+            background-color: #d1d5db;
+            transform: translateY(-2px);
+        }
+       
+        /* New nav header styling */
+        .nav-header {
+            background-color: #002e6d;
+            color: white;
+        }
+
+        .nav-button {
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+       
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+
+        /* Hero section styling */
+        .hero {
+            background-color: black;
+            color: white;
+            padding: 5rem 1rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+       
+        /* The new orange button style from the image */
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: #002e6d;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+        }
+       
+        .cta-button.orange {
+            background-color: #ff6600;
+            color: white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Section-wide styles */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            max-width: 768px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Grid layouts for features, ministries, and testimonials */
+        .features,
+        .ministries,
+        .testimonials {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        .features-grid,
+        .ministry-grid,
+        .testimonial-grid {
+            display: grid;
+            gap: 2rem;
+            text-align: center;
+        }
+       
+        .features-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+       
+        .ministry-grid,
+        .testimonial-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .feature-card,
+        .ministry-card,
+        .testimonial-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover,
+        .ministry-card:hover,
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .ministry-card {
+            padding: 0;
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+
+        .testimonial-card small {
+            display: block;
+            margin-top: 0.25rem;
+            color: #9ca3af;
+        }
+
+            .bodyfooter {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #000000 0%, #000000 100%);
+    min-height: 100vh;
+    height: 100vh; /* Fixed height to prevent overflow */
+    display: flex;
+    align-items: stretch; /* Changed from center to stretch */
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    overflow: hidden; /* Prevent any overflow */
+}
+
+.footer {
+    background: rgba(255, 249, 249, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 0;
+    padding: 30px 50px; /* Reduced padding */
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: none;
+    border-right: none;
+    border-top: none; /* Remove top border */
+    border-bottom: none; /* Remove bottom border */
+    color: white;
+    margin: 0;
+    box-sizing: border-box;
+    line-height: 1.3; /* Slightly reduced line height */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px; /* Slightly reduced gap */
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    flex-grow: 1;
+    align-items: center; /* Center align grid items */
+}
+
+.footer-section {
+    position: relative;
+}
+
+.footer-section h3 {
+    margin-bottom: 18px; /* Slightly reduced margin */
+    font-size: 1.3em; /* Reduced font size */
+    position: relative;
+    padding-bottom: 8px; /* Reduced padding */
+}
+
+.footer-section h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 45px; /* Slightly smaller underline */
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+    border-radius: 2px;
+}
+
+.contact-info {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-info li {
+    margin-bottom: 12px; /* Reduced margin */
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    font-size: 0.95em; /* Slightly smaller font */
+}
+
+.contact-info li:hover {
+    transform: translateX(5px);
+}
+
+.contact-info i {
+    margin-right: 10px; /* Reduced margin */
+    width: 18px; /* Smaller icon width */
+    color: #4ecdc4;
+    font-size: 1em; /* Reduced icon size */
+}
+
+.contact-info a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: #4ecdc4;
+}
+
+.social-links {
+    display: flex;
+    gap: 12px; /* Reduced gap */
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px; /* Smaller social icons */
+    height: 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px; /* Slightly smaller border radius */
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em; /* Smaller font size */
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.social-link.facebook:hover {
+    background: #1877f2;
+    border-color: #1877f2;
+}
+
+.social-link.twitter:hover {
+    background: #1da1f2;
+    border-color: #1da1f2;
+}
+
+.social-link.instagram:hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    border-color: #bc1888;
+}
+
+.social-link.linkedin:hover {
+    background: #0077b5;
+    border-color: #0077b5;
+}
+
+.social-link.youtube:hover {
+    background: #ff0000;
+    border-color: #ff0000;
+}
+
+.footer-images {
+    display: flex;
+    gap: 12px; /* Reduced gap */
+    flex-wrap: wrap;
+}
+
+.footer-image {
+    width: 90px; /* Smaller images */
+    height: 90px;
+    border-radius: 10px; /* Smaller border radius */
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.85em; /* Smaller font for image placeholders */
+}
+
+.footer-image:hover {
+    transform: scale(1.1);
+    border-color: #4ecdc4;
+    box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+}
+
+.footer-bottom {
+    padding-top: 30px; /* Reduced padding */
+    font-size: 0.85em; /* Smaller font size */
+    margin-bottom: 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 30px; /* Reduced margin */
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.footer-bottom p {
+    margin-bottom: 8px; /* Reduced margin */
+}
+
+.footer-bottom a {
+    color: #4ecdc4;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+    color: #ff6b6b;
+}
+
+@media (max-width: 968px) {
+    .footer {
+        padding: 25px 35px; /* Reduced padding */
     }
-    body.dark-mode {
-      background-color: #111827;
-      color: #e5e7eb;
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 35px; /* Reduced gap */
     }
-    .header-bg { background-color: #002e6d; color: white; }
-    .blue-button {
-      background-color: white;
-      color: #002e6d;
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
+    
+    .footer-section h3 {
+        font-size: 1.2em; /* Smaller heading on tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 20px 15px; /* Further reduced padding */
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 25px; /* Reduced gap */
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-images {
+        justify-content: center;
+    }
+    
+    .footer-section h3 {
+        font-size: 1.1em; /* Even smaller heading on mobile */
+    }
+    
+    .contact-info li {
+        font-size: 0.9em; /* Smaller text on mobile */
+    }
+}
+
+        
+
+    h2 {
+      text-align: center;
+      padding: 30px 0 10px;
+      font-size: 32px;
+      color: #333;
+    }
+
+    .carousel-container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 1s ease-in-out;
+    }
+
+    .carousel-item {
+      min-width: 100%;
+      display: flex;
+      justify-content: space-around;
+      gap: 30px;
+      padding: 20px;
+    }
+
+    .block {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 30%;
+      aspect-ratio: 1 / 1;
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      display: flex;
+      flex-direction: column;
       cursor: pointer;
     }
-    .blue-button:hover { background-color: #d1d5db; }
-    /* Login Modal */
-    #login-modal { display: none; }
-    #login-modal.active { display: flex; }
-  </style>
+
+    .block:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.2);
+    }
+
+    .block img {
+      width: 100%;
+      height: 70%;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      transition: transform 0.5s ease;
+    }
+
+    .block:hover img {
+      transform: scale(1.1);
+    }
+
+    .block p {
+      padding: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+
+    .btn-show-more {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 30px;
+      font-size: 18px;
+      background-color: #1310e3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .btn-show-more:hover {
+      background-color: #e65700;
+    }
+
+    /* Expanded view styles */
+    .expanded .carousel-track {
+      flex-direction: column;
+      transform: none !important;
+    }
+
+    .expanded .carousel-item {
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+    .expanded .block {
+      width: 22%;
+      aspect-ratio: 1 / 1;
+      margin: 15px 0;
+    }
+
+    @media (max-width: 1024px) {
+      .expanded .block {
+        width: 30%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .block {
+        width: 45%;
+      }
+      .expanded .block {
+        width: 40%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .block {
+        width: 90%;
+      }
+      .expanded .block {
+        width: 90%;
+      }
+      .carousel-item {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Lightbox overlay */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .lightbox-close:hover {
+      color: #e65700;
+    }
+
+    .lightbox-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 50px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      padding: 10px;
+    }
+
+    .lightbox-prev { left: 30px; }
+    .lightbox-next { right: 30px; }
+  /* Position the chatbot container at a fixed location on the page */
+   /* Styles for the chatbot toggle button and container */
+.chatbot-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.chatbot-toggle {
+    background: #002e6d;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    border: none;
+}
+
+.chatbot-toggle:hover {
+    transform: scale(1.1);
+}
+
+.chatbot-container {
+    display: none; /* This is the key change to hide it initially */
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    width: 350px;
+    height: 500px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    flex-direction: column;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    z-index: 1000;
+}
+
+/* New class to make the chatbot visible */
+.chatbot-container.is-visible {
+    display: flex;
+}
+
+/* Style the header of the chatbot */
+.chat-header {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Style the main message area */
+.chat-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Base style for all messages */
+.message {
+    max-width: 85%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    line-height: 1.4;
+}
+
+/* Styles for bot messages */
+.bot-message {
+    background-color: #e9e9eb;
+    color: #333;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+}
+
+/* Styles for user messages */
+.user-message {
+    background-color: #007bff;
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+/* Style for the options buttons */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.option-btn {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.option-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Typing indicator styles */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-style: italic;
+    color: #888;
+}
+
+.typing-dots {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: #ccc;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+.help-dropdown {
+    transition: opacity 0.5s ease, visibility 0.5s;
+    opacity: 0;
+    visibility: hidden;
+}
+.group:hover .help-dropdown {
+    opacity: 1;
+    visibility: visible;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-8px);
+    }
+}
+   
+
+
+
+    </style>
 </head>
-<body class="bg-gray-100">
-  <!-- Header -->
-  <header class="header-bg py-2 px-4 shadow-md">
-    <div class="container mx-auto flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <span class="text-white font-semibold">भारत सरकार / Government of India</span>
-      </div>
-      <div class="flex items-center space-x-2">
-        <!-- Sign-in/Register -->
-        <button id="open-login" class="blue-button">Sign-in/Register</button>
-      </div>
+       <body class="bg-gray-100">
+
+    <header class="header-bg py-2 px-4 md:px-8 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                
+                <span class="header-text-white text-sm md:text-base font-semibold" data-translate-key="gov_of_india">
+                    भारत सरकार / Government of India
+                </span>
+            </div>
+            
+            <div class="flex items-center space-x-2 md:space-x-4">
+                <div class="hidden md:flex items-center space-x-2 header-link-border pr-2 md:pr-4">
+                  
+                    <div class="icon-container">
+                       
+                        <i class="fas fa-eye text-white text-lg cursor-pointer"></i>
+                    </div>
+                    <div class="icon-container" id="theme-toggle">
+                        <i class="fas fa-adjust text-white text-lg cursor-pointer"></i>
+                    </div>
+                </div>
+                <div class="hidden md:block header-link-border pr-2 md:pr-4">
+                    <select id="language-select" class="bg-transparent header-text-white text-sm md:text-base cursor-pointer">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="be">Bengali</option>
+                        <option value="or">Oriya</option>
+                        <option value="ta">Tamil</option>
+                        <option value="ml">Malyalam</option>
+                        <option value="pb">Punjabi</option>
+                        <option value="ur">Urdu</option>
+                        <option value="ma">Marathi</option>
+                        <option value="ka">Kannda</option>
+                        <option value="bh">Bhojpuri</option>
+                        <option value="hs">Haryanavi</option>
+                    </select>
+                </div>
+                <div class="flex items-center space-x-1 header-link-border pr-2 md:pr-4 text-white">
+                    <button id="font-decrease" class="bg-transparent border border-white text-xs w-6 h-6 rounded-full font-bold transition-all duration-200 hover:bg-white hover:text-black">A-</button>
+                    <button id="font-reset" class="bg-transparent border border-white text-sm w-6 h-6 rounded-full font-bold transition-all duration-200 hover:bg-white hover:text-black">A</button>
+                    <button id="font-increase" class="bg-transparent border border-white text-base w-6 h-6 rounded-full font-bold transition-all duration-200 hover:bg-white hover:text-black">A+</button>
+                </div>
+                <div class="blue-button">
+                    <a href="login.html" data-translate-key="signin">Sign-in</a>
+                </div>
+               
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-black py-3 px-4 md:px-8 shadow-md">
+        <div class="container mx-auto">
+            <nav class="flex justify-center items-center space-x-4 text-white">
+                <a href="#" class="nav-button text-sm" data-translate-key="nav_home">Home</a>
+                <a href="about.html" class="nav-button text-sm" data-translate-key="nav_about">About</a>
+                <a href="#gallery-section" class="nav-button text-sm" id="gallerybutton" data-translate-key="nav_gallery">Gallery</a>
+                <a href="guideline.html" class="nav-button text-sm" data-translate-key="nav_guidelines">Guidelines</a>
+                 <a href="faq.html" class="nav-button text-sm" data-translate-key="nav_faq">FAQ</a>
+                <a href="contact.html" class="nav-button text-sm" data-translate-key="nav_contact">Contact</a>
+                  <a href="lh.html" class="nav-button text-sm" data-translate-key="nav_dos_donts">Do's & Dont's</a>
+   <div class="relative group inline-block">
+  <button class="nav-button text-sm focus:outline-none" data-translate-key="nav_help">
+    Help <i class="fas fa-caret-down ml-1"></i>
+  </button>
+  <div class="absolute help-dropdown bg-white text-black rounded shadow-lg min-w-[140px] mt-2 right-0 z-50 flex flex-col space-y-1 py-1">
+    <a href="help.html" class="px-4 py-2 hover:bg-gray-100 rounded" data-translate-key="help_ai">AI Help</a>
+    <a href="analyse.html" class="px-4 py-2 hover:bg-gray-100 rounded" data-translate-key="help_mock_interview">AI Mock Interview</a>
+    <a href="resume.html" class="px-4 py-2 hover:bg-gray-100 rounded" data-translate-key="help_resume">Resume Assistant</a>
+    <a href="prediction.html" class="px-4 py-2 hover:bg-gray-100 rounded" data-translate-key="help_predictor">Predictor</a>
+  </div>
+</div>
+            </nav>
+        </div>
     </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero bg-black text-center text-white py-16">
-    <h1 class="text-4xl font-bold">Shape India's Future</h1>
-    <p class="mt-4">Join prestigious internships across various ministries. Gain real-world experience while contributing to nation-building.</p>
-    <a href="#programs" class="mt-6 inline-block bg-orange-500 text-white px-6 py-3 rounded-full">Explore Programs</a>
-  </section>
-
-  <!-- Features -->
-  <section class="features py-12">
-    <div class="container text-center">
-      <h2 class="text-2xl font-bold">Why Choose Our Internship Program?</h2>
-      <p class="text-gray-600 mt-2">Get hands-on projects, mentorship, networking, and professional development.</p>
+      
+     <section class="hero" style="background-color: #000; padding: 40px 0;">
+  <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+    
+    <div style="flex: 1; min-width: 300px; color: white; padding: 20px;">
+      <h1 data-translate-key="hero_title">Shape India's Future</h1>
+      <p data-translate-key="hero_subtitle">Join prestigious internships across various government ministries and departments. Gain real-world experience while contributing to nation-building initiatives.</p>
+      <a href="explore.html" class="cta-button orange" style="padding: 10px 20px; background: orange; color: white; text-decoration: none; border-radius: 6px;" data-translate-key="hero_button">Explore Programs</a>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white text-center py-6 mt-10">
-    <p>&copy; 2025 PM Internship Scheme</p>
-  </footer>
+    <div style="flex: 1; min-width: 300px; text-align: center; padding: 20px;">
+      <img src="banner.jpg" alt="PM Internship Banner" style="width: 100%; max-width: 600px; border-radius: 10px;">
+    </div>
 
-  <!-- 🔹 Login Modal -->
-  <div id="login-modal" class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 relative">
-      <!-- Close -->
-      <button id="close-login" class="absolute top-3 right-3 text-gray-500 hover:text-gray-800">✖</button>
-      <!-- Header -->
-      <div class="text-center mb-6">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Emblem" class="w-16 mx-auto mb-3">
-        <h2 class="text-2xl font-bold">Internship Portal</h2>
-        <p class="text-gray-500">Government of India</p>
+  </div>
+</section>
+     
+
+    <section class="features">
+        <div class="container text-center">
+            <h2 class="section-title" data-translate-key="features_title">Why Choose Our Internship Program?</h2>
+            <p class="section-subtitle" data-translate-key="features_subtitle">Our program is designed to give you more than just experience—it's a launchpad for your career. We blend hands-on projects with dedicated mentorship and professional development to help you grow.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-hammer text-4xl mb-4 text-orange-500"></i>
+                    <h3 data-translate-key="feature1_title">Hands-On Projects</h3>
+                    <p data-translate-key="feature1_desc">You'll work on real-world projects that have a direct impact on our products and services, not just busywork.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chalkboard-teacher text-4xl mb-4 text-blue-500"></i>
+                    <h3 data-translate-key="feature2_title">Dedicated Mentorship</h3>
+                    <p data-translate-key="feature2_desc">Each intern is paired with an experienced mentor who will guide your professional and technical development throughout the program.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-network-wired text-4xl mb-4 text-green-500"></i>
+                    <h3 data-translate-key="feature3_title">Networking Opportunities</h3>
+                    <p data-translate-key="feature3_desc">Connect with industry leaders and fellow interns through company events, workshops, and social activities.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-graduation-cap text-4xl mb-4 text-purple-500"></i>
+                    <h3 data-translate-key="feature4_title">Professional Development</h3>
+                    <p data-translate-key="feature4_desc">Participate in workshops and training sessions focused on technical skills, communication, and career planning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ministries bg-gray-800 text-white">
+        <div class="container">
+              <div class="container mx-auto max-w-2xl text-center">
+    <h2 class="section-title text-white px-6 text-2xl font-bold" data-translate-key="ministries_title">Participating Ministries</h2>
+    <p class="section-subtitle text-white" data-translate-key="ministries_subtitle">Choose from diverse departments based on your interests and career goals</p>
+  </div>
+            <div class="ministry-grid">
+                <section class="bg-gray-100 py-10">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto px-4">
+
+        <div class="ministry-card bg-white overflow-hidden rounded shadow-lg">
+            <div class="h-40 w-full">
+                <img src="isroimages.png" alt="ISRO" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+                <h4 class="font-semibold text-lg mb-2" data-translate-key="ministry1_name">Department of Space (ISRO)</h4>
+                <p class="bg-black text-white p-2 rounded" data-translate-key="ministry1_desc">Work on cutting-edge space missions and satellite technology</p>
+            </div>
+        </div>
+
+        <div class="ministry-card bg-white overflow-hidden rounded shadow-lg">
+            <div class="h-40 w-full">
+                <img src="meityimages.jpg" alt="Ministry of Electronics & IT" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+                <h4 class="font-semibold text-lg mb-2" data-translate-key="ministry2_name">Ministry of Electronics &amp; IT</h4>
+                <p class="bg-black text-white p-2 rounded" data-translate-key="ministry2_desc">Contribute to Digital India initiatives and e-governance projects</p>
+            </div>
+        </div>
+
+        <div class="ministry-card bg-white overflow-hidden rounded shadow-lg">
+            <div class="h-40 w-full">
+                <img src="mnreimages.jpg" alt="Ministry of New & Renewable Energy" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+                <h4 class="font-semibold text-lg mb-2" data-translate-key="ministry3_name">Ministry of New &amp; Renewable Energy</h4>
+                <p class="bg-black text-white p-2 rounded" data-translate-key="ministry3_desc">Support India's transition to sustainable energy solutions</p>
+            </div>
+        </div>
+
+        <div class="ministry-card bg-white overflow-hidden rounded shadow-lg">
+            <div class="h-40 w-full">
+                <img src="nitiaayog.jpg" alt="NITI Aayog" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+                <h4 class="font-semibold text-lg mb-2" data-translate-key="ministry4_name">NITI Aayog</h4>
+                <p class="bg-black text-white p-2 rounded" data-translate-key="ministry4_desc">Engage with national policy planning and development strategies</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+            </div>
+        </div>
+    </section>
+
+     <!--gallery section-->
+    <div class="gallery" id="gallery-section">
+        
+  <h2 data-translate-key="gallery_title">EXHIBIT SPACE</h2>
+
+  <div class="carousel-container" id="carouselContainer">
+    <div class="carousel-track" id="carousel-track">
+      <!-- Slide 1 -->
+      <div class="carousel-item">
+        <div class="block">
+          <img src="1.png" alt="IT" loading="lazy">
+          <p data-translate-key="gallery_item1">Eve of Independence Day</p>
+        </div>
+        <div class="block">
+          <img src="2.png" alt="Leather" loading="lazy">
+          <p data-translate-key="gallery_item2">Intern Interaction Event</p>
+        </div>
+        <div class="block">
+          <img src="3.png" alt="Manufacturing" loading="lazy">
+          <p data-translate-key="gallery_item3">PMIS North-East Round Table</p>
+        </div>
       </div>
-      <!-- Form -->
-      <form id="login-form" class="space-y-4">
-        <div>
-          <label for="email" class="block text-sm font-medium">Email Address</label>
-          <input type="email" id="email" required class="w-full px-4 py-2 border rounded-lg" placeholder="you@example.gov.in">
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="block">
+          <img src="4.png" alt="Media" loading="lazy">
+          <p data-translate-key="gallery_item4">PMIS Intern Connect</p>
         </div>
-        <div>
-          <label for="password" class="block text-sm font-medium">Password</label>
-          <input type="password" id="password" required class="w-full px-4 py-2 border rounded-lg" placeholder="••••••••">
+        <div class="block">
+          <img src="5.png" alt="Healthcare" loading="lazy">
+          <p data-translate-key="gallery_item5">PMIS Intern-Industry Interaction</p>
         </div>
-        <div>
-          <label for="sector-select" class="block text-sm font-medium">Select Sector</label>
-          <select id="sector-select" class="w-full px-4 py-2 border rounded-lg">
-            <option value="technology">Technology & Software</option>
-            <option value="design">Design & Creative</option>
-            <option value="business">Business & Marketing</option>
-            <option value="research">Research & Analytics</option>
-            <option value="content">Content & Writing</option>
-            <option value="healthcare">Healthcare & Life Sciences</option>
-          </select>
+        <div class="block">
+          <img src="6.png" alt="Telecom" loading="lazy">
+          <p data-translate-key="gallery_item6">Cycle-2 Winners</p>
         </div>
-        <button type="submit" id="submit-button"
-          class="w-full bg-orange-500 text-white font-bold py-2 rounded-lg hover:bg-orange-600">
-          Sign in & Explore
-        </button>
-      </form>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="block">
+          <img src="7.png" alt="Finance" loading="lazy">
+          <p data-translate-key="gallery_item7">Working Space</p>
+        </div>
+        <div class="block">
+          <img src="8.png" alt="Construction" loading="lazy">
+          <p data-translate-key="gallery_item8">State Offers</p>
+        </div>
+        <div class="block">
+          <img src="9.png" alt="Retail" loading="lazy">
+          <p data-translate-key="gallery_item9">Offers made by Companies</p>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Script -->
-  <script>
-    const loginModal = document.getElementById('login-modal');
-    const openBtn = document.getElementById('open-login');
-    const closeBtn = document.getElementById('close-login');
-    const loginForm = document.getElementById('login-form');
-    const submitButton = document.getElementById('submit-button');
+  <button class="btn-show-more" id="toggleButton" data-translate-key="show_more">Show More</button>
 
-    openBtn.addEventListener('click', () => loginModal.classList.add('active'));
-    closeBtn.addEventListener('click', () => loginModal.classList.remove('active'));
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" id="lightboxClose">&times;</span>
+    <span class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</span>
+    <img id="lightboxImg" src="" alt="Enlarged View">
+    <span class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</span>
+  </div>
+     </div>
 
-    loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value;
-      const sector = document.getElementById('sector-select').value;
+    <section class="testimonials bg-gray-800 text-white m-0 p-0">
+  <div class="container m-0 p-1 pb-5">
+<div class="text-center py-1 m-0">
+  <h2 class="text-2xl font-semibold py-2 my-2 text-white" data-translate-key="testimonials_title">Success Stories</h2>
+  <p class="text-base py-2 my-2 text-white" data-translate-key="testimonials_subtitle">Hear from our previous interns</p>
+</div>
 
-      if (!email || !password) {
-        alert("Please enter both email and password.");
-        return;
-      }
+    <div class="testimonial-grid m-0 p-0">
 
-      submitButton.disabled = true;
-      submitButton.textContent = "Signing in...";
+      <div class="testimonial-card m-0 p-0">
+        <div class="w-20 h-20 rounded-full mx-auto mb-2 overflow-hidden">
+          <img src="interngirl.jpg" alt="Priya Sharma" class="w-full h-full object-cover">
+        </div>
+        <p class="m-0" data-translate-key="testimonial1_text">"This internship opened doors I never imagined. Working with ISRO gave me insights into India's space program that textbooks couldn't provide."</p>
+        <h4 class="mt-2 mb-0" data-translate-key="testimonial1_name">Priya Sharma</h4>
+        <small class="m-0" data-translate-key="testimonial1_role">ISRO Intern 2024</small>
+      </div>
 
-      try {
-        const response = await fetch('http://localhost:3000/login', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password }),
+      <div class="testimonial-card m-0 p-0">
+        <div class="w-20 h-20 rounded-full mx-auto mb-2 overflow-hidden">
+          <img src="maleintern1.jpg" alt="Arjun Patel" class="w-full h-full object-cover">
+        </div>
+        <p class="m-0" data-translate-key="testimonial2_text">"The mentorship I received at NITI Aayog shaped my understanding of policy-making. Now I work in the development sector with confidence."</p>
+        <h4 class="mt-2 mb-0" data-translate-key="testimonial2_name">Arjun Patel</h4>
+        <small class="m-0" data-translate-key="testimonial2_role">NITI Aayog Intern 2024</small>
+      </div>
+
+      <div class="testimonial-card m-0 p-0">
+        <div class="w-20 h-20 rounded-full mx-auto mb-2 overflow-hidden">
+          <img src="maleintern2.jpg" alt="Rajesh Kumar" class="w-full h-full object-cover">
+        </div>
+        <p class="m-0" data-translate-key="testimonial3_text">"Working on Digital India projects taught me how technology can transform governance. The experience was invaluable for my career."</p>
+        <h4 class="mt-2 mb-0" data-translate-key="testimonial3_name">Rajesh Kumar</h4>
+        <small class="m-0" data-translate-key="testimonial3_role">MeitY Intern 2024</small>
+      </div>
+
+    </div>
+  </div>
+</section>
+      <div class="bodyfooter m-0 p-0 bg-gray-900 text-white">
+  <footer class="footer w-full m-0 p-6">
+    <div class="footer-content w-full m-0 p-0 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-screen-xl mx-auto">
+
+      <div class="footer-section m-0 p-0">
+        <h3 class="text-xl font-semibold mb-4" data-translate-key="footer_contact_title">Contact Us</h3>
+        <ul class="contact-info space-y-2 list-none p-0 m-0">
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>JSS ACADEMY OF TECHNICAL EDUCATION, SEC-62, NOIDA-201301</span>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-phone"></i>
+            <a href="tel:+1234567890" class="hover:underline">1800122244</a>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:info@yourwebsite.com" class="hover:underline">pminternship@gmail.com</a>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-globe"></i>
+            <a href="https://www.yourwebsite.com" class="hover:underline">www.pmgovhelp.com</a>
+          </li>
+          <li class="flex items-center space-x-2">
+            <i class="fas fa-clock"></i>
+            <span data-translate-key="footer_hours">Mon - Fri: 9:00 AM - 6:00 PM</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer-section m-0 p-0">
+        <h3 class="text-xl font-semibold mb-4" data-translate-key="footer_follow_title">Follow Us</h3>
+        <div class="social-links flex space-x-4">
+          <a href="#" class="social-link facebook text-blue-600 hover:text-blue-800" title="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-link twitter text-blue-400 hover:text-blue-600" title="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-link instagram text-pink-600 hover:text-pink-800" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="social-link linkedin text-blue-700 hover:text-blue-900" title="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="social-link youtube text-red-600 hover:text-red-800" title="YouTube">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-section m-0 p-0">
+        <h3 class="text-xl font-semibold mb-4" data-translate-key="footer_gallery_title">Gallery</h3>
+        <div class="footer-images grid grid-cols-3 gap-2">
+          <img src="footerimage1.jpg" alt="Office Space" class="footer-image w-full h-auto object-cover rounded" />
+          <img src="footerimage2.jpg" alt="Team Meeting" class="footer-image w-full h-auto object-cover rounded" />
+          <img src="footerimage3.jpg" alt="Business Building" class="footer-image w-full h-auto object-cover rounded" />
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom border-t border-gray-700 mt-4 py-3 px-4 text-center text-sm m-0">
+      <p data-translate-key="footer_copyright">&copy; 2025 PM INTERNSHIP SCHEME.</p>
+      <p>
+        <a href="#" class="hover:underline mx-1" data-translate-key="footer_privacy">Privacy Policy</a> |
+        <a href="#" class="hover:underline mx-1" data-translate-key="footer_guidelines">Guidelines</a> |
+        <a href="#" class="hover:underline mx-1" data-translate-key="footer_faqs">FAQ's</a>
+      </p>
+    </div>
+  </footer>
+</div>
+
+
+      
+<div class="chatbot-widget">
+    <button id="chatbot-toggle" class="chatbot-toggle">
+        <i class="fas fa-robot"></i>
+    </button>
+    <div id="chatbot-container" class="chatbot-container">
+        <div class="chat-header">
+            🤖 Internship Assistant
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            </div>
+    </div>
+</div>
+
+<script>
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+
+    const translations = {
+        en: {
+            gov_of_india: "भारत सरकार / Government of India",
+            signin: "Sign-in",
+            nav_home: "Home",
+            nav_about: "About",
+            nav_gallery: "Gallery",
+            nav_guidelines: "Guidelines",
+            nav_faq: "FAQ",
+            nav_contact: "Contact",
+            nav_dos_donts: "Do's & Dont's",
+            nav_help: "Help",
+            help_ai: "AI Help",
+            help_mock_interview: "AI Mock Interview",
+            help_resume: "Resume Assistant",
+            help_predictor: "Predictor",
+            hero_title: "Shape India's Future",
+            hero_subtitle: "Join prestigious internships across various government ministries and departments. Gain real-world experience while contributing to nation-building initiatives.",
+            hero_button: "Explore Programs",
+            features_title: "Why Choose Our Internship Program?",
+            features_subtitle: "Our program is designed to give you more than just experience—it's a launchpad for your career. We blend hands-on projects with dedicated mentorship and professional development to help you grow.",
+            feature1_title: "Hands-On Projects",
+            feature1_desc: "You'll work on real-world projects that have a direct impact on our products and services, not just busywork.",
+            feature2_title: "Dedicated Mentorship",
+            feature2_desc: "Each intern is paired with an experienced mentor who will guide your professional and technical development throughout the program.",
+            feature3_title: "Networking Opportunities",
+            feature3_desc: "Connect with industry leaders and fellow interns through company events, workshops, and social activities.",
+            feature4_title: "Professional Development",
+            feature4_desc: "Participate in workshops and training sessions focused on technical skills, communication, and career planning.",
+            ministries_title: "Participating Ministries",
+            ministries_subtitle: "Choose from diverse departments based on your interests and career goals",
+            ministry1_name: "Department of Space (ISRO)",
+            ministry1_desc: "Work on cutting-edge space missions and satellite technology",
+            ministry2_name: "Ministry of Electronics & IT",
+            ministry2_desc: "Contribute to Digital India initiatives and e-governance projects",
+            ministry3_name: "Ministry of New & Renewable Energy",
+            ministry3_desc: "Support India's transition to sustainable energy solutions",
+            ministry4_name: "NITI Aayog",
+            ministry4_desc: "Engage with national policy planning and development strategies",
+            gallery_title: "EXHIBIT SPACE",
+            gallery_item1: "Eve of Independence Day",
+            gallery_item2: "Intern Interaction Event",
+            gallery_item3: "PMIS North-East Round Table",
+            gallery_item4: "PMIS Intern Connect",
+            gallery_item5: "PMIS Intern-Industry Interaction",
+            gallery_item6: "Cycle-2 Winners",
+            gallery_item7: "Working Space",
+            gallery_item8: "State Offers",
+            gallery_item9: "Offers made by Companies",
+            show_more: "Show More",
+            testimonials_title: "Success Stories",
+            testimonials_subtitle: "Hear from our previous interns",
+            testimonial1_text: `"This internship opened doors I never imagined. Working with ISRO gave me insights into India's space program that textbooks couldn't provide."`,
+            testimonial1_name: "Priya Sharma",
+            testimonial1_role: "ISRO Intern 2024",
+            testimonial2_text: `"The mentorship I received at NITI Aayog shaped my understanding of policy-making. Now I work in the development sector with confidence."`,
+            testimonial2_name: "Arjun Patel",
+            testimonial2_role: "NITI Aayog Intern 2024",
+            testimonial3_text: `"Working on Digital India projects taught me how technology can transform governance. The experience was invaluable for my career."`,
+            testimonial3_name: "Rajesh Kumar",
+            testimonial3_role: "MeitY Intern 2024",
+            footer_contact_title: "Contact Us",
+            footer_hours: "Mon - Fri: 9:00 AM - 6:00 PM",
+            footer_follow_title: "Follow Us",
+            footer_gallery_title: "Gallery",
+            footer_copyright: "&copy; 2025 PM INTERNSHIP SCHEME.",
+            footer_privacy: "Privacy Policy",
+            footer_guidelines: "Guidelines",
+            footer_faqs: "FAQ's",
+        },
+        hi: {
+            gov_of_india: "Government of India / भारत सरकार",
+            signin: "साइन इन करें",
+            nav_home: "होम",
+            nav_about: "हमारे बारे में",
+            nav_gallery: "गैलरी",
+            nav_guidelines: "दिशानिर्देश",
+            nav_faq: "सामान्य प्रश्न",
+            nav_contact: "संपर्क",
+            nav_dos_donts: "क्या करें और क्या न करें",
+            nav_help: "सहायता",
+            help_ai: "एआई सहायता",
+            help_mock_interview: "एआई मॉक इंटरव्यू",
+            help_resume: "रिज्यूमे सहायक",
+            help_predictor: "भविष्यवक्ता",
+            hero_title: "भारत के भविष्य को आकार दें",
+            hero_subtitle: "विभिन्न सरकारी मंत्रालयों और विभागों में प्रतिष्ठित इंटर्नशिप में शामिल हों। राष्ट्र-निर्माण की पहलों में योगदान करते हुए वास्तविक दुनिया का अनुभव प्राप्त करें।",
+            hero_button: "कार्यक्रमों का अन्वेषण करें",
+            features_title: "हमारा इंटर्नशिप प्रोग्राम क्यों चुनें?",
+            features_subtitle: "हमारा कार्यक्रम आपको केवल अनुभव देने के लिए नहीं बनाया गया है - यह आपके करियर के लिए एक लॉन्चपैड है। हम आपके विकास में मदद करने के लिए व्यावहारिक परियोजनाओं को समर्पित सलाह और व्यावसायिक विकास के साथ मिलाते हैं।",
+            feature1_title: "व्यावहारिक परियोजनाएँ",
+            feature1_desc: "आप वास्तविक दुनिया की परियोजनाओं पर काम करेंगे जिनका हमारे उत्पादों और सेवाओं पर सीधा प्रभाव पड़ता है, न कि केवल व्यस्त काम।",
+            feature2_title: "समर्पित परामर्श",
+            feature2_desc: "प्रत्येक प्रशिक्षु को एक अनुभवी संरक्षक के साथ जोड़ा जाता है जो पूरे कार्यक्रम में आपके पेशेवर और तकनीकी विकास का मार्गदर्शन करेगा।",
+            feature3_title: "नेटवर्किंग के अवसर",
+            feature3_desc: "कंपनी की घटनाओं, कार्यशालाओं और सामाजिक गतिविधियों के माध्यम से उद्योग के नेताओं और साथी प्रशिक्षुओं से जुड़ें।",
+            feature4_title: "व्यावसायिक विकास",
+            feature4_desc: "तकनीकी कौशल, संचार और करियर योजना पर केंद्रित कार्यशालाओं और प्रशिक्षण सत्रों में भाग लें।",
+            ministries_title: "भाग लेने वाले मंत्रालय",
+            ministries_subtitle: "अपनी रुचियों और करियर लक्ष्यों के आधार पर विविध विभागों में से चुनें",
+            ministry1_name: "अंतरिक्ष विभाग (इसरो)",
+            ministry1_desc: "अत्याधुनिक अंतरिक्ष अभियानों और उपग्रह प्रौद्योगिकी पर काम करें",
+            ministry2_name: "इलेक्ट्रॉनिक्स और आईटी मंत्रालय",
+            ministry2_desc: "डिजिटल इंडिया पहलों और ई-गवर्नेंस परियोजनाओं में योगदान दें",
+            ministry3_name: "नवीन और नवीकरणीय ऊर्जा मंत्रालय",
+            ministry3_desc: "टिकाऊ ऊर्जा समाधानों के लिए भारत के संक्रमण का समर्थन करें",
+            ministry4_name: "नीति आयोग",
+            ministry4_desc: "राष्ट्रीय नीति योजना और विकास रणनीतियों के साथ जुड़ें",
+            gallery_title: "प्रदर्शनी की जगह",
+            gallery_item1: "स्वतंत्रता दिवस की पूर्व संध्या",
+            gallery_item2: "इंटर्न इंटरेक्शन इवेंट",
+            gallery_item3: "पीएमआईएस नॉर्थ-ईस्ट राउंड टेबल",
+            gallery_item4: "पीएमआईएस इंटर्न कनेक्ट",
+            gallery_item5: "पीएमआईएस इंटर्न-इंडस्ट्री इंटरेक्शन",
+            gallery_item6: "साइकिल-2 विजेता",
+            gallery_item7: "कार्यक्षेत्र",
+            gallery_item8: "राज्य प्रस्ताव",
+            gallery_item9: "कंपनियों द्वारा दिए गए प्रस्ताव",
+            show_more: "और दिखाओ",
+            testimonials_title: "सफलता की कहानियां",
+            testimonials_subtitle: "हमारे पिछले प्रशिक्षुओं से सुनें",
+            testimonial1_text: `"इस इंटर्नशिप ने ऐसे दरवाजे खोले जिनकी मैंने कभी कल्पना भी नहीं की थी। इसरो के साथ काम करने से मुझे भारत के अंतरिक्ष कार्यक्रम के बारे में ऐसी जानकारी मिली जो पाठ्यपुस्तकें प्रदान नहीं कर सकती थीं।"`,
+            testimonial1_name: "प्रिया शर्मा",
+            testimonial1_role: "इसरो इंटर्न 2024",
+            testimonial2_text: `"नीति आयोग में मुझे जो मार्गदर्शन मिला, उसने नीति-निर्माण की मेरी समझ को आकार दिया। अब मैं आत्मविश्वास के साथ विकास क्षेत्र में काम करता हूं।"`,
+            testimonial2_name: "अर्जुन पटेल",
+            testimonial2_role: "नीति आयोग इंटर्न 2024",
+            testimonial3_text: `"डिजिटल इंडिया परियोजनाओं पर काम करने से मुझे यह सीखने को मिला कि प्रौद्योगिकी शासन को कैसे बदल सकती है। यह अनुभव मेरे करियर के लिए अमूल्य था।"`,
+            testimonial3_name: "राजेश कुमार",
+            testimonial3_role: "एमईआईटीवाई इंटर्न 2024",
+            footer_contact_title: "संपर्क करें",
+            footer_hours: "सोम - शुक्र: सुबह 9:00 - शाम 6:00",
+            footer_follow_title: "हमें फॉलो करें",
+            footer_gallery_title: "गैलरी",
+            footer_copyright: "&copy; 2025 पीएम इंटर्नशिप योजना।",
+            footer_privacy: "गोपनीयता नीति",
+            footer_guidelines: "दिशानिर्देश",
+            footer_faqs: "सामान्य प्रश्न",
+        },
+        be: { // Bengali
+            gov_of_india: "ভারত সরকার / Government of India",
+            signin: "সাইন-ইন করুন",
+            nav_home: "হোম",
+            nav_about: "আমাদের সম্পর্কে",
+            nav_gallery: "গ্যালারি",
+            nav_guidelines: "নির্দেশিকা",
+            nav_faq: "FAQ",
+            nav_contact: "যোগাযোগ",
+            nav_dos_donts: "করণীয় এবং অকরণীয়",
+            nav_help: "সাহায্য",
+            help_ai: "AI সাহায্য",
+            help_mock_interview: "AI মক ইন্টারভিউ",
+            help_resume: "রেজুমে সহকারী",
+            help_predictor: "ভবিষ্যদ্বাণীকারী",
+            hero_title: "ভারতের ভবিষ্যৎ গড়ুন",
+            hero_subtitle: "বিভিন্ন সরকারি মন্ত্রণালয় ও বিভাগে সম্মানজনক ইন্টার্নশিপে যোগ দিন। দেশ গঠনের উদ্যোগে অবদান রাখার পাশাপাশি বাস্তব অভিজ্ঞতা অর্জন করুন।",
+            hero_button: "প্রোগ্রামগুলি দেখুন",
+            features_title: "কেন আমাদের ইন্টার্নশিপ প্রোগ্রাম বেছে নেবেন?",
+            features_subtitle: "আমাদের প্রোগ্রামটি আপনাকে শুধু অভিজ্ঞতার চেয়েও বেশি কিছু দেওয়ার জন্য ডিজাইন করা হয়েছে—এটি আপনার ক্যারিয়ারের জন্য একটি লঞ্চপ্যাড।",
+            feature1_title: "হাতে-কলমে প্রকল্প",
+            feature1_desc: "আপনি বাস্তব-বিশ্বের প্রকল্পগুলিতে কাজ করবেন যা আমাদের পণ্য এবং পরিষেবাগুলিতে সরাসরি প্রভাব ফেলে।",
+            feature2_title: "উৎসর্গীকৃত পরামর্শ",
+            feature2_desc: "প্রতিটি ইন্টার্নকে একজন অভিজ্ঞ পরামর্শদাতার সাথে যুক্ত করা হয় যিনি আপনার পেশাদার এবং প্রযুক্তিগত বিকাশে मार्गदर्शन করবেন।",
+            feature3_title: "নেটওয়ার্কিং সুযোগ",
+            feature3_desc: "কোম্পানির ইভেন্ট, কর্মশালা এবং সামাজিক কার্যকলাপের মাধ্যমে শিল্পের নেতাদের এবং সহকর্মী ইন্টার্নদের সাথে সংযোগ স্থাপন করুন।",
+            feature4_title: "পেশাগত উন্নয়ন",
+            feature4_desc: "প্রযুক্তিগত দক্ষতা, যোগাযোগ এবং ক্যারিয়ার পরিকল্পনার উপর দৃষ্টি নিবদ্ধ কর্মশালা এবং প্রশিক্ষণ সেশনে অংশগ্রহণ করুন।",
+            ministries_title: "অংশগ্রহণকারী মন্ত্রণালয়",
+            ministries_subtitle: "আপনার আগ্রহ এবং ক্যারিয়ারের লক্ষ্যগুলির উপর ভিত্তি করে বিভিন্ন বিভাগ থেকে বেছে নিন",
+            ministry1_name: "মহাকাশ বিভাগ (ISRO)",
+            ministry1_desc: "অত্যাধুনিক মহাকাশ মিশন এবং উপগ্রহ প্রযুক্তিতে কাজ করুন",
+            ministry2_name: "ইলেকট্রনিক্স ও আইটি মন্ত্রণালয়",
+            ministry2_desc: "ডিজিটাল ইন্ডিয়া উদ্যোগ এবং ই-গভর্নেন্স প্রকল্পে অবদান রাখুন",
+            ministry3_name: "নতুন ও পুনর্নবীকরণযোগ্য শক্তি মন্ত্রণালয়",
+            ministry3_desc: "টেকসই শক্তি সমাধানে ভারতের পরিবর্তনে সহায়তা করুন",
+            ministry4_name: "নীতি আয়োগ",
+            ministry4_desc: "জাতীয় নীতি পরিকল্পনা এবং উন্নয়ন কৌশলগুলির সাথে জড়িত হন",
+            testimonials_title: "সাফল্যের গল্প",
+            testimonials_subtitle: "আমাদের পূর্ববর্তী ইন্টার্নদের থেকে শুনুন",
+            footer_contact_title: "যোগাযোগ করুন",
+            footer_follow_title: "আমাদের অনুসরণ করুন",
+            footer_gallery_title: "গ্যালারি",
+        },
+        or: { // Oriya
+            gov_of_india: "ଭାରତ ସରକାର / Government of India",
+            signin: "ସାଇନ୍-ଇନ୍ କରନ୍ତୁ",
+            nav_home: "ହୋମ୍",
+            nav_about: "ଆମ ବିଷୟରେ",
+            nav_gallery: "ଗ୍ୟାଲେରୀ",
+            nav_guidelines: "ନିର୍ଦ୍ଦେଶାବଳୀ",
+            nav_faq: "FAQ",
+            nav_contact: "ଯୋଗାଯୋଗ",
+            nav_dos_donts: "କରଣୀୟ ଏବଂ ଅକରଣୀୟ",
+            nav_help: "ସାହାଯ୍ୟ",
+            hero_title: "ଭାରତର ଭବିଷ୍ୟତ ଗଢନ୍ତୁ",
+            hero_subtitle: "ବିଭିନ୍ନ ସରକାରୀ ମନ୍ତ୍ରଣାଳୟ ଏବଂ ବିଭାଗରେ ସମ୍ମାନଜନକ ଇଣ୍ଟର୍ନସିପରେ ଯୋଗ ଦିଅନ୍ତୁ।",
+            hero_button: "ପ୍ରୋଗ୍ରାମଗୁଡିକ ଦେଖନ୍ତୁ",
+            features_title: "କାହିଁକି ଆମର ଇଣ୍ଟର୍ନସିପ୍ କାର୍ଯ୍ୟକ୍ରମ ବାଛନ୍ତୁ?",
+            ministries_title: "ଅଂଶଗ୍ରହଣକାରୀ ମନ୍ତ୍ରଣାଳୟ",
+            testimonials_title: "ସଫଳତାର କାହାଣୀ",
+            footer_contact_title: "ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ",
+            footer_follow_title: "ଆମକୁ ଅନୁସରଣ କରନ୍ତୁ",
+            footer_gallery_title: "ଗ୍ୟାଲେରୀ",
+        },
+        ta: { // Tamil
+            gov_of_india: "இந்திய அரசு / Government of India",
+            signin: "உள்நுழைக",
+            nav_home: "முகப்பு",
+            nav_about: "எங்களைப் பற்றி",
+            nav_gallery: "கேலரி",
+            nav_guidelines: "வழிகாட்டுதல்கள்",
+            nav_faq: "FAQ",
+            nav_contact: "தொடர்பு",
+            nav_dos_donts: "செய்ய வேண்டியவை மற்றும் செய்யக்கூடாதவை",
+            nav_help: "உதவி",
+            hero_title: "இந்தியாவின் எதிர்காலத்தை உருவாக்குங்கள்",
+            hero_subtitle: "பல்வேறு அரசாங்க அமைச்சகங்கள் மற்றும் துறைகளில் மதிப்புமிக்க இன்டர்ன்ஷிப்களில் சேரவும்.",
+            hero_button: "திட்டங்களைக் கண்டறியவும்",
+            features_title: "எங்கள் இன்டர்ன்ஷிப் திட்டத்தை ஏன் தேர்வு செய்ய வேண்டும்?",
+            ministries_title: "பங்கேற்கும் அமைச்சகங்கள்",
+            testimonials_title: "வெற்றிக் கதைகள்",
+            footer_contact_title: "தொடர்பு கொள்ளவும்",
+            footer_follow_title: "பின்தொடரவும்",
+            footer_gallery_title: "கேலரி",
+        },
+        ml: { // Malayalam
+            gov_of_india: "ഇന്ത്യാ ഗവൺമെൻ്റ് / Government of India",
+            signin: "സൈൻ-ഇൻ ചെയ്യുക",
+            nav_home: "ഹോം",
+            nav_about: "ഞങ്ങളെക്കുറിച്ച്",
+            nav_gallery: "ഗാലറി",
+            nav_guidelines: "മാർഗ്ഗനിർദ്ദേശങ്ങൾ",
+            nav_faq: "FAQ",
+            nav_contact: "ബന്ധപ്പെടുക",
+            nav_dos_donts: "ചെയ്യേണ്ടതും ചെയ്യരുതാത്തതും",
+            nav_help: "സഹായം",
+            hero_title: "ഇന്ത്യയുടെ ഭാവി രൂപപ്പെടുത്തുക",
+            hero_subtitle: "വിവിധ സർക്കാർ മന്ത്രാലയങ്ങളിലും വകുപ്പുകളിലും അഭിമാനകരമായ ഇൻ്റേൺഷിപ്പുകളിൽ ചേരുക.",
+            hero_button: "പ്രോഗ്രാമുകൾ പര്യവേക്ഷണം ചെയ്യുക",
+            features_title: "എന്തുകൊണ്ട് ഞങ്ങളുടെ ഇൻ്റേൺഷിപ്പ് പ്രോഗ്രാം തിരഞ്ഞെടുക്കണം?",
+            ministries_title: "പങ്കെടുക്കുന്ന മന്ത്രാലയങ്ങൾ",
+            testimonials_title: "വിജയകഥകൾ",
+            footer_contact_title: "ബന്ധപ്പെടാനുള്ള വിവരങ്ങൾ",
+            footer_follow_title: "ഞങ്ങളെ പിന്തുടരുക",
+            footer_gallery_title: "ഗാലറി",
+        },
+        pb: { // Punjabi
+            gov_of_india: "ਭਾਰਤ ਸਰਕਾਰ / Government of India",
+            signin: "ਸਾਈਨ-ਇਨ ਕਰੋ",
+            nav_home: "ਮੁੱਖ ਪੰਨਾ",
+            nav_about: "ਸਾਡੇ ਬਾਰੇ",
+            nav_gallery: "ਗੈਲਰੀ",
+            nav_guidelines: "ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼",
+            nav_faq: "ਅਕਸਰ ਪੁੱਛੇ ਜਾਣ ਵਾਲੇ ਸਵਾਲ",
+            nav_contact: "ਸੰਪਰਕ",
+            nav_dos_donts: "ਕਰਨ ਵਾਲੇ ਅਤੇ ਨਾ ਕਰਨ ਵਾਲੇ ਕੰਮ",
+            nav_help: "ਮਦਦ",
+            hero_title: "ਭਾਰਤ ਦੇ ਭਵਿੱਖ ਨੂੰ ਆਕਾਰ ਦਿਓ",
+            hero_subtitle: "ਵੱਖ-ਵੱਖ ਸਰਕਾਰੀ ਮੰਤਰਾਲਿਆਂ ਅਤੇ ਵਿਭਾਗਾਂ ਵਿੱਚ ਵੱਕਾਰੀ ਇੰਟਰਨਸ਼ਿਪਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ।",
+            hero_button: "ਪ੍ਰੋਗਰਾਮਾਂ ਦੀ ਪੜਚੋਲ ਕਰੋ",
+            features_title: "ਸਾਡਾ ਇੰਟਰਨਸ਼ਿਪ ਪ੍ਰੋਗਰਾਮ ਕਿਉਂ ਚੁਣੋ?",
+            ministries_title: "ਭਾਗ ਲੈਣ ਵਾਲੇ ਮੰਤਰਾਲੇ",
+            testimonials_title: "ਸਫਲਤਾ ਦੀਆਂ ਕਹਾਣੀਆਂ",
+            footer_contact_title: "ਸਾਡੇ ਨਾਲ ਸੰਪਰਕ ਕਰੋ",
+            footer_follow_title: "ਸਾਨੂੰ ਫਾਲੋ ਕਰੋ",
+            footer_gallery_title: "ਗੈਲਰੀ",
+        },
+        ur: { // Urdu
+            gov_of_india: "حکومت ہند / Government of India",
+            signin: "سائن ان کریں",
+            nav_home: "ہوم",
+            nav_about: "ہمارے بارے میں",
+            nav_gallery: "گیلری",
+            nav_guidelines: "ہدایات",
+            nav_faq: "اکثر पूछे جانے والے سوالات",
+            nav_contact: "رابطہ",
+            nav_dos_donts: "کیا کریں اور کیا نہ کریں",
+            nav_help: "مدد",
+            hero_title: "ہندوستان کے مستقبل کو تشکیل دیں",
+            hero_subtitle: "مختلف سرکاری وزارتوں اور محکموں میں معزز انٹرنشپ میں شامل ہوں۔",
+            hero_button: "پروگرام دریافت کریں",
+            features_title: "ہمارا انٹرنشپ پروگرام کیوں منتخب کریں؟",
+            ministries_title: "حصہ لینے والی وزارتیں",
+            testimonials_title: "کامیابی کی کہانیاں",
+            footer_contact_title: "ہم سے رابطہ کریں",
+            footer_follow_title: "ہمیں فالو کریں",
+            footer_gallery_title: "گیلری",
+        },
+        ma: { // Marathi
+            gov_of_india: "भारत सरकार / Government of India",
+            signin: "साईन-इन करा",
+            nav_home: "मुख्यपृष्ठ",
+            nav_about: "आमच्याबद्दल",
+            nav_gallery: "गॅलरी",
+            nav_guidelines: "मार्गदर्शक तत्त्वे",
+            nav_faq: "FAQ",
+            nav_contact: "संपर्क",
+            nav_dos_donts: "काय करावे आणि काय करू नये",
+            nav_help: "मदत",
+            hero_title: "भारताच्या भविष्याला आकार द्या",
+            hero_subtitle: "विविध सरकारी मंत्रालये आणि विभागांमध्ये प्रतिष्ठित इंटर्नशिपमध्ये सामील व्हा.",
+            hero_button: "कार्यक्रम एक्सप्लोर करा",
+            features_title: "आमचा इंटर्नशिप प्रोग्राम का निवडावा?",
+            ministries_title: "सहभागी मंत्रालये",
+            testimonials_title: "यशोगाथा",
+            footer_contact_title: "संपर्क साधा",
+            footer_follow_title: "आम्हाला फॉलो करा",
+            footer_gallery_title: "गॅलरी",
+        },
+        ka: { // Kannada
+            gov_of_india: "ಭಾರತ ಸರ್ಕಾರ / Government of India",
+            signin: "ಸೈನ್-ಇನ್ ಮಾಡಿ",
+            nav_home: "ಮುಖಪುಟ",
+            nav_about: "ನಮ್ಮ ಬಗ್ಗೆ",
+            nav_gallery: "ಗ್ಯಾಲರಿ",
+            nav_guidelines: "ಮಾರ್ಗಸೂಚಿಗಳು",
+            nav_faq: "FAQ",
+            nav_contact: "ಸಂಪರ್ಕಿಸಿ",
+            nav_dos_donts: "ಮಾಡಬೇಕಾದ ಮತ್ತು ಮಾಡಬಾರದ ಕೆಲಸಗಳು",
+            nav_help: "ಸಹಾಯ",
+            hero_title: "ಭಾರತದ ಭವಿಷ್ಯವನ್ನು ರೂಪಿಸಿ",
+            hero_subtitle: "ವಿವಿಧ ಸರ್ಕಾರಿ ಸಚಿವಾಲಯಗಳು ಮತ್ತು ಇಲಾಖೆಗಳಲ್ಲಿ ಪ್ರತಿಷ್ಠಿತ ಇಂಟರ್ನ್‌ಶಿಪ್‌ಗಳಿಗೆ ಸೇರಿ.",
+            hero_button: "ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ಅನ್ವೇಷಿಸಿ",
+            features_title: "ನಮ್ಮ ಇಂಟರ್ನ್‌ಶಿಪ್ ಕಾರ್ಯಕ್ರಮವನ್ನು ಏಕೆ ಆರಿಸಬೇಕು?",
+            ministries_title: "ಭಾಗವಹಿಸುವ ಸಚಿವಾಲಯಗಳು",
+            testimonials_title: "ಯಶಸ್ಸಿನ ಕಥೆಗಳು",
+            footer_contact_title: "ನಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಿ",
+            footer_follow_title: "ನಮ್ಮನ್ನು ಹಿಂಬಾಲಿಸಿ",
+            footer_gallery_title: "ಗ್ಯಾಲರಿ",
+        },
+        bh: { // Bhojpuri
+            gov_of_india: "भारत सरकार / Government of India",
+            signin: "साइन-इन करीं",
+            nav_home: "होम",
+            nav_about: "हमनी के बारे में",
+            nav_gallery: "गैलरी",
+            nav_guidelines: "दिशानिर्देश",
+            nav_faq: "FAQ",
+            nav_contact: "संपर्क",
+            nav_dos_donts: "का करीं का ना करीं",
+            nav_help: "मदद",
+            hero_title: "भारत के भविष्य के आकार दीं",
+            hero_subtitle: "विभिन्न सरकारी मंत्रालयन अउर विभागन में प्रतिष्ठित इंटर्नशिप में शामिल होईं।",
+            hero_button: "कार्यक्रम खोजीं",
+            features_title: "हमनी के इंटर्नशिप प्रोग्राम काहे चुनीं?",
+            ministries_title: "भाग लेवे वाला मंत्रालय",
+            testimonials_title: "सफलता के कहानी",
+            footer_contact_title: "संपर्क करीं",
+            footer_follow_title: "फॉलो करीं",
+            footer_gallery_title: "गैलरी",
+        },
+        hs: { // Haryanvi
+            gov_of_india: "भारत सरकार / Government of India",
+            signin: "साइन-इन करो",
+            nav_home: "होम",
+            nav_about: "म्हारे बारे में",
+            nav_gallery: "गैलरी",
+            nav_guidelines: "दिशानिर्देश",
+            nav_faq: "FAQ",
+            nav_contact: "संपर्क",
+            nav_dos_donts: "के करना है अर के नहीं",
+            nav_help: "मदद",
+            hero_title: "भारत के भविष्य नै आकार द्यो",
+            hero_subtitle: "अलग-अलग सरकारी मंत्रालयां अर विभागां म्ह प्रतिष्ठित इंटर्नशिप म्ह शामिल होओ।",
+            hero_button: "प्रोग्राम देखो",
+            features_title: "म्हारा इंटर्नशिप प्रोग्राम क्यूं चुणो?",
+            ministries_title: "भाग लेण आले मंत्रालय",
+            testimonials_title: "कामयाबी की कहाणी",
+            footer_contact_title: "संपर्क करो",
+            footer_follow_title: "हमें फॉलो करो",
+            footer_gallery_title: "गैलरी",
+        }
+    };
+
+    const languageSelect = document.getElementById('language-select');
+
+    const changeLanguage = (lang) => {
+        document.querySelectorAll('[data-translate-key]').forEach(element => {
+            const key = element.getAttribute('data-translate-key');
+            if (translations[lang] && translations[lang][key]) {
+                element.innerHTML = translations[lang][key];
+            }
         });
+        document.documentElement.lang = lang; // Update the page's lang attribute
+    };
 
-        const result = await response.json();
-        if (!response.ok) throw new Error(result.message || "Login failed");
-
-        alert(result.message + " Redirecting...");
-        setTimeout(() => {
-          window.location.href = sector + ".html";
-        }, 1500);
-
-      } catch (error) {
-        alert(error.message);
-        submitButton.disabled = false;
-        submitButton.textContent = "Sign in & Explore";
-      }
+    languageSelect.addEventListener('change', (event) => {
+        changeLanguage(event.target.value);
     });
-  </script>
+    
+
+    changeLanguage(languageSelect.value);
+
+
+
+    const chatbotToggleBtn = document.getElementById('chatbot-toggle');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const chatMessages = document.getElementById('chatMessages');
+
+    class InternshipChatbot {
+        constructor() {
+            this.chatMessages = chatMessages;
+            this.currentStep = 'greeting';
+            this.userSelections = {};
+        }
+
+        async showGreeting() {
+            this.chatMessages.innerHTML = '';
+            await this.delay(500);
+            this.addMessage("Hi! I'm here to help you find an internship. Click the button to get started!");
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'options-container';
+            const startButton = document.createElement('button');
+            startButton.className = 'option-btn';
+            startButton.textContent = 'Start Chat 🚀';
+            startButton.onclick = () => this.askInterestDomain();
+            optionsContainer.appendChild(startButton);
+            const initialMessageDiv = document.createElement('div');
+            initialMessageDiv.className = 'message bot-message';
+            initialMessageDiv.appendChild(optionsContainer);
+            this.chatMessages.appendChild(initialMessageDiv);
+            this.scrollToBottom();
+        }
+
+        async askInterestDomain() {
+            this.addMessage("Let's get started! 🚀", true);
+            this.currentStep = 'interest_domain';
+            await this.delay(800);
+            this.showTypingIndicator();
+            await this.delay(1500);
+            this.removeTypingIndicator();
+            this.addMessage(
+                "Which domain interests you the most?",
+                false,
+                [
+                    { text: "💻 Technology & Software", action: () => this.selectDomain('Technology & Software') },
+                    { text: "🎨 Design & Creative", action: () => this.selectDomain('Design & Creative') },
+                    { text: "📊 Business & Marketing", action: () => this.selectDomain('Business & Marketing') },
+                    { text: "🔬 Research & Analytics", action: () => this.selectDomain('Research & Analytics') },
+                    { text: "📝 Content & Writing", action: () => this.selectDomain('Content & Writing') },
+                    { text: "🏥 Healthcare & Life Sciences", action: () => this.selectDomain('Healthcare & Life Sciences') }
+                ]
+            );
+        }
+
+        async selectDomain(domain) {
+            this.addMessage(domain, true);
+            this.userSelections.domain = domain;
+            await this.delay(800);
+            this.showTypingIndicator();
+            await this.delay(1500);
+            this.removeTypingIndicator();
+            this.addMessage(`Great choice! ${domain} is an exciting field with lots of opportunities.`);
+            await this.delay(1000);
+            this.askExperienceLevel();
+        }
+
+        async askExperienceLevel() {
+            this.showTypingIndicator();
+            await this.delay(1500);
+            this.removeTypingIndicator();
+            this.addMessage(
+                "What's your experience level in this domain?",
+                false,
+                [
+                    { text: "🌱 Beginner (0-1 years)", action: () => this.selectExperience('Beginner') },
+                    { text: "📈 Intermediate (1-3 years)", action: () => this.selectExperience('Intermediate') },
+                    { text: "🚀 Advanced (3+ years)", action: () => this.selectExperience('Advanced') }
+                ]
+            );
+        }
+
+        async selectExperience(experience) {
+            this.addMessage(experience, true);
+            this.userSelections.experience = experience;
+            await this.delay(800);
+            this.showTypingIndicator();
+            await this.delay(1500);
+            this.removeTypingIndicator();
+            this.showRecommendations();
+        }
+
+        async showRecommendations() {
+            const { domain, experience } = this.userSelections;
+            this.addMessage(`Perfect! Based on your selection of ${domain} with ${experience} experience level, here are some recommendations:`);
+            await this.delay(1000);
+            this.showTypingIndicator();
+            await this.delay(2000);
+            this.removeTypingIndicator();
+            let recommendations = this.getRecommendations(domain, experience);
+            this.addMessage(recommendations);
+            await this.delay(1500);
+            this.addMessage(
+                "Would you like to explore more options or start over?",
+                false,
+                [
+                    { text: "🔍 More Information", action: () => this.showMoreInfo() },
+                    { text: "🔄 Start Over", action: () => this.restart() }
+                ]
+            );
+        }
+
+        getRecommendations(domain, experience) {
+            const recommendations = {
+                'Technology & Software': { 'Beginner': '• Frontend Development Intern\n• QA Testing Intern\n• Technical Support Intern\n• Mobile App Development Intern', 'Intermediate': '• Full-Stack Developer Intern\n• Data Science Intern\n• DevOps Intern\n• Cybersecurity Intern', 'Advanced': '• Software Architecture Intern\n• AI/ML Research Intern\n• Lead Developer Intern\n• Product Management Intern' },
+                'Design & Creative': { 'Beginner': '• Graphic Design Intern\n• Social Media Design Intern\n• UI/UX Assistant\n• Content Creation Intern', 'Intermediate': '• UX Designer Intern\n• Brand Identity Intern\n• Video Production Intern\n• Digital Marketing Creative', 'Advanced': '• Senior UX/UI Intern\n• Creative Director Intern\n• Product Design Intern\n• Design Strategy Intern' },
+                'Business & Marketing': { 'Beginner': '• Marketing Assistant Intern\n• Sales Support Intern\n• Market Research Intern\n• Customer Service Intern', 'Intermediate': '• Digital Marketing Intern\n• Business Analyst Intern\n• Project Management Intern\n• Operations Intern', 'Advanced': '• Marketing Strategy Intern\n• Business Development Intern\n• Consulting Intern\n• Product Marketing Intern' },
+                'Research & Analytics': { 'Beginner': '• Data Analyst Intern\n• Policy Research Assistant\n• Market Research Intern', 'Intermediate': '• Research Fellow\n• Quantitative Analyst Intern\n• Data Scientist Intern', 'Advanced': '• Senior Research Associate\n• Economic Policy Analyst Intern\n• AI/ML Research Intern' },
+                'Content & Writing': { 'Beginner': '• Content Writer Intern\n• Social Media Content Creator\n• Copywriting Intern', 'Intermediate': '• Technical Writer Intern\n• SEO Content Strategist\n• Journalist Intern', 'Advanced': '• Lead Content Strategist\n• Editor-in-Chief Intern\n• Communications Manager Intern' },
+                'Healthcare & Life Sciences': { 'Beginner': '• Medical Research Assistant\n• Clinical Intern\n• Public Health Intern', 'Intermediate': '• Pharmacovigilance Intern\n• Biomedical Engineer Intern\n• Health Informatics Intern', 'Advanced': '• Clinical Research Coordinator Intern\n• Healthcare Policy Analyst\n• Medical Affairs Intern' }
+            };
+            return recommendations[domain]?.[experience] || '• Custom internship opportunities available\n• Mentorship programs\n• Flexible project-based roles';
+        }
+
+        async showMoreInfo() {
+            this.addMessage("More Information", true);
+            await this.delay(800);
+            this.showTypingIndicator();
+            await this.delay(1500);
+            this.removeTypingIndicator();
+            this.addMessage("Here's additional information about our internship program:");
+            await this.delay(1000);
+            this.addMessage( "📋 Program Details:\n• Duration: 3-6 months\n• Stipend: Competitive compensation\n• Mentorship: 1-on-1 guidance\n• Certificate: Upon completion\n• Remote/Hybrid options available", false, [{ text: "🔄 Start Over", action: () => this.restart() }] );
+        }
+
+        async restart() {
+            this.addMessage("Start Over", true);
+            this.chatMessages.innerHTML = '';
+            this.userSelections = {};
+            this.currentStep = 'greeting';
+            await this.delay(500);
+            this.showGreeting();
+        }
+
+        scrollToBottom() { this.chatMessages.scrollTop = this.chatMessages.scrollHeight; }
+        delay(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+        addMessage(text, isUser = false, options = null) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            messageDiv.innerHTML = text.replace(/\n/g, '<br>');
+            if (options && !isUser) {
+                const optionsContainer = document.createElement('div');
+                optionsContainer.className = 'options-container';
+                options.forEach(option => {
+                    const optionBtn = document.createElement('button');
+                    optionBtn.className = 'option-btn';
+                    optionBtn.textContent = option.text;
+                    optionBtn.onclick = () => option.action();
+                    optionsContainer.appendChild(optionBtn);
+                });
+                messageDiv.appendChild(optionsContainer);
+            }
+            this.chatMessages.appendChild(messageDiv);
+            this.scrollToBottom();
+        }
+
+        showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot-message typing-indicator';
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = `<div class="typing-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
+            this.chatMessages.appendChild(typingDiv);
+            this.scrollToBottom();
+        }
+
+        removeTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) { typingIndicator.remove(); }
+        }
+    }
+
+    let chatbotInstance = null;
+    chatbotToggleBtn.addEventListener('click', () => {
+        chatbotContainer.classList.toggle('is-visible');
+        if (chatbotContainer.classList.contains('is-visible') && !chatbotInstance) {
+            chatbotInstance = new InternshipChatbot();
+            chatbotInstance.showGreeting();
+        }
+    });
+
+
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+    });
+
+
+    const fontDecrease = document.getElementById('font-decrease');
+    const fontReset = document.getElementById('font-reset');
+    const fontIncrease = document.getElementById('font-increase');
+    const root = document.documentElement;
+
+    const changeFontSize = (amount) => {
+        let currentSize = parseFloat(getComputedStyle(root).fontSize);
+        root.style.fontSize = `${currentSize + amount}px`;
+    };
+
+    fontDecrease.addEventListener('click', () => changeFontSize(-1));
+    fontIncrease.addEventListener('click', () => changeFontSize(1));
+    fontReset.addEventListener('click', () => root.style.fontSize = '16px');
+
+
+
+    const carouselTrack = document.getElementById('carousel-track');
+    const toggleButton = document.getElementById('toggleButton');
+    const carouselContainer = document.getElementById('carouselContainer');
+    let isExpanded = false;
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.carousel-item');
+    const totalSlides = slides.length;
+
+    const showSlide = () => {
+        if (!isExpanded) {
+            carouselTrack.style.transform = `translateX(-${slideIndex * 100}%)`;
+        }
+    };
+
+    const nextSlide = () => {
+        slideIndex = (slideIndex + 1) % totalSlides;
+        showSlide();
+    };
+
+    let slideInterval = setInterval(nextSlide, 3000);
+
+    toggleButton.addEventListener('click', () => {
+        isExpanded = !isExpanded;
+        carouselContainer.classList.toggle('expanded');
+        toggleButton.textContent = isExpanded ? 'Show Less' : 'Show More';
+        if (isExpanded) {
+            clearInterval(slideInterval);
+            carouselTrack.style.transform = 'none';
+        } else {
+            showSlide();
+            slideInterval = setInterval(nextSlide, 3000);
+        }
+    });
+    
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.getElementById('lightboxClose');
+    const prevBtn = document.getElementById('lightboxPrev');
+    const nextBtn = document.getElementById('lightboxNext');
+    const images = Array.from(document.querySelectorAll('.block img'));
+    let currentImageIndex;
+
+    const showLightbox = (index) => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = images[index].src;
+        currentImageIndex = index;
+    };
+    
+    images.forEach((img, index) => {
+        img.parentElement.addEventListener('click', () => showLightbox(index));
+    });
+
+    closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
+    
+    const showNextImage = () => {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        lightboxImg.src = images[currentImageIndex].src;
+    };
+
+    const showPrevImage = () => {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        lightboxImg.src = images[currentImageIndex].src;
+    };
+    
+    nextBtn.addEventListener('click', showNextImage);
+    prevBtn.addEventListener('click', showPrevImage);
+
+});
+</script>
+      
 </body>
 </html>
+

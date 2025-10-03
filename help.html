@@ -97,7 +97,7 @@
             const apiKey = "AIzaSyBLxoVx-RkuJeja6n_7JqrJ_O-S_teRhuA"; // Replace with your actual API key
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
 
-            // This tells the AI how to behave.
+
             const systemInstruction = {
                 role: "model",
                 parts: [{
@@ -118,7 +118,7 @@
 
             let conversationHistory = [systemInstruction];
 
-            // Function to add a message to the chat window
+
             const addMessage = (sender, message) => {
                 const messageContainer = document.createElement('div');
                 messageContainer.className = `flex ${sender === 'user' ? 'justify-end' : 'justify-start'}`;
@@ -132,7 +132,7 @@
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             };
 
-            // Handle form submission
+
             chatForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const userMessage = userInput.value.trim();
@@ -143,8 +143,8 @@
 
                 const lowerCaseMessage = userMessage.toLowerCase();
 
-                // **MODIFICATION START**
-                // 1. Check for resume-related keywords
+
+
                 if (lowerCaseMessage.includes('resume') || lowerCaseMessage.includes('cv') || lowerCaseMessage.includes('bio-data')) {
                     typingIndicator.classList.remove('hidden');
                     setTimeout(() => {
@@ -157,21 +157,21 @@
                     return; // Stop the function here
                 }
 
-                // 2. Check for developer-related keywords
+
                 if (lowerCaseMessage.includes('developer') || lowerCaseMessage.includes('who made you') || lowerCaseMessage.includes('creator') || lowerCaseMessage.includes('built you')) {
                     typingIndicator.classList.remove('hidden');
                     setTimeout(() => {
-                        addMessage('bot', 'I was developed by Rohit Kumar.');
+                        addMessage('bot', 'I was developed by Team SmartMatch.');
                         typingIndicator.classList.add('hidden');
                     }, 1000); // Simulate thinking
                     return; // Stop the function here
                 }
-                // **MODIFICATION END**
 
-                // If no special keywords are found, proceed with the API call
+
+
                 typingIndicator.classList.remove('hidden');
 
-                // Add user message to history
+
                 conversationHistory.push({ role: "user", parts: [{ text: userMessage }] });
 
                 try {
@@ -199,7 +199,7 @@
                         botMessage = candidate.content.parts[0].text;
                     }
 
-                    // Add AI response to history and display it
+
                     conversationHistory.push({ role: "model", parts: [{ text: botMessage }] });
                     addMessage('bot', botMessage);
 
@@ -213,5 +213,4 @@
         });
     </script>
 </body>
-
 </html>

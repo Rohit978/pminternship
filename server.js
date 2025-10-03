@@ -1,6 +1,6 @@
-// -------------------
-//  Setup & Imports
-// -------------------
+
+
+
 require('dotenv').config(); // For loading environment variables like the API key
 const express = require('express');
 const cors = require('cors');
@@ -10,20 +10,20 @@ const path = require('path');
 const csv = require('fast-csv');
 const fetch = require('node-fetch');
 
-// -------------------
-//  Configuration
-// -------------------
+
+
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 const usersFilePath = path.join(__dirname, 'users.csv');
 
-// Load the Gemini API Key from environment variables
+
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
-// -------------------
-//  Initial Checks
-// -------------------
-// CRITICAL: Check if the Gemini API key is available before starting.
+
+
+
+
 if (!GEMINI_API_KEY) {
     console.error('FATAL ERROR: GEMINI_API_KEY is not defined in the .env file.');
     process.exit(1); // Exit the application if the key is missing
@@ -31,17 +31,17 @@ if (!GEMINI_API_KEY) {
 
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
 
-// -------------------
-//  Middleware
-// -------------------
+
+
+
 app.use(cors()); // Enable Cross-Origin Resource Sharing
 app.use(express.json()); // Parse incoming JSON request bodies
 app.use(express.static('public')); // Serve static files (like index.html, dashboard.html, etc.)
 
-// -------------------
-//  Helper Functions
-// -------------------
-// Helper function to read all users from the CSV database file
+
+
+
+
 const getUsers = () => {
     return new Promise((resolve, reject) => {
         const users = [];
@@ -60,11 +60,11 @@ const getUsers = () => {
     });
 };
 
-// ===================================
-//      API ENDPOINTS
-// ===================================
 
-// --- REGISTRATION ENDPOINT ---
+
+
+
+
 app.post('/register', async (req, res) => {
     const { fullName, email, password } = req.body;
 
@@ -107,7 +107,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// --- LOGIN ENDPOINT ---
+
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
@@ -143,10 +143,10 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// --- USER APPLICATIONS ENDPOINT (for Dashboard) ---
+
 app.get('/api/applications', async (req, res) => {
-    // NOTE: This is a MOCK endpoint. In a real application, you would fetch data 
-    // from your database based on the logged-in user's ID.
+
+
     const mockApplications = [
         { id: '101', title: 'Software Engineer Intern', company: 'Tech Solutions Inc.', status: 'Under Review' },
         { id: '102', title: 'Marketing Intern', company: 'Growth Co.', status: 'Accepted' },
@@ -154,13 +154,13 @@ app.get('/api/applications', async (req, res) => {
         { id: '104', title: 'UX/UI Design Intern', company: 'Creative Designs', status: 'Rejected' },
     ];
 
-    // Simulate a network delay to mimic a real database call
+
     setTimeout(() => {
         res.status(200).json(mockApplications);
     }, 1000);
 });
 
-// --- CHATBOT API PROXY ENDPOINT ---
+
 app.post('/api/chat', async (req, res) => {
     try {
         const response = await fetch(GEMINI_API_URL, {
@@ -184,20 +184,20 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-// -------------------
-//  Error Handling Middleware
-// -------------------
-// This middleware MUST be the last one defined. It will catch any errors
-// that occur in your route handlers and prevent the server from crashing.
+
+
+
+
+
 app.use((err, req, res, next) => {
     console.error('An unhandled error occurred:', err.stack);
     res.status(500).json({ message: 'An internal server error occurred.' });
 });
 
 
-// -------------------
-//  Server Start
-// -------------------
+
+
+
 app.listen(PORT, () => {
     console.log(`✅ Unified Server is running successfully!`);
     console.log(`   - User Authentication (Login/Register) is active.`);

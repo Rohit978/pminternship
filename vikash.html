@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Job Comparison - AI Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .comparison-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .header {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, #ffffff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .match-score {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 80vh;
+        }
+
+        .panel {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .resume-panel {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .job-panel {
+            background: linear-gradient(135deg, #7c2d12 0%, #a21caf 100%);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .panel-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .panel-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .skill-match {
+            background: rgba(34, 197, 94, 0.3);
+            border: 1px solid rgba(34, 197, 94, 0.5);
+            color: #bbf7d0;
+        }
+
+        .skill-partial {
+            background: rgba(251, 191, 36, 0.3);
+            border: 1px solid rgba(251, 191, 36, 0.5);
+            color: #fef3c7;
+        }
+
+        .skill-missing {
+            background: rgba(239, 68, 68, 0.3);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+            color: #fecaca;
+        }
+
+        .skill-extra {
+            background: rgba(99, 102, 241, 0.3);
+            border: 1px solid rgba(99, 102, 241, 0.5);
+            color: #c7d2fe;
+        }
+
+        .experience-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .experience-match {
+            border-left-color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .experience-partial {
+            border-left-color: #eab308;
+            background: rgba(234, 179, 8, 0.1);
+        }
+
+        .experience-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        .match-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .match-high {
+            background: rgba(34, 197, 94, 0.2);
+            color: #bbf7d0;
+        }
+
+        .match-medium {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fef3c7;
+        }
+
+        .match-low {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fecaca;
+        }
+
+        .floating-stats {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 200px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .stat-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 0.25rem;
+        }
+
+        .stat-fill {
+            height: 100%;
+            transition: width 2s ease;
+        }
+
+        .keywords-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .keyword-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .keyword {
+            padding: 0.375rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .animation-fadeIn {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-stats {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="comparison-container">
+        <div class="header">
+            <h1>Smart Resume Analysis</h1>
+            <div class="job-title">Product Manager Intern - TechCorp</div>
+            <div class="match-score">✨ 87% Match Score</div>
+        </div>
+
+        <div class="comparison-grid">
+            <div class="panel resume-panel">
+                <div class="panel-header">
+                    <div class="panel-icon">📄</div>
+                    <div class="panel-title">Your Resume</div>
+                </div>
+
+                <div class="floating-stats">
+                    <div class="stat-item">
+                        <span>Skills Match</span>
+                        <span>92%</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 92%; background: linear-gradient(90deg, #22c55e, #16a34a);"></div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <span>Experience</span>
+                        <span>78%</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 78%; background: linear-gradient(90deg, #eab308, #ca8a04);"></div>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <span>Keywords</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 85%; background: linear-gradient(90deg, #3b82f6, #1d4ed8);"></div>
+                    </div>
+                </div>
+
+                <div class="section animation-fadeIn">
+                    <div class="section-title">
+                        🎯 Your Skills
+                        <span class="match-indicator match-high">92% Match</span>
+                    </div>
+                    <div class="skill-grid">
+                        <div class="skill-tag skill-match">Product Strategy</div>
+                        <div class="skill-tag skill-match">Data Analysis</div>
+                        <div class="skill-tag skill-match">Agile</div>
+                        <div class="skill-tag skill-match">SQL</div>
+                        <div class="skill-tag skill-match">A/B Testing</div>
+                        <div class="skill-tag skill-partial">Figma</div>
+                        <div class="skill-tag skill-extra">Python</div>
+                        <div class="skill-tag skill-extra">Machine Learning</div>
+                        <div class="skill-tag skill-match">User Research</div>
+                        <div class="skill-tag skill-match">Wireframing</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">
+                        💼 Your Experience
+                        <span class="match-indicator match-medium">78% Relevance</span>
+                    </div>
+                    
+                    <div class="experience-item experience-match">
+                        <div class="experience-title">Product Analyst Intern - StartupXYZ</div>
+                        <div class="experience-desc">
+                            Analyzed user behavior data to identify product improvement opportunities, 
+                            leading to 15% increase in user engagement through A/B testing.
+                        </div>
+                    </div>
+                    
+                    <div class="experience-item experience-partial">
+                        <div class="experience-title">Marketing Assistant - Local Business</div>
+                        <div class="experience-desc">
+                            Developed marketing campaigns and analyzed customer feedback to improve 
+                            product positioning and messaging.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="keywords-section">
+                    <div class="section-title">🔍 Detected Keywords</div>
+                    <div class="keyword-list">
+                        <div class="keyword skill-match">product roadmap</div>
+                        <div class="keyword skill-match">stakeholder management</div>
+                        <div class="keyword skill-match">user stories</div>
+                        <div class="keyword skill-match">market research</div>
+                        <div class="keyword skill-partial">cross-functional teams</div>
+                        <div class="keyword skill-match">KPIs</div>
+                        <div class="keyword skill-match">competitive analysis</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel job-panel">
+                <div class="panel-header">
+                    <div class="panel-icon">🎯</div>
+                    <div class="panel-title">Job Requirements</div>
+                </div>
+
+                <div class="section animation-fadeIn">
+                    <div class="section-title">
+                        ⚡ Required Skills
+                        <span class="match-indicator match-high">Strong Match</span>
+                    </div>
+                    <div class="skill-grid">
+                        <div class="skill-tag skill-match">Product Strategy</div>
+                        <div class="skill-tag skill-match">Data Analysis</div>
+                        <div class="skill-tag skill-match">Agile</div>
+                        <div class="skill-tag skill-match">SQL</div>
+                        <div class="skill-tag skill-missing">Tableau</div>
+                        <div class="skill-tag skill-match">A/B Testing</div>
+                        <div class

@@ -63,7 +63,7 @@
       background: linear-gradient(to bottom right, #e6f2ff, #ffffff);
     } 
 
-    // 496 to 559 
+
 
     .chatbot-container {
     position: fixed;
@@ -191,19 +191,19 @@
 
 
  class InternshipChatbot {
-        // ... (rest of the class code remains the same)
+
         constructor() {
             this.chatMessages = document.getElementById('chatMessages');
             this.currentStep = 'greeting';
             this.userSelections = {};
-            // Don't call this.init() in the constructor
+
         }
 
         init() {
             this.chatMessages.innerHTML = ''; // Clear the initial message
             this.showGreeting();
         }
-        // ... (rest of the class methods remain the same)
+
         addMessage(text, isUser = false, options = null) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
@@ -688,29 +688,29 @@
             const tabs = document.querySelectorAll('.nav-tab');
             const contents = document.querySelectorAll('.tab-content');
 
-            // Add event listener to each tab
+
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
-                    // Get the target content ID from the button's ID
+
                     const targetId = tab.id.replace('-tab', '');
 
-                    // Remove active class from all tabs and hide all content
+
                     tabs.forEach(t => {
                         t.classList.remove('active', 'border-[#008000]', 'text-[#008000]');
                         t.classList.add('border-transparent');
                     });
                     contents.forEach(c => c.classList.add('hidden'));
 
-                    // Add active class to the clicked tab and show the corresponding content
+
                     tab.classList.add('active', 'border-[#008000]', 'text-[#008000]');
                     document.getElementById(targetId).classList.remove('hidden');
                     
-                    // Add fade-in animation to the new tab content
+
                     document.getElementById(targetId).classList.add('fade-in');
                 });
             });
 
-            // Initial state: show the first tab and its content
+
             const initialTab = document.getElementById('getting-started-tab');
             initialTab.click();
         });

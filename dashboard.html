@@ -180,9 +180,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
         const user = await response.json();
 
-        // --- Populate Dashboard with User Data ---
 
-        // Header
+
+
         const nameParts = user.fullName.trim().split(/\s+/);
         const initials = (nameParts.length > 1 ? nameParts[0][0] + nameParts[nameParts.length - 1][0] : nameParts[0].substring(0, 2)).toUpperCase();
         document.getElementById('avatar').textContent = initials;
@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('#contact-email span').textContent = user.email;
         document.querySelector('#contact-location span').textContent = `${user.city}, ${user.state}`;
 
-        // Academic Snapshot
+
         document.getElementById('board12').textContent = user.board12;
         document.getElementById('marks12-text').textContent = `${user.marks12}%`;
         document.getElementById('marks12-progress').style.width = `${user.marks12}%`;
@@ -199,11 +199,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('marks10-text').textContent = `${user.marks10}%`;
         document.getElementById('marks10-progress').style.width = `${user.marks10}%`;
 
-        // Application Stats
+
         document.getElementById('marks12-stat').textContent = `${user.marks12}%`;
         document.getElementById('marks10-stat').textContent = `${user.marks10}%`;
         
-        // Recommendations (using the user's city)
+
         const recommendationsContainer = document.getElementById('recommendations');
         recommendationsContainer.innerHTML = `
             <div class="p-5 border border-gray-200 rounded-xl hover:shadow-lg transition-shadow duration-300 bg-gray-50">
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
         `;
 
-        // Logout Button
+
         document.getElementById('logout-button').addEventListener('click', (e) => {
             e.preventDefault();
             localStorage.removeItem('loggedInUserId');
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
         `;
     } finally {
-        // Hide spinner and show content
+
         spinner.style.display = 'none';
         dashboardContent.classList.remove('opacity-0');
     }

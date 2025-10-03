@@ -207,14 +207,14 @@
                 });
             };
             
-            // --- Prediction Logic ---
+
             const runPrediction = () => {
-                // Show loading state
+
                 document.getElementById('prediction-loading').classList.remove('hidden');
                 document.getElementById('prediction-result').classList.add('hidden');
                 progressContainer.classList.add('hidden');
 
-                // Simulate API call and analysis
+
                 setTimeout(() => {
                     const degree = document.querySelector('.education-degree').value;
                     const experience = parseInt(document.getElementById('experience').value) || 0;
@@ -223,15 +223,15 @@
                     
                     let score = 0;
                     
-                    // Score based on education (max 35)
+
                     if (degree === 'Masters') score += 25;
                     else if (degree === 'PhD') score += 35;
                     else score += 15;
 
-                    // Score based on experience (max 25)
+
                     score += Math.min(experience * 5, 25);
 
-                    // Score based on skills (max 40: 25 general + 15 sector bonus)
+
                     const highDemandSkills = ['python', 'data analysis', 'machine learning', 'ai', 'economics', 'public policy', 'statistics', 'cybersecurity', 'blockchain'];
                     const sectorSkills = {
                         'Technology': ['python', 'cybersecurity', 'machine learning', 'ai', 'blockchain'],
@@ -258,12 +258,12 @@
                     }
                     score += sectorBonus;
                     
-                    // Add a small random factor for realism
+
                     score += Math.floor(Math.random() * 5); 
 
                     const finalPercentage = Math.min(Math.round(score), 100);
 
-                    // Update UI
+
                     updateGauge(finalPercentage);
                     generatePredictionSummary(finalPercentage, skills, sector);
 
@@ -282,7 +282,7 @@
 
                 gaugeFill.style.strokeDashoffset = offset;
                 
-                // Animate text
+
                 let current = 0;
                 const interval = setInterval(() => {
                     if (current >= percentage) {
@@ -340,7 +340,7 @@
                     }
                 }
 
-                // Sort matches to show preferred sector matches first
+
                 matches.sort((a, b) => b.isMatch - a.isMatch);
                 
                 if (matches.length > 0) {
@@ -353,7 +353,7 @@
             }
 
             nextBtn.addEventListener('click', () => {
-                // Simple validation
+
                 const activeStep = document.querySelector('.step.active');
                 const inputs = activeStep.querySelectorAll('input[required]');
                 let allValid = true;
@@ -394,7 +394,7 @@
                 }
             });
 
-            // Initial setup
+
             showStep(currentStep);
             updateButtons();
             updateProgressBar();

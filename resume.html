@@ -215,7 +215,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Destructuring jsPDF for convenience
+
             const { jsPDF } = window.jspdf;
 
             const steps = document.querySelectorAll('.step');
@@ -226,7 +226,7 @@
 
             let currentStep = 0;
 
-            // --- AI Generation Logic ---
+
             const apiKey = "AIzaSyBLxoVx-RkuJeja6n_7JqrJ_O-S_teRhuA"; // Per instructions, leave this blank.
 
             async function generateAIContent(prompt, button) {
@@ -267,7 +267,7 @@
                 }
             }
             
-            // Generate Summary
+
             document.getElementById('generate-summary').addEventListener('click', async (e) => {
                 const fullName = document.getElementById('fullName').value;
                 const skills = document.getElementById('skills').value;
@@ -281,7 +281,7 @@
                 summaryTextArea.value = generatedSummary;
             });
             
-            // Generate Experience (using event delegation)
+
             document.getElementById('experience-entries').addEventListener('click', async (e) => {
                 const button = e.target.closest('.generate-experience');
                 if (button) {
@@ -409,13 +409,13 @@
                 }
             });
 
-            // --- Dynamic Entry Management ---
+
             function setupDynamicEntries(containerId, addButtonId, entryClass, template) {
                 const container = document.getElementById(containerId);
                 document.getElementById(addButtonId).addEventListener('click', () => {
                     const newEntry = document.createElement('div');
                     newEntry.innerHTML = template;
-                    // Reset input values in the cloned template
+
                     newEntry.querySelectorAll('input, textarea').forEach(input => input.value = '');
                     container.appendChild(newEntry.firstElementChild);
                 });
@@ -434,7 +434,7 @@
             const experienceTemplate = document.querySelector('.experience-entry').outerHTML;
             setupDynamicEntries('experience-entries', 'add-experience', 'experience-entry', experienceTemplate);
             
-            // --- PDF Download ---
+
             document.getElementById('download-pdf').addEventListener('click', () => {
                 const resumePreview = document.getElementById('resume-preview');
                 html2canvas(resumePreview, { scale: 3 }).then(canvas => { // Increased scale for better quality
@@ -452,7 +452,7 @@
             });
 
 
-            // Initial setup
+
             showStep(currentStep);
             updateButtons();
             updateProgressBar();

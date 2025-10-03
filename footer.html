@@ -286,28 +286,28 @@
     </footer>
 
     <script>
-        // FAQ Toggle Functionality
+
         function toggleFAQ(questionElement) {
             const answer = questionElement.nextElementSibling;
             const isActive = questionElement.classList.contains('active');
             
-            // Close all other FAQ items
+
             document.querySelectorAll('.faq-question').forEach(q => {
                 q.classList.remove('active');
                 q.nextElementSibling.classList.remove('active');
             });
             
-            // Toggle current item
+
             if (!isActive) {
                 questionElement.classList.add('active');
                 answer.classList.add('active');
             }
         }
 
-        // Add smooth hover animations
+
         document.querySelectorAll('.footer-image').forEach(img => {
             img.addEventListener('click', function() {
-                // Simple lightbox effect (you can enhance this)
+
                 const overlay = document.createElement('div');
                 overlay.style.cssText = `
                     position: fixed;
@@ -341,7 +341,7 @@
             });
         });
 
-        // Add animation on scroll (if footer is not always visible)
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {

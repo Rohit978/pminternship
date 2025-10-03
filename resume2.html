@@ -78,10 +78,10 @@
                     throw new Error(result.message || 'Login failed.');
                 }
                 
-                // IMPORTANT: Save user data to sessionStorage to persist the login
+
                 sessionStorage.setItem('loggedInUser', JSON.stringify(result.user));
 
-                // Redirect to the dashboard on successful login
+
                 window.location.href = '/dashboard.html';
 
             } catch (error) {

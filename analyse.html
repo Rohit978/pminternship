@@ -197,10 +197,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // --- ATS Analysis Logic ---
-            // ... (code remains the same)
 
-            // --- Mock Interview Logic ---
+
+
+
             const interviewForm = document.getElementById('interview-form');
             const userAnswerInput = document.getElementById('user-answer');
             const chatMessages = document.getElementById('chat-messages');
@@ -279,7 +279,7 @@
                 let rawResponse = await getAIResponse(finalPrompt);
 
                 try {
-                    // Clean potential markdown formatting from the response
+
                     rawResponse = rawResponse.replace(/```json/g, '').replace(/```/g, '').trim();
                     const result = JSON.parse(rawResponse);
 
@@ -357,7 +357,7 @@
                     return "{\"score\": 0, \"feedback\": \"I'm sorry, I encountered an error and could not process the results.\", \"improvements\": [\"Please try the interview again.\"]}";
                 }
             }
-             // --- ATS Analysis Logic ---
+
             const atsProgressEl = document.getElementById('ats-progress');
             const probProgressEl = document.getElementById('prob-progress');
             if(atsProgressEl && probProgressEl) {
