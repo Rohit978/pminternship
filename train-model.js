@@ -1,15 +1,15 @@
-
+// Required TensorFlow and model packages
 const tf = require('@tensorflow/tfjs-node');
 const use = require('@tensorflow-models/universal-sentence-encoder');
 const fs = require('fs');
 
-
-const { TRAINING_DATA } = require('./training-data.js');
+// Load your training data directly
+const TRAINING_DATA = require('./training-data.js');
 
 async function train() {
     console.log('🚀 Starting offline model training...');
 
-
+    // Prepare data
     const intentLabels = TRAINING_DATA.intents.map(intent => intent.tag);
     const allPatterns = [];
     const allLabels = [];
@@ -24,11 +24,11 @@ async function train() {
     console.log('✅ Data prepared.');
     console.log('📚 Loading Universal Sentence Encoder...');
     const encoder = await use.load();
-
+    
     console.log('🧠 Generating embeddings for training patterns...');
     const embeddings = await encoder.embed(allPatterns);
     const embeddingsArray = await embeddings.array();
-
+    
     console.log('🏗️ Building neural network architecture...');
     const inputShape = embeddingsArray[0].length;
     const model = tf.sequential({
@@ -72,7 +72,7 @@ async function train() {
     const ys = tf.tensor1d(allLabels, 'float32');
 
     await model.fit(xs, ys, {
-        epochs: 100, // Keep rigorous training
+        epochs: 100,
         batchSize: 16,
         shuffle: true,
         callbacks: {
@@ -82,14 +82,14 @@ async function train() {
         }
     });
 
-
+    // Save the trained model
     const savePath = 'public/model';
     if (!fs.existsSync(savePath)) {
         fs.mkdirSync(savePath, { recursive: true });
     }
     await model.save(`file://${savePath}`);
-
-
+    
+    // Save the intent labels for the client
     fs.writeFileSync(`${savePath}/intent_labels.json`, JSON.stringify(intentLabels));
 
     console.log(`✅ Training complete! Model saved to ./${savePath}`);
