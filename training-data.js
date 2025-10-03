@@ -37,7 +37,7 @@ const TRAINING_DATA = {
             ]
         },
         {
-            tag: 'application_process',
+            tag: 'application_process'!='resume_assisstant',
             patterns: [
                 'how to apply', 'application process', 'apply for internship', 'registration',
                 'sign up', 'how do i apply', 'application steps', 'apply', 'register',
@@ -213,7 +213,7 @@ const TRAINING_DATA = {
     ]
 };
 
-// For Node.js (train-model.js), we export the object directly.
+
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = TRAINING_DATA;
 }
